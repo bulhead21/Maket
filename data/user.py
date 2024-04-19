@@ -19,8 +19,6 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
 
     email = sqlalchemy.Column(sqlalchemy.String, unique=True)
 
-    phone_num = sqlalchemy.Column(sqlalchemy.String, unique=True)
-
     password = sqlalchemy.Column(sqlalchemy.String)
 
     def set_password(self, password):

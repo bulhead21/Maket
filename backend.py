@@ -57,13 +57,11 @@ def reg_form():
     password = form.get("passwordInput")
     name = form.get("nameInput")
     surname = form.get("surnameInput")
-    phone_num = form.get("phoneInput")
     db_sess = db_session.create_session()
     user = User()
     user.name = name
     user.surname = surname
     user.email = email
-    user.phone_num = phone_num
     user.set_password(password)
     db_sess.add(user)
     db_sess.commit()
