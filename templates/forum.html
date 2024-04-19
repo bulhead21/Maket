@@ -15,14 +15,15 @@
 </head>
 
 <body>
+  <header>
   <div class="header-top">
     <div class="icon">
-      <a class="flag" href="/"><img src="../static/img/icon-kz.png" alt="" width="73px"></a>
+      <a class="flag" href="/index"><img src="../static/img/logo.png" alt="" width="73px"></a>
     </div>
 
     <div class="nav">
-      <a class="nav-item" href="/">Главная</a>
-      <a class="nav-item" href="/guide">Что делать</a>
+      <a class="nav-item" href="/index">Главная</a>
+      <a class="nav-item" href="/guide">FAQ</a>
       <a class="nav-item" href="/info">Информация</a>
     </div>
 
@@ -31,25 +32,31 @@
       <div class="settings">
         <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
         <div class="search">
-          <input=type"search" placeholder="Type to search" class= "search_input">
+          <input type="search" placeholder="Type to search" class="search_input" id="searchInput">
           <button>
+          
             <i class="fa fa-search"><lord-icon src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="width:46px;height:46px;color:#fff;"></lord-icon></i>
           </button>
         </div>
       </div>
-
+      
       <a class="animated-icon2" href="https://www.youtube.com/">
         <lord-icon src="https://cdn.lordicon.com/xyboiuok.json" trigger="hover" style="width:48px;height:48px"></lord-icon> 
       </a>
-
-      <a class="animated-icon3"  href="/user_login">
-        <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:48px;height:48px"></lord-icon> 
-      </a>
+      {% if not current_user.is_authenticated %}
+        <a class="animated-icon3"  href="/user_reg">
+          <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:48px;height:48px"></lord-icon>
+        </a>
+      {% else %}
+        <a class="animated-icon3"  href="/private_office">
+          <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:48px;height:48px"></lord-icon>
+        </a>
+      {% endif %}
     </div>
   </div>
-
+</header>
   <main>
-    <div class="add" id="addDivBtn">Добавить</div>
+    <button id="addDivBtn" style="color: red;">Добавить Div</button>
     <div id="container"></div>
   </main>
 </body>
