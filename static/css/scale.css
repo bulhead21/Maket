@@ -1,0 +1,22 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.scale {
+  width: 300px;
+  height: 20px;
+  border: 1px solid #ccc;
+  position: relative;
+}
+
+.segment {
+  height: 100%;
+  background-color: #4CAF50; /* Цвет сегмента */
+  float: left;
+  box-sizing: border-box;
+}
+

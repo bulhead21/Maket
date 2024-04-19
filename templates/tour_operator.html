@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/css/style_private.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Forum&family=Tinos&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/3d0e27e432.js"></script>
+  <title>Travel Almaty</title>
+</head>
+<body>
+  <div class="header-top">
+    <div class="icon">
+      <a class="flag" href="/index"><img src="../static/img/logo.png" alt="" width="73px"></a>
+    </div>
+
+    <div class="nav">
+      <a class="nav-item" href="/index">Главная</a>
+      <a class="nav-item" href="/guide">Что делать</a>
+      <a class="nav-item" href="/info">Информация</a>
+    </div>
+
+    <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
+    <div class="icons">
+
+      <a class="animated-icon2" href="/favourite_routes">
+        <lord-icon src="https://cdn.lordicon.com/xyboiuok.json" trigger="hover" style="width:48px;height:48px"></lord-icon> 
+      </a>
+    </div>
+  </div>
+
+  <a class="animated-icon2" href="https://www.youtube.com/">
+        <lord-icon src="https://cdn.lordicon.com/xyboiuok.json" trigger="hover" style="width:48px;height:48px"></lord-icon> 
+      </a>
+      {% if current_user.is_authenticated %}
+        <a class="animated-icon3"  href="/user_reg">
+          <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:48px;height:48px"></lord-icon>
+        </a>
+      {% else %}
+        <a class="animated-icon3"  href="/user_reg">{{current_user.name}}</a>
+      {% endif %}
+
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+*.xml
+.idea/TravelProject.iml
+*.pyc
+databases/places.db
+*.db
+.vscode/settings.json
+.vscode/settings.json
+databases/places.db
+databases/places.db

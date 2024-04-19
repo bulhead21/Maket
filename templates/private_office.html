@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/css/style_private.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Forum&family=Tinos&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/3d0e27e432.js"></script>
+  <title>Travel Almaty</title>
+</head>
+<body>
+  <div class="header-top">
+    <div class="icon">
+      <a class="flag" href="/index"><img src="../static/img/logo.png" alt="" width="73px"></a>
+    </div>
+
+    <div class="nav">
+      <a class="nav-item" href="/index">Главная</a>
+      <a class="nav-item" href="/guide">Что делать</a>
+      <a class="nav-item" href="/info">Информация</a>
+    </div>
+
+    <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
+    <div class="icons">
+      <div class="settings">
+        <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
+        <div class="search">
+          <input type="search" placeholder="Type to search" class="search_input">
+          <button>
+            <i class="fa fa-search"><lord-icon src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="width:46px;height:46px;color:#fff;"></lord-icon></i>
+          </button>
+        </div>
+      </div>
+
+      <a class="animated-icon2" href="/favourite_routes">
+        <lord-icon src="https://cdn.lordicon.com/xyboiuok.json" trigger="hover" style="width:48px;height:48px"></lord-icon> 
+      </a>
+    </div>
+  </div>
+
+  <main>
+    <section class="location">
+      <div class="container">
+        <div class="location-wrapper">
+
+            <div class="perenos1">
+              <div class="location__block">
+                <div class="location__header">
+                  <h2 class="location__block__NameSurname"><img src="../static/img/walking_man.png" alt="" width="25px" height="28px" class="walking_man">{{current_user.name}} {{current_user.surname}}</h2>
+                </div>  
+                  <div class="location__block__body__wrapper">
+                    <div class="location__block__body__up">
+                      <p class="location__block__phone">Телефон</p>
+                      <p class="location__block__phone__value">{{current_user.phone_num}}<p>
+                    </div>
+                    <div class="location__block__body__bottom">
+                      <p class="location__block__body__email">Email</p>
+                      <p class="location__block__body__email__value">{{current_user.email}}<p>
+                    </div>
+                  </div>
+                  <div class="location__block__small">
+                    <div class="location__block__small__top">
+                    <img src="../static/img/fire_icon.png" class="IconHeart1" alt="" width="23px">
+                    <p class="location__block__small__DoStatusa">
+                      До уровня: Опытный
+                    </p>
+                    </div>
+                    <div class="lines">
+                      <div class="line__grey">               
+                        <div class="line__green">
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div> 
+              </div>
+
+              <div class="location__block"> 
+                <div class="location__header2">
+                  <h2><a class="location__block__FavouriteRoutes" href="/favourite_routes"> <img src="../static/img/icon_heart_NotAnim.png" alt="" width="25px" height="25px">Избранные маршруты</h2></a>
+                </div>
+                  <div class="location__block__body__wrapper">
+                      <div class="location__block__small_favourites">
+                        <img class="location-img" src="../static/img/history.jpg" alt="" width="100%" height="100%">
+                      </div>
+                    
+                  </div>
+            
+              </div>
+              </div>
+
+            <br> <div class="perenos2">
+              <div class="location__block3"> 
+                <div class="location__header3">
+                  <h2><a class="location__block__TourOperators" href="/tour_operator"> <img src="../static/img/tour-operators.png" alt="" width="25px" height="25px">Тур операторы</h2></a>
+                </div>
+                
+              </div>
+                
+           
+            <div class="location__block3"> 
+              <div class="location__header3">
+                <h2><a class="location__block__TourOperators" href="/tour_operator"> <img src="../static/img/tour-operators.png" alt="" width="25px" height="25px">Тур операторы</h2></a>
+              </div>
+              
+            </div>
+         </div>      
+           
+
+
+        </div>
+      </div>
+    </section>
+  </main>
+  
+</body>
