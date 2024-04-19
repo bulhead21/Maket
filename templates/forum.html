@@ -56,23 +56,39 @@
   </div>
 </header>
   <main>
-    <button id="addDivBtn" style="color: red;">Добавить Div</button>
+    <div class="doc">
+    <h1 id="addDivBtn">Новая Запись</h1>
     <div id="container"></div>
+  </div>
   </main>
 </body>
 </html>
 <script>
-  
-    document.getElementById('addDivBtn').addEventListener('click', function() {
+  document.getElementById('addDivBtn').addEventListener('click', function() {
     // Создаем новый div элемент
     var newDiv = document.createElement('div');
-    
-    // Можем добавить какой-то текст или класс для стилизации
-    newDiv.textContent = 'это мое письмо';
-    newDiv.className = 'new-div';
+    newDiv.className = 'editable-div';
+    w=Array()
+    // Создаем input для ввода текста
+    var input = document.createElement('input');
+    input.type = 'text';
+    input.placeholder = 'Введите текст здесь...';
+
+    // Создаем кнопку для сохранения текста
+    var saveButton = document.createElement('button');
+    saveButton.textContent = 'Сохранить';
+    saveButton.onclick = function() {
+        // Заменяем input на статичный текст
+        
+        newDiv.textContent = input.value;
+    };
+
+    // Добавляем input и кнопку в новый div
+    newDiv.appendChild(input);
+    newDiv.appendChild(saveButton);
 
     // Добавляем новый div в контейнер
     document.getElementById('container').appendChild(newDiv);
+    input.focus(); // Фокусируем на input после создания
 });
-  
 </script>
