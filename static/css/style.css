@@ -344,6 +344,10 @@
 	margin: 0;
 	transition: background-color 0.2s;
 }
+#searchResults {
+    margin-top: 20px;
+}
+
 .place-adding__input-file input[type=file] {
 	position: absolute;
 	z-index: -1;
