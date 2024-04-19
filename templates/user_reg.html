@@ -2,93 +2,37 @@
 <html>
 <head>
     <title>Регистрация </title>
-    <style>
-        body {
-            display:flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .form {
-            width: 300px;
-            padding: 32px;
-            border-radius: 10px;
-            box-shadow: 0 4px 16px #ccc;
-            background-color: #fff;
-            font-family: sans-serif;
-            letter-spacing: 1px;
-        }
-        .form_input,
-        .form_button{
-          font-family: sans-serif;
-          letter-spacing: 1px;
-          font-size: 16px;
-        }
-        .form_title{
-          text-align: center;
-          margin: 0 0 32px 0;
-          font-weight: normal;
-        }
-        .back{
-          margin-left: 65px;
-          font-size: 14px;
-        }
-        .form_group{
-          position: relative;
-          margin-bottom:32px;
-        }
-        .form_label{
-          
-          top: 0;
-          z-index: -1;
-          color:#9e9e9e;
-          transition: 0.3s;
-        }
-        .form_input{
-          width: 100%;
-          padding: 0 0 10px 0;
-          border: none;
-          border-bottom: 1px solid #e0e0e0;
-          background-color: transparent;
-          outline: none;
-          transition: 0.3s;
-          padding-top: 10px;
-        }
-        .form_input:focus{
-          border-bottom: 1px solid #1a73a8;
-          ;
-        }
-        .form_button{
-          padding: 10px 20px;
-          border: none;
-          border-radius: 5px;
-          color: #fff;
-          background-color: #0071f0;
-          outline: none;
-          cursor: pointer;
-          transform: 0.3s;
-        }
-        .form_button:focus,
-        .form_button:hover{
-          background-color: rgba(0,113,240,0.7);
-        }
-        .form_input:focus ~ .form_label,
-        .form_input:not(:placeholder-shown) ~ .form_label{
-          top: -18px;
-          font-size: 12px;
-          color:#e0e0e0;
-        }
-        .form {
-        opacity: 0;
-        animation: ani 1.1s forwards;
-        }
-        @keyframes ani {
-          0% {opacity: 0;}
-          100% {opacity: 1;}
-        }
-    </style>
+    <link rel="stylesheet" href="../static/css/register.css">
 </head>
 <body>
+  <div class="header-top">
+    <div class="icon">
+      <a class="flag" href="/index"><img src="../static/img/logo.png" alt="" width="73px"></a>
+    </div>
+
+    <div class="nav">
+      <a class="nav-item" href="/index">Главная</a>
+      <a class="nav-item" href="/guide">Что делать</a>
+      <a class="nav-item" href="/info">Информация</a>
+    </div>
+
+    <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
+    <div class="icons">
+      <div class="settings">
+        <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
+        <div class="search">
+          <input type="search" placeholder="Type to search" class="search_input">
+          <button>
+            <i class="fa fa-search"><lord-icon src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="width:46px;height:46px;color:#fff;"></lord-icon></i>
+          </button>
+        </div>
+      </div>
+
+      <a class="animated-icon2" href="/favourite_routes">
+        <lord-icon src="https://cdn.lordicon.com/xyboiuok.json" trigger="hover" style="width:48px;height:48px"></lord-icon> 
+      </a>
+    </div>
+  </div>
   <form class ="form" method="POST" action="/reg_form">
     <h1 class="form_title">Registration</h1>
       <div class="form_group">
