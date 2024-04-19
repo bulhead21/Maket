@@ -27,7 +27,7 @@
 
     <div class="nav">
       <a class="nav-item" href="/index">Главная</a>
-      <a class="nav-item" href="/guide">Что делать</a>
+      <a class="nav-item" href="/guide">FAQ</a>
       <a class="nav-item" href="/info">Информация</a>
     </div>
 
@@ -36,8 +36,9 @@
       <div class="settings">
         <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
         <div class="search">
-          <input type="search" placeholder="Type to search" class="search_input">
+          <input type="search" placeholder="Type to search" class="search_input" id="searchInput">
           <button>
+          
             <i class="fa fa-search"><lord-icon src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="width:46px;height:46px;color:#fff;"></lord-icon></i>
           </button>
         </div>
@@ -55,12 +56,11 @@
           <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:48px;height:48px"></lord-icon>
         </a>
       {% endif %}
-      
-
     </div>
   </div>
 
 <main>
+  <h1 style="margin-top: 5%;">Цифровизация государственных услуг в Казахстане</h1>
   <section class="section-1">
   <div class="satellite">
     <div class="satellite-img"></div>
@@ -70,34 +70,35 @@
 </div>
 </section>
 <div class="container">
-        <h1>Цифровизация государственных услуг в Казахстане</h1>
         <div class="service">
             <img src="../static/img/image.png" alt="eGov">
-            <p><strong>Портал "eGov.kz"</strong>:  Этот портал предоставляет широкий спектр услуг, доступных онлайн, включая регистрацию браков, рождений, смертей, получение справок и документов, оформление разрешений и лицензий. Пользователи могут подавать заявления, получать различные справки и документы, а также платить налоги и штрафы через интернет.</p>
-        </div>
+            <p><strong>Портал "eGov.kz"</strong>:  Этот портал предоставляет широкий спектр услуг, доступных онлайн, включая регистрацию браков, рождений, смертей, получение справок и документов, оформление разрешений и лицензий. Пользователи могут подавать заявления, получать различные справки и документы, а также платить налоги и штрафы через интернет.<a href="https://egov.kz/cms/ru" class="link">Перейти</a></p>
+            
+          </div>
         <div class="service">
             <img src="../static/img/egov_mobile.jpg" alt="eGov Mobile">
-            <p><strong>Мобильное приложение "eGov Mobile"</strong>: Это приложение позволяет получать различные государственные услуги через смартфоны. С его помощью можно, например, проверить штрафы, налоговую задолженность, использовать цифровую подпись.</p>
+            <p><strong>Мобильное приложение "eGov Mobile"</strong>: Это приложение позволяет получать различные государственные услуги через смартфоны. С его помощью можно, например, проверить штрафы, налоговую задолженность, использовать цифровую подпись.<a href="https://play.google.com/store/apps/details?id=kz.mobile.mgov&hl=ru&gl=US&pli=1 class="link">Перейти</a></p>
         </div>
         <div class="service">
             <img src="../static/img/digi_icon.jpg" alt="Цифровая идентификация">
-            <p><strong>Цифровая идентификация</strong>:  В Казахстане внедряются системы цифровой идентификации, такие как мобильная идентификация и электронная подпись, которые значительно упрощают доступ к онлайн-услугам и обеспечивают их безопасность.</p>
+            <p><strong>Цифровая идентификация</strong>:  В Казахстане внедряются системы цифровой идентификации, такие как мобильная идентификация и электронная подпись, которые значительно упрощают доступ к онлайн-услугам и обеспечивают их безопасность.<a href="https://digital-id.kz/partner" class="link">Перейти</a></p>
         </div>
         <div class="service">
             <img src="../static/img/smart_city.jpg" alt="Умный город">
-            <p><strong>Проекты "Умный город"</strong>: В рамках стратегии развития "умных городов" внедряются различные технологические решения для повышения качества жизни населения и оптимизации управления городскими ресурсами.</p>
+            <p><strong>Проекты "Умный город"</strong>: В рамках стратегии развития "умных городов" внедряются различные технологические решения для повышения качества жизни населения и оптимизации управления городскими ресурсами.<a href="https://egov.kz/cms/ru/smart-cities" class="link">Перейти</a></p>
         </div>
         <div class="service">
             <img src="../static/img/blockchain.jpg" alt="Блокчейн">
-            <p><strong>Блокчейн-технологии</strong>: Казахстан также исследует возможности использования блокчейн-технологий для улучшения прозрачности и безопасности государственных услуг.</p>
+            <p><strong>Блокчейн-технологии</strong>: Казахстан также исследует возможности использования блокчейн-технологий для улучшения прозрачности и безопасности государственных услуг.<a href="https://egov.kz/cms/ru/robotization" class="link">Перейти</a></p>
         </div>
         <div class="service">
             <img src="../static/img/health_icon.png" alt="Здравоохранение">
-            <p><strong>Образование и здравоохранение</strong>: Цифровизация также касается системы образования и здравоохранения, где через интернет можно записаться на приём к врачу, получить результаты анализов или оформить больничный лист, а также использовать электронные образовательные ресурсы.</p>
+            <p><strong>Образование и здравоохранение</strong>: Цифровизация также касается системы образования и здравоохранения, где через интернет можно записаться на приём к врачу, получить результаты анализов или оформить больничный лист, а также использовать электронные образовательные ресурсы.<a href="https://www.gov.kz/memleket/entities/dsm/activities/98?lang=ru" class="link">Перейти</a></p>
         </div>
     </div>
 
   </div>
+  <div class="con_text"><h1 >ЦОНы в Алматы</h1></div>
   <div class="location_wrapper">
   <div class="location__block" style="margin-top: 8%; margin-left: 18%;">
     <iframe src="https://yandex.kz/map-widget/v1/?lang=ru_RU&amp;scroll=true&amp;/?apikey=8ce69368-cb23-4ace-acfe-0e75d0a2318c/maps/ru/162/almaty/?display-text=%D0%A6%D0%9E%D0%9D&ll=76.756497%2C43.294159&mode=search&sctx=ZAAAAAgBEAAaKAoSCY%2FhsZ%2FFK1NAEd%2F7G7RXoUVAEhIJQnxgx38B5T8RVisTfqmf0z8iBgABAgMEBSgKOABA3uUBSAFiHnJlbGV2X3NlcnZpY2VfYXJlYV9wZXJjZW50PTEwMGoCa3qdAc3MTD2gAQCoAQC9AXO122HCAZMB2dGe8NgFzNGhyQTVq4zp4gKTrLOM6wSh7fPW9QWYrIGksQLUs8TphwbekNyw5gX8ruXDuwTehoSl3AOxp8LSXpfN7MS1BLmEq4TMAd%2Brqo7fAYLC6O2xApPZr8f5BJHiqqqbBp%2FglsjMA5ynnpHvBMSVk%2FkI64aI5pQEiqD10tsFoLCyjucEruS158YB3bOW844GggIeKChjYXRlZ29yeV9pZDooMTY1MTU2MTE4NTg3KSkpigIMMTY1MTU2MTE4NTg3kgIAmgIMZGVza3RvcC1tYXBz&sll=76.756497%2C43.294159&sspn=1.368618%2C0.638926&text=%7B%22text%22%3A%22%D0%A6%D0%9E%D0%9D%22%2C%22what%22%3A%5B%7B%22attr_name%22%3A%22category_id%22%2C%22attr_values%22%3A%5B%22165156118587%22%5D%7D%5D%7D&z=9.94"  
