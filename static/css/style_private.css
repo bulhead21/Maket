@@ -370,16 +370,13 @@
 	display: flex;
 }
 .location__block__TourOperators{
-	text-decoration: none;
-	margin-bottom: 15px;
-  font-weight: 400;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 24px;
-  color: #33383D;
-  margin-top:30px;
+	text-decoration: none;;
+	color: #33383D;
 	align-items: center;
+	margin-left: 50px;
+	top:0;
 	display: flex;
+	float: center;
 }
 .location__header{
 	padding-right: 5%;
