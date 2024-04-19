@@ -28,6 +28,10 @@ def info():
 @app.route('/forum')
 def forum():
     return render_template("forum.html")
+    
+@app.route('/education')
+def education():
+    return render_template("education.html")
 
 
 @app.route('/digitalization')
