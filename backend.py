@@ -35,9 +35,9 @@ def digitalization():
     return render_template("digitalization.html")
 
 
-@app.route('/geog_obj')
-def geog_obj():
-    return render_template("geog_obj.html")
+@app.route('/gos')
+def gos():
+    return render_template("gos.html")
 
 
 @app.route('/user_login')
