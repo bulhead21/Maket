@@ -419,3 +419,20 @@
 	text-align: center;
 	justify-content: center;
 }
+.log_out
+{
+	width:200px;
+	height: 50px;
+	background-color:#e95151;
+	border-radius:50px;
+	float: right;
+	text-align: center;
+	text-decoration: none;
+	color:white:
+	
+}
+a
+{
+	text-decoration: none;
+	color:white:
+}
