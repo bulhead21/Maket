@@ -127,8 +127,6 @@
     display: block;
     grid-template-columns: 440px 440px 440px;
     grid-gap: 60px;
-    margin-bottom: 100px;
-	
 }
 .location-block{
 	background: #FFFFFF;
