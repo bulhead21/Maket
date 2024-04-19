@@ -25,9 +25,9 @@ def info():
     return render_template("info.html")
 
 
-@app.route('/cultural_routes')
-def cultural_routes():
-    return render_template("cultural_routes.html")
+@app.route('/forum')
+def forum():
+    return render_template("forum.html")
 
 
 @app.route('/digitalization')
