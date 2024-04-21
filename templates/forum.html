@@ -62,40 +62,39 @@
 </body>
 </html>
 <script>
-    // Функция для добавления сообщения
+    
     function addMessage(message) {
-            // Создаем новый div элемент
+            
             var newDiv = document.createElement('div');
             newDiv.className = 'editable-div';
 
-            // Создаем элемент для отображения текста
             var textElement = document.createElement('div');
             textElement.textContent = message;
 
-            // Создаем кнопку для удаления сообщения
+        
             var deleteButton = document.createElement('button');
             deleteButton.textContent = 'Удалить';
             deleteButton.onclick = function() {
-                // Удаляем сообщение из массива и обновляем хранилище
+              
                 var index = messages.indexOf(message);
                 if (index !== -1) {
                     messages.splice(index, 1);
                     localStorage.setItem('savedMessages', JSON.stringify(messages));
                 }
-                // Удаляем сообщение из DOM
+                
                 newDiv.remove();
             };
 
-            // Добавляем элемент для отображения текста и кнопку в новый div
+            
             newDiv.appendChild(textElement);
             newDiv.appendChild(deleteButton);
 
-            // Добавляем новый div в контейнер
+            
             document.getElementById('container1').appendChild(newDiv);
             document.getElementById('container1').style.alignItems = 'center';
         }
 
-        // Загружаем сообщения из локального хранилища при загрузке страницы
+        
         window.onload = function() {
             var savedMessages = localStorage.getItem('savedMessages');
             if (savedMessages) {
@@ -108,15 +107,15 @@
             }
         };
 
-        // Функция для добавления нового сообщения
+        
         document.getElementById('addDivBtn').addEventListener('click', function() {
             var message = prompt('Введите текст:');
             if (message) {
-                // Добавляем новое сообщение в массив
+                
                 messages.push(message);
-                // Обновляем локальное хранилище
+                
                 localStorage.setItem('savedMessages', JSON.stringify(messages));
-                // Отображаем новое сообщение
+                
                 addMessage(message);
             }
         });
