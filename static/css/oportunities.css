@@ -1,19 +1,31 @@
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f4;
 }
 
 .info-section {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 .text-content {
     flex: 1;
-    padding-right: 20px;
+    padding-right: 40px;
+}
+
+.text-content p {
+    margin-bottom: 20px;
+    line-height: 1.6;
 }
 
 .video-container {
@@ -29,8 +41,12 @@ body {
 .video-link img {
     width: 100%;
     height: auto;
-    border: 1px solid #ccc;
     border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.video-link img:hover {
+    transform: scale(1.05);
 }
 
 .video-link p {
@@ -39,4 +55,88 @@ body {
     font-weight: bold;
     color: #333;
 }
-
+.future-opor {
+    display: flex;
+    align-items: center;
+    margin: 2%;
+}
+.section-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px; 
+}
+.future-img-iot {
+    background-image: url('../img/IOT.jpg');
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    width: 900px;
+    height: 600px;
+    margin-right: 20px;
+    margin-left: 5%;
+}
+.future-img-ai {
+    background-image: url('../img/ai-img-i.jpg');
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    width: 900px;
+    height: 600px;
+    margin-right: 20px;
+    margin-left: 5%;
+}
+.future-img-gos {
+    background-image: url('../img/gos_usl.jpg');
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    width: 900px;
+    height: 600px;
+    margin-right: 20px;
+    margin-left: 5%;
+}
+.future-img-smart {
+    background-image: url('../img/smart_city2.png');
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    width: 900px;
+    height: 600px;
+    margin-right: 20px;
+    margin-left: 5%;
+}
+.future-img-inov {
+    background-image: url('../img/inov.jpg');
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    width: 900px;
+    height: 600px;
+    margin-right: 20px;
+    margin-left: 5%;
+}
+.future-img-biss {
+    background-image: url('../img/buis.avif');
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    width: 900px;
+    height: 600px;
+    margin-right: 20px;
+    margin-left: 5%;
+}
+.future-text{
+    background-color: rgba(240, 255, 255, 0.5);
+    border-radius: 10px;
+    width: 900px;
+    font-family: Arial, sans-serif;
+    text-decoration: solid;
+    margin-left: 5%;
+    font-size: 20px;
+}
+.opening-text{
+    margin: 5%;
+    width: 60%;
+}
