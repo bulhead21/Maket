@@ -589,6 +589,12 @@
 		text-align: center;
 		margin-top: 150px;
 		display: block;
+		padding: 10px;
+		background-color:#1a45c6;
+		width: 200px;
+		border-radius:50px;
+		justify-content: center;
+		float: center;
 	}
 	.editable-div {
 		padding: 10px;
@@ -603,4 +609,23 @@
 	.editable-div input, .editable-div button {
 		margin-top: 5px;
 	}
-	
+	.editable-div {
+		margin-bottom: 10px;
+		padding: 10px;
+		background-color: #f4f4f4;
+		border: 1px solid #ccc;
+		border-radius: 10px;
+	}
+
+	button {
+		padding: 5px 10px;
+		background-color: #4CAF50;
+		color: white;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+
+	button:hover {
+		background-color: #45a049;
+	}

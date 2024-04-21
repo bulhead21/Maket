@@ -54,10 +54,12 @@
   </div>
 </header>
   <main>
-    
-    <h3 id="addDivBtn">+ Новая Запись</h3>
-    <div id="container1"></div>
-  
+    {% if  email=='admin'%}
+        <h1 id="addDivBtn">+ Новость</h1>
+        
+    {% else %}
+        <div id="container1"></div>
+    {% endif %}
   </main>
 </body>
 </html>
