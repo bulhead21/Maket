@@ -40,9 +40,7 @@
         </div>
       </div>
       
-      <a class="animated-icon2" href="https://www.youtube.com/">
-        <lord-icon src="https://cdn.lordicon.com/xyboiuok.json" trigger="hover" style="width:48px;height:48px"></lord-icon> 
-      </a>
+      
       {% if not current_user.is_authenticated %}
         <a class="animated-icon3"  href="/user_reg">
           <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:48px;height:48px"></lord-icon>
@@ -56,39 +54,70 @@
   </div>
 </header>
   <main>
-    <div class="doc">
+    
     <h1 id="addDivBtn">Новая Запись</h1>
-    <div id="container"></div>
-  </div>
+    <div id="container1"></div>
+  
   </main>
 </body>
 </html>
 <script>
-  document.getElementById('addDivBtn').addEventListener('click', function() {
-    // Создаем новый div элемент
-    var newDiv = document.createElement('div');
-    newDiv.className = 'editable-div';
-    w=Array()
-    // Создаем input для ввода текста
-    var input = document.createElement('input');
-    input.type = 'text';
-    input.placeholder = 'Введите текст здесь...';
+    // Функция для добавления сообщения
+    function addMessage(message) {
+            // Создаем новый div элемент
+            var newDiv = document.createElement('div');
+            newDiv.className = 'editable-div';
 
-    // Создаем кнопку для сохранения текста
-    var saveButton = document.createElement('button');
-    saveButton.textContent = 'Сохранить';
-    saveButton.onclick = function() {
-        // Заменяем input на статичный текст
-        
-        newDiv.textContent = input.value;
-    };
+            // Создаем элемент для отображения текста
+            var textElement = document.createElement('div');
+            textElement.textContent = message;
 
-    // Добавляем input и кнопку в новый div
-    newDiv.appendChild(input);
-    newDiv.appendChild(saveButton);
+            // Создаем кнопку для удаления сообщения
+            var deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Удалить';
+            deleteButton.onclick = function() {
+                // Удаляем сообщение из массива и обновляем хранилище
+                var index = messages.indexOf(message);
+                if (index !== -1) {
+                    messages.splice(index, 1);
+                    localStorage.setItem('savedMessages', JSON.stringify(messages));
+                }
+                // Удаляем сообщение из DOM
+                newDiv.remove();
+            };
 
-    // Добавляем новый div в контейнер
-    document.getElementById('container').appendChild(newDiv);
-    input.focus(); // Фокусируем на input после создания
-});
+            // Добавляем элемент для отображения текста и кнопку в новый div
+            newDiv.appendChild(textElement);
+            newDiv.appendChild(deleteButton);
+
+            // Добавляем новый div в контейнер
+            document.getElementById('container1').appendChild(newDiv);
+            document.getElementById('container1').style.alignItems = 'center';
+        }
+
+        // Загружаем сообщения из локального хранилища при загрузке страницы
+        window.onload = function() {
+            var savedMessages = localStorage.getItem('savedMessages');
+            if (savedMessages) {
+                messages = JSON.parse(savedMessages);
+                messages.forEach(function(message) {
+                    addMessage(message);
+                });
+            } else {
+                messages = [];
+            }
+        };
+
+        // Функция для добавления нового сообщения
+        document.getElementById('addDivBtn').addEventListener('click', function() {
+            var message = prompt('Введите текст:');
+            if (message) {
+                // Добавляем новое сообщение в массив
+                messages.push(message);
+                // Обновляем локальное хранилище
+                localStorage.setItem('savedMessages', JSON.stringify(messages));
+                // Отображаем новое сообщение
+                addMessage(message);
+            }
+        });
 </script>

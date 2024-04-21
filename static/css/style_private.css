@@ -405,7 +405,7 @@
 	margin-top: 45px;
     justify-content: center;
     flex-wrap: wrap;
-    display: block;
+    display: flex;
     grid-template-columns: 440px 440px 440px;
     grid-gap: 60px;
     margin-bottom: 100px;
@@ -415,6 +415,7 @@
 	align-items: center;
 	text-align: center;
 	justify-content: center;
+	display: block;
 }
 .log_out
 {
