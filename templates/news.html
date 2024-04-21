@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/news.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Forum&family=Tinos&display=swap" rel="stylesheet">
@@ -53,73 +54,112 @@
     </div>
   </div>
 </header>
-  <main>
-    {% if  email=='admin'%}
-        <h1 id="addDivBtn">+ Новость</h1>
-        
-    {% else %}
-        <div id="container1"></div>
-    {% endif %}
-  </main>
+<main>
+  <section class="introduction">
+    <div class="intro-text">
+      <h1 class="big-text" style="color: black;">Найдите различные конференции</h1>
+      <p style="color: black;">найдите различные онлайн конференции на интересующюу вас тему</p>
+    </div>
+  </section>
+  <section class="intro">
+  <div class="webinar-card">
+    <header>
+      <h1>Цифровизация образования</h1>
+      <p class="date-time">April 16, 2024, 4:00 PM EST</p>
+    </header>
+    <section>
+      <h2>Конференция об информационных технологиях в образовании Казахстана
+
+      </h2>
+      <p>Есть вопросы на тему цифровизация казахстана?Задайте их прямо тут</p>
+      <a href="#">Sign up</a>
+      <div class="speakers">
+        <div class="speaker">
+          <img src="../static/img/webinar-1.png" alt="T. Greg Doucette"> <!-- Replace with your image path -->
+          <h3>T. Greg Doucette</h3>
+          <p>професор</p>
+        </div>
+        <div class="speaker">
+          <img src="../static/img/webinars-2.jpeg" alt="Mike Harvey"> <!-- Replace with your image path -->
+          <h3>Mike Harvey</h3>
+          <p>професор</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="webinar-card">
+    <header>
+      <h1>«Учет, экономика и финансы: современное состояние актуальных проблем в условиях цифровой трансформации»</h1>
+      <p class="date-time">May 10, 2024, 2:00 PM CST</p>
+    </header>
+    <section>
+      <h2>Международная онлайн конференция </h2>
+      <p>В рамках расширения международного сотрудничества 17 апреля 2019 года ППС и обучающиеся кафедры «Экономика и инновационный бизнес» приняли участие в работе Международной Онлайн-конференции на тему «Учет, экономика и финансы: современное состояние актуальных проблем в условиях цифровой трансформации» совместно с учетно-финансовым факультетом Ставропольского государственного аграрного университета.</p>
+      <a href="#">Register Now</a>
+      <div class="speakers">
+        <div class="speaker">
+          <img src="../static/img/webinar-3.jpg" alt="Alexa Smith"> <!-- Replace with your image path -->
+          <h3>Alexa Smith</h3>
+          <p>политик</p>
+        </div>
+        <div class="speaker">
+          <img src="../static/img/webinars-4.jpeg" alt="John Doe"> <!-- Replace with your image path -->
+          <h3>John Doe</h3>
+          <p> проф менеджер</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- Webinar Card Example 2 -->
+<div class="webinar-card">
+<header>
+<h1>Цифровизация финсектора.</h1>
+<p class="date-time">June 5, 2024, 11:00 AM PST</p>
+</header>
+<section>
+<h2>Онлайн-конференция об информационных технологиях в финансовом секторе Казахстана</h2>
+<p>Компания Profit Events проведет ежегодную конференцию PROFIT Finance Day, посвященную умным технологиям в финансах. Конференция ориентирована на управляющих, ИТ-руководителей и специалистов по информационной безопасности финансовых организаций — банковского сектора, страховых компаний, пенсионных и инвестиционных фондов, микрокредитных организаций и ипотечных компаний. Традиционно на PROFIT Finance Day обсуждаются самые актуальные вопросы финансовой отрасли в контексте информационных технологий.</p>
+<a href="#">Join the Conversation</a>
+<div class="speakers">
+  <div class="speaker">
+    <img src="../static/img/webinar-5.jpg" alt="Samantha Bloom"> <!-- Replace with your image path -->
+    <h3>Samantha Bloom</h3>
+    <p>финансист</p>
+  </div>
+  <div class="speaker">
+    <img src="../static/img/webinar-6.jpg" alt="Raj Patel"> <!-- Replace with your image path -->
+    <h3>Raj Patel</h3>
+    <p>Тех разроботчик</p>
+  </div>
+</div>
+</section>
+</div>
+
+<!-- Webinar Card Example 3 -->
+<div class="webinar-card">
+<header>
+<h1>Цифровые технологии в образовании</h1>
+<p class="date-time">July 22, 2024, 3:00 PM GMT</p>
+</header>
+<section>
+<h2>Международная научно-практическая конференция</h2>
+<p>реподаватели школ, вузов, организаций дополнительного профессионального образования; руководители, педагоги, методисты организаций всех уровней образования; разработчики цифровых образовательных продуктов, инструментов и сервисов; представители коммерческих фирм, заинтересованных в продвижении цифровых программных продуктов для сферы образования. </p>
+<a href="#">Reserve Your Spot</a>
+<div class="speakers">
+  <div class="speaker">
+    <img src="../static/img/webinar-7.webp" alt="Leo Torres"> <!-- Replace with your image path -->
+    <h3>Leo Torres</h3>
+    <p>Учитель-педагог</p>
+  </div>
+  <div class="speaker">
+    <img src="../static/img/webinar-8.jpg" alt="Emily Chang"> <!-- Replace with your image path -->
+    <h3>Emily Chang</h3>
+    <p>фин аналитик</p>
+  </div>
+</div>
+</section>
+</div>
+</section>
+</main>
 </body>
 </html>
-<script>
-    // Функция для добавления сообщения
-    function addMessage(message) {
-            // Создаем новый div элемент
-            var newDiv = document.createElement('div');
-            newDiv.className = 'editable-div';
-
-            // Создаем элемент для отображения текста
-            var textElement = document.createElement('div');
-            textElement.textContent = message;
-
-            // Создаем кнопку для удаления сообщения
-            var deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Удалить';
-            deleteButton.onclick = function() {
-                // Удаляем сообщение из массива и обновляем хранилище
-                var index = messages.indexOf(message);
-                if (index !== -1) {
-                    messages.splice(index, 1);
-                    localStorage.setItem('savedMessages', JSON.stringify(messages));
-                }
-                // Удаляем сообщение из DOM
-                newDiv.remove();
-            };
-
-            // Добавляем элемент для отображения текста и кнопку в новый div
-            newDiv.appendChild(textElement);
-            newDiv.appendChild(deleteButton);
-
-            // Добавляем новый div в контейнер
-            document.getElementById('container1').appendChild(newDiv);
-            document.getElementById('container1').style.alignItems = 'center';
-        }
-
-        // Загружаем сообщения из локального хранилища при загрузке страницы
-        window.onload = function() {
-            var savedMessages = localStorage.getItem('savedMessages');
-            if (savedMessages) {
-                messages = JSON.parse(savedMessages);
-                messages.forEach(function(message) {
-                    addMessage(message);
-                });
-            } else {
-                messages = [];
-            }
-        };
-
-        // Функция для добавления нового сообщения
-        document.getElementById('addDivBtn').addEventListener('click', function() {
-            var message = prompt('Введите текст:');
-            if (message) {
-                // Добавляем новое сообщение в массив
-                messages.push(message);
-                // Обновляем локальное хранилище
-                localStorage.setItem('savedMessages', JSON.stringify(messages));
-                // Отображаем новое сообщение
-                addMessage(message);
-            }
-        });
-</script>
