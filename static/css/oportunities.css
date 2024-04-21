@@ -58,6 +58,7 @@ body {
 .future-opor {
     display: flex;
     align-items: center;
+    margin: 2%;
 }
 .section-2 {
     display: flex;
@@ -66,8 +67,8 @@ body {
     justify-content: flex-start;
     padding: 20px; 
 }
-.future-img {
-    background-image: url('../images/rocket.jpg');
+.future-img-iot {
+    background-image: url('../img/IOT.jpg');
     background-position: center;
     background-size: cover;
     border-radius: 10px;
@@ -76,7 +77,56 @@ body {
     margin-right: 20px;
     margin-left: 5%;
 }
-
+.future-img-ai {
+    background-image: url('../img/ai-img-i.jpg');
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    width: 900px;
+    height: 600px;
+    margin-right: 20px;
+    margin-left: 5%;
+}
+.future-img-gos {
+    background-image: url('../img/gos_usl.jpg');
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    width: 900px;
+    height: 600px;
+    margin-right: 20px;
+    margin-left: 5%;
+}
+.future-img-smart {
+    background-image: url('../img/smart_city2.png');
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    width: 900px;
+    height: 600px;
+    margin-right: 20px;
+    margin-left: 5%;
+}
+.future-img-inov {
+    background-image: url('../img/inov.jpg');
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    width: 900px;
+    height: 600px;
+    margin-right: 20px;
+    margin-left: 5%;
+}
+.future-img-biss {
+    background-image: url('../img/buis.avif');
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    width: 900px;
+    height: 600px;
+    margin-right: 20px;
+    margin-left: 5%;
+}
 .future-text{
     background-color: rgba(240, 255, 255, 0.5);
     border-radius: 10px;
