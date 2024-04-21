@@ -70,6 +70,9 @@ def user_login():
 @app.route('/user_reg')
 def user_reg():
     return render_template("user_reg.html")
+@app.route('/faq')
+def faq():
+    return render_template("faq.html")
 
 
 @app.route('/reg_form', methods=["POST"])
