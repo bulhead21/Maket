@@ -589,6 +589,12 @@
 		text-align: center;
 		margin-top: 150px;
 		display: block;
+		padding: 10px;
+		background-color:#1a45c6;
+		width: 200px;
+		border-radius:50px;
+		justify-content: center;
+		float: center;
 	}
 	.editable-div {
 		padding: 10px;
