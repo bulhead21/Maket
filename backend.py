@@ -29,6 +29,10 @@ def info():
 def forum():
     return render_template("forum.html")
 
+@app.route('/oportunities')
+def oportunities():
+    return render_template("oportunities.html")
+
 @app.route('/agri_culture')
 def agri_culture():
     return render_template("agri_culture.html")
