@@ -1,0 +1,109 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/banks.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"> 
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+  <link href="https://fonts.googleapis.com/css2?family=Forum&family=Tinos&display=swap" rel="stylesheet"> 
+  <link rel="preconnect" href="https://fonts.googleapis.com"> 
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+  <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@600&display=swap" rel="stylesheet"> 
+  <script src="script.js"></script> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/> 
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=8ce69368-cb23-4ace-acfe-0e75d0a2318c&lang=ru_RU" type="script.js"> 
+      </script> 
+  <title>Travel Almaty</title> 
+</head> 
+
+<body> 
+  <script src="script.js"></script> 
+  <div class="header-top">
+    <div class="icon">
+      <a class="flag" href="/index"><img src="../static/img/logo.png" alt="" width="73px"></a>
+    </div>
+
+    <div class="nav">
+      <a class="nav-item" href="/index">Главная</a>
+      <a class="nav-item" href="/guide">FAQ</a>
+      <a class="nav-item" href="/info">Информация</a>
+    </div>
+
+    <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
+    <div class="icons">
+      <div class="settings">
+        <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
+        <div class="search">
+          <input type="search" placeholder="Type to search" class="search_input" id="searchInput">
+          <button>
+          
+            <i class="fa fa-search"><lord-icon src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="width:46px;height:46px;color:#fff;"></lord-icon></i>
+          </button>
+        </div>
+      </div>
+      
+      <a class="animated-icon2" href="https://www.youtube.com/">
+        <lord-icon src="https://cdn.lordicon.com/xyboiuok.json" trigger="hover" style="width:48px;height:48px"></lord-icon> 
+      </a>
+      {% if not current_user.is_authenticated %}
+        <a class="animated-icon3"  href="/user_reg">
+          <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:48px;height:48px"></lord-icon>
+        </a>
+      {% else %}
+        <a class="animated-icon3"  href="/private_office">
+          <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:48px;height:48px"></lord-icon>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+
+<main>
+  <h1 style="margin-top: 5%;">Цифровизация банковских услуг и финансов в Казахстане</h1>
+  <section class="section-1">
+  <div class="satellite">
+    <div class="satellite-img"></div>
+    <div class="satellite-text">
+        <P>
+         
+            Казахстане процесс цифровизации банковских услуг и финансов активно развивается, отражая мировые тенденции в использовании цифровых технологий для улучшения доступности и удобства финансовых услуг. Вот некоторые из ключевых аспектов цифровизации банковских услуг и финансов в Казахстане:</P>
+    </div>
+</div>
+</section>
+<div class="container">
+        <div class="service">
+            <img src="../static/img/mobie_bank.jpg" alt="eGov">
+            <p><strong>Интернет- и мобильное банкинг </strong>: Банки предоставляют своим клиентам возможность управлять своими счетами, совершать платежи, осуществлять переводы и получать финансовую информацию через интернет-банкинг и мобильные приложения.
+          </div>       
+        <div class="service">
+            <img src="../static/img/electro_bank.png" alt="eGov Mobile">
+            <p><strong>Электронные платежные системы: </strong> В Казахстане широко используются электронные платежные системы, такие как ePay, QIWI, Kaspi, которые позволяют пользователям совершать различные платежи, включая коммунальные услуги, покупку билетов и т.д.</p>
+        </div>
+        <div class="satellite" style="margin: 5%;">
+        <div class="satellite-text">
+                <h1>Прекрасным примером является "Kaspi Bank"</h1>
+                <P>
+                    "Kaspi Bank" - это крупный банк в Казахстане, который активно цифровизирует свои услуги, стремясь к инновациям и улучшению клиентского опыта. Вот некоторые аспекты цифровизации "Kaspi Bank"
+                </P>
+            </div>
+            <div class="satellite-img-bank"></div>
+        </div>
+        <div class="service">
+            <img src="../static/img/electro_cash.jpeg" alt="Цифровая идентификация">
+            <p><strong>Безналичные платежи: </strong>Стимулируется использование безналичных платежей, что способствует уменьшению наличных денег в обращении и повышению прозрачности финансовых операций.</p>
+        </div>
+        <div class="service">
+            <img src="../static/img/finance_tech.jpg" alt="Умный город">
+            <p><strong>Финтех-инновации</strong>: В Казахстане наблюдается рост финтех-компаний, предлагающих новые цифровые продукты и услуги, такие как онлайн-кредитование, инвестиционные платформы и персональное финансовое планирование.</p>
+        </div>
+        <div class="service">
+            <img src="../static/img/identefication_tech.jpg" alt="Блокчейн">
+            <p><strong>Цифровые идентификационные технологии: </strong>: Внедрение цифровых идентификационных технологий, таких как электронные подписи и системы биометрической идентификации, помогает улучшить безопасность и аутентификацию в онлайн-банкинге и других финансовых операциях.</p>
+        </div>
+    </div>
+
+  </div>
+  
+</main>
+</body>

@@ -28,11 +28,22 @@ def info():
 @app.route('/forum')
 def forum():
     return render_template("forum.html")
+
+@app.route('/agri_culture')
+def agri_culture():
+    return render_template("agri_culture.html")
+
+@app.route('/banks')
+def banks():
+    return render_template("banks.html")
     
 @app.route('/education')
 def education():
     return render_template("education.html")
 
+@app.route('/healthcare')
+def healthcare():
+    return render_template("healthcare.html")
 
 @app.route('/digitalization')
 def digitalization():
