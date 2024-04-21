@@ -27,18 +27,7 @@
     margin-right: 20px;
     margin-left: 2%;
   }
-  .satellite-img-bank {
-    background-image: url('../img/kaspi_bank.png');
-    background-position: center center;
-    background-size: cover;
-    border-radius: 50px;
-    width: 50%;
-    max-width: 500px;
-    height: auto;
-    aspect-ratio: 1;
-    margin-right: 20px;
-    margin-left: 2%;
-  }
+  
 .emk_vid{
     width: 50%;
 }
