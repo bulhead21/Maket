@@ -18,64 +18,42 @@
 
   <div class="header-top">
     <div class="icon">
-      <img src="../static/img/icon-kz.png" alt="" width="73px">
+      <a class="flag" href="/index"><img src="../static/img/logo.png" alt="" width="73px"></a>
     </div>
 
     <div class="nav">
       <a class="nav-item" href="/index">Главная</a>
-      <a class="nav-item" href="/guide">Что делать</a>
-      <a class="nav-item" href="/info">Информация</a>
+      <a class="nav-item" href="/faq">FAQ</a>
+      
     </div>
 
     <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
-
-      <div class="icons">
-        <a class="animated-icon1" href="https://www.vk.com/">
-          <lord-icon
-            src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="width:48px;height:48px">
-          </lord-icon> 
-        </a>
-
-        <a class="animated-icon2" href="https://www.youtube.com/">
-          <lord-icon
-          src="https://cdn.lordicon.com/xyboiuok.json" trigger="hover" style="width:48px;height:48px">
-          </lord-icon> 
-        </a>
-
+    <div class="icons">
+      <div class="settings">
+        <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
+        <div class="search">
+          <input type="search" placeholder="Type to search" class="search_input" id="searchInput">
+          <button>
+          
+            <i class="fa fa-search"><lord-icon src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="width:46px;height:46px;color:#fff;"></lord-icon></i>
+          </button>
+        </div>
       </div>
+      
+      
+      {% if not current_user.is_authenticated %}
+        <a class="animated-icon3"  href="/user_reg">
+          <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:48px;height:48px"></lord-icon>
+        </a>
+      {% else %}
+        <a class="animated-icon3"  href="/private_office">
+          <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:48px;height:48px"></lord-icon>
+        </a>
+      {% endif %}
+    </div>
   </div>
 
 
-<main>
-  <section class="location">
-    <div class="container">
-      <h2 class="inner-title ff-gelassio">Выберите направление</h2>
-      <p class="inner-subtitle location-subtitle">Что вы хотите увидеть?</p>
-
-      <div class="location-wrapper">
-        <div class="specialtransition">
-          <div class="location-block">
-            <a href="history.html">
-              <div class="location-block-img"><img src="../static/img/history.jpg" alt="" width="500px"></div>
-                <h3 class="location-block-title ff-gelassio"><a class="location-block-title ff-gelassio" href="history.html">Историческое наследие Алматы</a></h3>
-                  <p class="locatin-block-text"></p>
-            </a>    
-          </div>
-        </div>
-
-        <div class="specialtransition otstup-slevo">
-          <div class="location-block">
-              <a href="inspire.html">
-              <div class="location-block-img"><img src="../static/img/inspire.jpg" alt="" width="500px"></div>
-                <h3 class="location-block-title ff-gelassio"><a class="location-block-title ff-gelassio" href="inspire.html">Вдохновляющие места Алматы</a></h3>
-                  <p class="locatin-block-text"></p>
-              </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
 
 
 
