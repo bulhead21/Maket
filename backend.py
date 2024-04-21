@@ -48,6 +48,9 @@ def healthcare():
 @app.route('/digitalization')
 def digitalization():
     return render_template("digitalization.html")
+@app.route('/news')
+def news():
+    return render_template("news.html")
 
 
 @app.route('/gos')
@@ -86,10 +89,10 @@ def reg_form():
 
 @app.route('/private_office')
 def private_office():
-    # name = current_user.name
-    # surname = current_user.surname
-    # phone_num = current_user.phone_num
-    # email = current_user.email
+    name = current_user.name
+    surname = current_user.surname
+    
+    email = current_user.email
     return render_template("private_office.html")
 
 
