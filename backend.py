@@ -1,12 +1,9 @@
 import datetime
-from tkinter import *
 from flask import Flask
 from flask import Flask, render_template, redirect, request, Response, session, send_file, jsonify
 from data import db_session
 from data.user import User
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
-tk=Tk()
-width = tk.winfo_screenwidth()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "mishadimamax200620072008"
 app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=365)
