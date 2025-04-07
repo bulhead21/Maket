@@ -2,10 +2,20 @@
 	overflow-x: hidden;
 }
 .hh-main {
-    width: 1440px;
+    width: 100%;
+		max-width: 1440px;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 15px; /* Добавляем отступы по бокам для мобильных */
+    padding-right: 15px;
+    box-sizing: border-box; /* Учитываем padding в общей ширине */
 	}
+	@media (max-width: 768px) {
+    .hh-main {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
 .header-top {
 	bottom: 0px;
 	justify-content: center;
