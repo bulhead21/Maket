@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>Вход</title>
-    <link rel="stylesheet" href="../static/css/register.css">
     <style>
         body {
             display:flex;
@@ -89,34 +88,6 @@
     </style>
 </head>
 <body>
-  <div class="header-top">
-    <div class="icon">
-      <a class="flag" href="/index"><img src="../static/img/logo.png" alt="" width="73px"></a>
-    </div>
-
-    <div class="nav">
-      <a class="nav-item" href="/index">Главная</a>
-      
-      
-    </div>
-
-    <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
-    <div class="icons">
-      <div class="settings">
-        <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
-        <div class="search">
-          <input type="search" placeholder="Type to search" class="search_input">
-          <button>
-            <i class="fa fa-search"><lord-icon src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="width:46px;height:46px;color:#fff;"></lord-icon></i>
-          </button>
-        </div>
-      </div>
-
-      <a class="animated-icon2" href="/favourite_routes">
-        <lord-icon src="https://cdn.lordicon.com/xyboiuok.json" trigger="hover" style="width:48px;height:48px"></lord-icon> 
-      </a>
-    </div>
-  </div>
   <form class ="form" method="POST" action="/login">
     <h1 class="form_title">Log in</h1>
       <div class="form_group">
@@ -127,8 +98,12 @@
       <input class="form_input" placeholder="" id="passwordInput" name="passwordInput" required type="password">
       <label class="form_label">Password</label>
     </div>
-
+    <div  method="POST">
+      <input type="checkbox" id="rememberMe" name="remember"> <label for="rememberMe">Запомнить меня</label>
+    </div>
     <button class="form_button">Continue</button>
+
+  
     <a class="reg" href="/user_reg">Registration</a>
   </form>
 </body>

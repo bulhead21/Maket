@@ -1,15 +1,28 @@
+import re
+import smtplib
+import dns.resolver
 import datetime
+from tkinter import *
 from flask import Flask
 from flask import Flask, render_template, redirect, request, Response, session, send_file, jsonify
 from data import db_session
 from data.user import User
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+from flask import Flask, redirect, url_for, session
+from authlib.integrations.flask_client import OAuth
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+from data import db_session
+from data.user import User
+import secrets
+from flask import session
+tk=Tk()
+width = tk.winfo_screenwidth()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "mishadimamax200620072008"
 app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=365)
 login_manager = LoginManager()
 login_manager.init_app(app)
-
+oauth = OAuth(app)
 
 @app.route('/')
 @app.route('/index')
@@ -22,41 +35,19 @@ def info():
     return render_template("info.html")
 
 
-@app.route('/forum')
-def forum():
-    return render_template("forum.html")
-
-@app.route('/oportunities')
-def oportunities():
-    return render_template("oportunities.html")
-
-@app.route('/agri_culture')
-def agri_culture():
-    return render_template("agri_culture.html")
-
-@app.route('/banks')
-def banks():
-    return render_template("banks.html")
-    
-@app.route('/education')
-def education():
-    return render_template("education.html")
-
-@app.route('/healthcare')
-def healthcare():
-    return render_template("healthcare.html")
-
-@app.route('/digitalization')
-def digitalization():
-    return render_template("digitalization.html")
-@app.route('/news')
-def news():
-    return render_template("news.html")
+@app.route('/cultural_routes')
+def cultural_routes():
+    return render_template("cultural_routes.html")
 
 
-@app.route('/gos')
-def gos():
-    return render_template("gos.html")
+@app.route('/historical_heritage')
+def historical_heritage():
+    return render_template("historical_heritage.html")
+
+
+@app.route('/geog_obj')
+def geog_obj():
+    return render_template("geog_obj.html")
 
 
 @app.route('/user_login')
@@ -67,10 +58,66 @@ def user_login():
 @app.route('/user_reg')
 def user_reg():
     return render_template("user_reg.html")
-@app.route('/faq')
-def faq():
-    return render_template("faq.html")
 
+def is_valid_email(email):
+    regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+    return re.match(regex, email) is not None
+    
+google = oauth.register(
+    name='google',
+    client_id="376838788269-k120re8lp9bjv3dv31i6s9d0ekpkh5tq.apps.googleusercontent.com",
+    client_secret="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",
+    access_token_url='https://oauth2.googleapis.com/token',
+    authorize_url='https://accounts.google.com/o/oauth2/auth',
+    jwks_uri='https://www.googleapis.com/oauth2/v3/certs',  
+    client_kwargs={'scope': 'openid email profile', 'nonce': 'random_nonce_value'}
+)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+def load_user(user_id):
+    db_sess = db_session.create_session()
+    return db_sess.query(User).get(user_id)
+
+@app.route("/login/google")
+def login_google():
+    nonce = secrets.token_urlsafe(16)  
+    session["nonce"] = nonce  
+    return google.authorize_redirect(
+    url_for("auth_callback", _external=True),
+    nonce=nonce  
+    )
+
+
+@app.route("/login/callback")
+def auth_callback():
+    token = google.authorize_access_token()
+    if not token:
+        return "Ошибка авторизации", 400
+
+    try:
+        nonce = session.pop("nonce", None)  
+        if not nonce:
+            return "Ошибка: nonce отсутствует", 400
+
+        user_info = google.parse_id_token(token, nonce=nonce)  
+    except Exception as e:
+        return f"Ошибка обработки токена: {str(e)}", 400
+
+    db_sess = db_session.create_session()
+    user = db_sess.query(User).filter(User.email == user_info["email"]).first()
+
+    if not user:
+        user = User(
+            name=user_info.get("name", "Без имени"),
+            email=user_info["email"]
+        )
+        db_sess.add(user)
+        db_sess.commit()
+
+    login_user(user, remember=True)
+    return redirect("/private_office")
 
 @app.route('/reg_form', methods=["POST"])
 def reg_form():
@@ -79,11 +126,19 @@ def reg_form():
     password = form.get("passwordInput")
     name = form.get("nameInput")
     surname = form.get("surnameInput")
+    phone_num = form.get("phone_num")
     db_sess = db_session.create_session()
     user = User()
+    if not is_valid_email(email):
+        return render_template("user_reg.html", error="Неверный формат email")
+    existing_user = db_sess.query(User).filter(User.email == email).first()
+    if existing_user:
+        db_sess.close()
+        return render_template("user_reg.html", error="Этот email уже зарегистрирован")
     user.name = name
     user.surname = surname
     user.email = email
+    user.phone_num = phone_num
     user.set_password(password)
     db_sess.add(user)
     db_sess.commit()
@@ -95,23 +150,29 @@ def reg_form():
 def private_office():
     name = current_user.name
     surname = current_user.surname
-    
     email = current_user.email
+    phone_num = current_user.phone_num
     return render_template("private_office.html")
 
 
 @app.route('/login', methods=["POST"])
 def login():
     form = request.form
+    if request.method == "POST":
+        remember_me = form.get('rememberMe')
+        print(remember_me)
     email = form.get('emailInput')
     password = form.get("passwordInput")
     db_sess = db_session.create_session()
     user = db_sess.query(User).filter(User.email == email).first()
     if user and user.check_password(password):
-        login_user(user, remember=True)
+        login_user(user, remember=remember_me)
         return redirect("/private_office")
-
-    return redirect('/user_login')
+    else:
+        db_sess.close()
+        flash("Неверный email или пароль.", "error")
+        return redirect(url_for('user_login'))
+    
 
 @app.route('/posibiletes')
 def posibiletes( ):
