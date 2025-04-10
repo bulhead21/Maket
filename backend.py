@@ -41,7 +41,6 @@ def cultural_routes():
 def cul_1():
     return render_template("cul_1.html")
 
-
 @app.route('/cul_2')
 def cul_2():
     return render_template("cul_2.html")
