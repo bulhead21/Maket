@@ -23,6 +23,10 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
 
     password = sqlalchemy.Column(sqlalchemy.String)
 
+    progress = sqlalchemy.Column(sqlalchemy.Integer)
+
+    favorit = sqlalchemy.Column(sqlalchemy.String)
+
     def set_password(self, password):
         self.password = generate_password_hash(password)
 
