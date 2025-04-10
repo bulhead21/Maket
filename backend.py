@@ -34,6 +34,12 @@ def index():
 def info():
     return render_template("info.html")
 
+
+
+@app.route('/cultural_routes')
+def cultural_routes():
+    return render_template("cultural_routes.html")
+
 @app.route('/cul_1')
 def cul_1():
     return render_template("cul_1.html")
@@ -46,10 +52,6 @@ def cul_2():
 @app.route('/cul_3')
 def cul_3():
     return render_template("cul_3.html")
-
-@app.route('/cultural_routes')
-def cultural_routes():
-    return render_template("cultural_routes.html")
 
 @app.route('/cul_4')
 def cul_4():
@@ -67,6 +69,31 @@ def cul_5():
 def gastronom():
     return render_template("gastronom.html")
 
+
+@app.route('/gas_1')
+def gas_1():
+    return render_template("gas_1.html")
+
+
+@app.route('/gas_2')
+def gas_2():
+    return render_template("gas_2.html")
+
+@app.route('/gas_3')
+def gas_3():
+    return render_template("gas_3.html")
+
+@app.route('/gas_4')
+def gas_4():
+    return render_template("gas_4.html")
+
+@app.route('/gas_5')
+def gas_5():
+    return render_template("gas_5.html")
+
+@app.route('/gas_6')
+def gas_6():
+    return render_template("gas_6.html")
 
 @app.route('/geog_obj')
 def geog_obj():
