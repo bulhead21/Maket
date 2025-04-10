@@ -154,12 +154,20 @@ def private_office():
     phone_num = current_user.phone_num
     return render_template("private_office.html")
 
+@app.before_request
+def make_session_permanent():
+    session.permanent = False
 
-@app.route('/login', methods=["POST"])
+
+
+@app.route('/login', methods=["POST", "GET"])
 def login():
     form = request.form
-    if request.method == "POST":
-        remember_me = form.get('rememberMe')
+    if request.method=="POST":
+        if form.get('rememberMe'):
+            remember_me =form.get("rememberMe") == 'on'  
+        else:
+            remember_me = 'False'
         print(remember_me)
     email = form.get('emailInput')
     password = form.get("passwordInput")
@@ -170,7 +178,7 @@ def login():
         return redirect("/private_office")
     else:
         db_sess.close()
-        flash("Неверный email или пароль.", "error")
+        print("Неверный email или пароль.", "error")
         return redirect(url_for('user_login'))
     
 
@@ -188,7 +196,7 @@ def guide( ):
 
 @app.route('/favourite_routes')
 def favourite_routes( ):
-    return render_template("favourite_routes.html")
+    return render_template("favourite_routes.html") 
 
 @login_manager.user_loader
 def load_user(user_id):
