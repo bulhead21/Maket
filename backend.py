@@ -59,6 +59,10 @@ def cul_4():
 def cul_5():
     return render_template("cul_5.html")
 
+@app.route('/cul_6')
+def cul_6():
+    return render_template("cul_6.html")
+
 
 
 
