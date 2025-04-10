@@ -29,12 +29,9 @@ oauth = OAuth(app)
 def index():
     return render_template("index.html", current_user=current_user)
 
-
 @app.route('/info')
 def info():
     return render_template("info.html")
-
-
 
 @app.route('/cultural_routes')
 def cultural_routes():
@@ -65,19 +62,13 @@ def cul_5():
 def cul_6():
     return render_template("cul_6.html")
 
-
-
-
-
 @app.route('/gastronom')
 def gastronom():
     return render_template("gastronom.html")
 
-
 @app.route('/gas_1')
 def gas_1():
     return render_template("gas_1.html")
-
 
 @app.route('/gas_2')
 def gas_2():
@@ -103,11 +94,9 @@ def gas_6():
 def geog_obj():
     return render_template("geog_obj.html")
 
-
 @app.route('/user_login')
 def user_login():
     return render_template("user_login.html")
-
 
 @app.route('/user_reg')
 def user_reg():
