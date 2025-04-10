@@ -34,6 +34,10 @@ def index():
 def info():
     return render_template("info.html")
 
+@app.route('/faq')
+def faq():
+    return render_template("faq.html")
+
 
 
 @app.route('/cultural_routes')
