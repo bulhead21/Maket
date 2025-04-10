@@ -6,6 +6,10 @@
   <title>RouteMuse</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -25,18 +29,71 @@
       align-items: center;
       padding: 20px 60px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+      z-index: 11;
+    }
+
+    .burger div {
+      width: 25px;
+      height: 3px;
+      background-color: #333;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
     }
 
     nav a {
-      margin: 0 15px;
       text-decoration: none;
       color: #333;
       font-weight: 500;
     }
 
+    .nav-mobile {
+      display: none;
+      flex-direction: column;
+      background-color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 250px;
+      padding: 60px 20px;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+      z-index: 10;
+      transition: transform 0.3s ease;
+      transform: translateX(-100%);
+    }
+
+    .nav-mobile.active {
+      transform: translateX(0);
+    }
+
+    .nav-mobile a {
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
     .hero {
       background: url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267') center/cover no-repeat;
-      height: 85vh;
+      min-height: 85vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -44,11 +101,6 @@
       text-align: center;
       color: white;
       padding: 0 20px;
-      text-decoration: none;
-    }
-    .yakor
-    {
-        text-align: none;
     }
 
     .hero h1 {
@@ -61,7 +113,7 @@
       margin-bottom: 30px;
     }
 
-    .hero button {
+    .hero .yakor-button {
       padding: 12px 30px;
       font-size: 1rem;
       border: none;
@@ -71,9 +123,15 @@
       cursor: pointer;
     }
 
+    .yakor {
+      text-decoration: none;
+      color: #f5f5f0;
+    }
+
     .routes {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       margin: 60px 0;
       gap: 40px;
       padding: 0 20px;
@@ -107,6 +165,55 @@
       margin-bottom: 10px;
     }
 
+    .popular-routes {
+      margin: 40px 20px;
+      text-align: center;
+    }
+
+    .popular-routes h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .popular-scroll {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 10px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      justify-content: center;
+    }
+
+    .popular-scroll::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .popular-scroll::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
+
+    .popular-card {
+      flex: 0 0 auto;
+      width: 220px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      scroll-snap-align: start;
+    }
+
+    .popular-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
+
+    .popular-card .info {
+      padding: 15px;
+    }
+
     footer {
       background-color: #2e8b57;
       color: white;
@@ -114,26 +221,59 @@
       padding: 40px 20px;
       margin-top: 60px;
     }
+
+    @media (max-width: 768px) {
+      .burger {
+        display: flex;
+      }
+
+      nav {
+        display: none;
+      }
+    }
   </style>
+ <script>
+    let scrollContainer = document.querySelector('.popular-scroll');
+let scrollSpeed = 1; 
+
+setInterval(() => {
+  scrollContainer.scrollLeft += scrollSpeed;
+  
+  
+  if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
+    scrollContainer.scrollLeft = 0; 
+  }
+}, 10);
+ </script>
 </head>
 <body>
   <header>
-    <div class="logo">
-        <strong>AlmaWays</strong>
-        <img src="../static/img/logo.png" style="margin-right: -10px;" alt="" width="67px">
+    <div class="burger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+    <div class="logo">RouteMuse</div>
     <nav>
-      <a href="#">Маршруты</a>
-      <a href="#">О нас</a>
-      <a href="#">Контакты</a>
-      <a href="#">Войти</a>
+      <a href="#choose">Маршруты</a>
+      <a href="#about">О нас</a>
+      <a href="#contact">Контакты</a>
+      <a href="#login">Войти</a>
     </nav>
+    <div class="nav-mobile">
+      <a href="#choose">Маршруты</a>
+      <a href="#about">О нас</a>
+      <a href="#contact">Контакты</a>
+      <a href="#login">Войти</a>
+    </div>
   </header>
+
+
 
   <section class="hero">
     <h1>Исследуй мир по вкусу и культуре</h1>
     <p>Выберите культурный или гастрономический маршрут — и отправляйтесь в путь уже сегодня!</p>
-    <button><a class='yakor' href="#choose">Начать путешествиe</a></button>
+    <button class="yakor-button"><a class="yakor" href="#choose">Начать путешествиe</a></button>
   </section>
 
   <section class="routes">
@@ -153,8 +293,52 @@
     </div>
   </section>
 
+  <section class="popular-routes">
+    <div class="popular-routes_scroll">
+    <h2>Популярные маршруты</h2>
+    <div class="popular-scroll">
+      <div class="popular-card">
+        <img src="../static/img/route1.jpg" alt="Route 1">
+        <div class="info">
+          <h4>Горы Алматы</h4>
+          <p>Невероятные виды и чистый воздух</p>
+        </div>
+      </div>
+      <div class="popular-card">
+        <img src="../static/img/route2.jpg" alt="Route 2">
+        <div class="info">
+          <h4>Старый город</h4>
+          <p>Исторические улочки и архитектура</p>
+        </div>
+      </div>
+      <div class="popular-card">
+        <img src="../static/img/route3.jpg" alt="Route 3">
+        <div class="info">
+          <h4>Фермерский рынок</h4>
+          <p>Свежие продукты и местная кухня</p>
+        </div>
+      </div>
+     
+ 
+
+     
+      
+      
+      
+      
+    </div>
+</div>
+  </section>
+
   <footer>
     <p>© 2025 RouteMuse. Все права защищены.</p>
   </footer>
 </body>
 </html>
+<script>
+    function toggleMenu() {
+  const mobileMenu = document.querySelector('.nav-mobile');
+  mobileMenu.classList.toggle('active');
+}
+
+  </script>
