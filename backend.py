@@ -40,9 +40,9 @@ def cultural_routes():
     return render_template("cultural_routes.html")
 
 
-@app.route('/historical_heritage')
-def historical_heritage():
-    return render_template("historical_heritage.html")
+@app.route('/gastronom')
+def gastronom():
+    return render_template("gastronom.html")
 
 
 @app.route('/geog_obj')
