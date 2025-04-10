@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RouteMuse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f0;
+      color: #333;
+    }
+
+    header {
+      background-color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267') center/cover no-repeat;
+      height: 85vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 0 20px;
+      text-decoration: none;
+    }
+    .yakor
+    {
+        text-align: none;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .hero button {
+      padding: 12px 30px;
+      font-size: 1rem;
+      border: none;
+      background-color: #2e8b57;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .routes {
+      display: flex;
+      justify-content: center;
+      margin: 60px 0;
+      gap: 40px;
+      padding: 0 20px;
+    }
+
+    .route-option {
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      width: 300px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .route-option:hover {
+      transform: translateY(-10px);
+    }
+
+    .route-option img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .route-option .info {
+      padding: 20px;
+    }
+
+    .route-option h3 {
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background-color: #2e8b57;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+        <strong>AlmaWays</strong>
+        <img src="../static/img/logo.png" style="margin-right: -10px;" alt="" width="67px">
+    </div>
+    <nav>
+      <a href="#">Маршруты</a>
+      <a href="#">О нас</a>
+      <a href="#">Контакты</a>
+      <a href="#">Войти</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Исследуй мир по вкусу и культуре</h1>
+    <p>Выберите культурный или гастрономический маршрут — и отправляйтесь в путь уже сегодня!</p>
+    <button><a class='yakor' href="#choose">Начать путешествиe</a></button>
+  </section>
+
+  <section class="routes">
+    <div class="route-option">
+      <img src="../static/img/gastronom.jpeg" alt="Гастрономический маршрут">
+      <div class="info">
+        <h3>🍽️ Гастрономический</h3>
+        <p>Открой местные вкусы и традиции</p>
+      </div>
+    </div>
+    <div class="route-option" id="choose">
+      <img src="../static/img/culture.jpg" alt="Культурный маршрут">
+      <div class="info">
+        <h3>🏛️ Культурный</h3>
+        <p>Погрузись в историю и искусство</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 RouteMuse. Все права защищены.</p>
+  </footer>
+</body>
+</html>
