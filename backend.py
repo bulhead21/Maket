@@ -34,6 +34,18 @@ def index():
 def info():
     return render_template("info.html")
 
+@app.route('/cul_1')
+def cul_1():
+    return render_template("cul_1.html")
+
+
+@app.route('/cul_2')
+def cul_2():
+    return render_template("cul_2.html")
+
+@app.route('/cul_3')
+def cul_3():
+    return render_template("cul_3.html")
 
 @app.route('/cultural_routes')
 def cultural_routes():
