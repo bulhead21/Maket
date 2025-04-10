@@ -39,6 +39,17 @@ def info():
 def cultural_routes():
     return render_template("cultural_routes.html")
 
+@app.route('/cul_4')
+def cul_4():
+    return render_template("cul_4.html")
+
+@app.route('/cul_5')
+def cul_5():
+    return render_template("cul_5.html")
+
+
+
+
 
 @app.route('/gastronom')
 def gastronom():
@@ -58,6 +69,7 @@ def user_login():
 @app.route('/user_reg')
 def user_reg():
     return render_template("user_reg.html")
+
 
 def is_valid_email(email):
     regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
@@ -231,4 +243,3 @@ def main():
 if __name__ == "__main__":
     main()
     
-
