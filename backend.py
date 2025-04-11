@@ -268,7 +268,7 @@ def logout():
 
 def main():
     db_session.global_init("databases/places.db")
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000,)
 
 
 if __name__ == "__main__":
