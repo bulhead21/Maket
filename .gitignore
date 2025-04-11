@@ -9,3 +9,5 @@ databases/places.db
 databases/places.db
 *.venv
 ./venv 
+*.env
+./env
