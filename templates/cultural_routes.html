@@ -1,120 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../static/css/style.css">
-  <link rel="stylesheet" href="../">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Forum&family=Tinos&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-  <title>Digital.kz</title>
+  <title>Культурные и гастрономические маршруты</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background-color: #fdfdfc;
+      color: #333;
+    }
+    header {
+      background-color: white;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .route-page {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .route-page h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+    .route-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .route-card {
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .route-card:hover {
+      transform: translateY(-8px);
+    }
+    .route-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .route-card .info {
+      padding: 20px;
+    }
+    .route-card .info h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+    .route-card .info p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+    @media (max-width: 600px) {
+      .route-page h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
-
 <body>
-  <div class="header-top">
-    <div class="icon">
-      <a class="flag" href="/index"><img src="../static/img/logo.png" alt="" width="73px"></a>
-    </div>
-
-    <div class="nav">
-      <a class="nav-item" href="/index">Главная</a>
-      
-      
-    </div>
-
-    <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
-    <div class="icons">
-      <div class="settings">
-        <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
-        <div class="search">
-          <input type="search" placeholder="Type to search" class="search_input">
-          <button>
-            <i class="fa fa-search"><lord-icon src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="width:46px;height:46px;color:#fff;"></lord-icon></i>
-          </button>
+  <header>Культурные и гастрономические маршруты</header>
+  <section class="route-page">
+    <h2>Выберите маршрут</h2>
+    <div class="route-list">
+      <div class="route-card">
+        <img src="../static/img/culture1.jpg" alt="Культурный маршрут 1">
+        <div class="info">
+          <h3>Исторический центр</h3>
+          <p>Погружение в культурное наследие города с посещением музеев, театров и старинных улиц.</p>
         </div>
       </div>
-      
-      
-      {% if not current_user.is_authenticated %}
-        <a class="animated-icon3"  href="/user_reg">
-          <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:48px;height:48px"></lord-icon>
-        </a>
-      {% else %}
-        <a class="animated-icon3"  href="/private_office">
-          <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:48px;height:48px"></lord-icon>
-        </a>
-      {% endif %}
-      
-
-    </div>
-  </div>
-
-  <main class="hh-main">
-      <section class="location">
-      <div class="container">
-        <h2 class="inner-title ff-gelassio">Цифровизация Казахстана</h2>
-        <h3 class="inner-subtitle location-subtitle">Что же уже цифровизированно?</h3>
-
-        <div class="location-wrapper">
-          <div class="transition">
-            <div class="location-block">
-              <a href="/cul_1">
-                <div class="location-block-img"><img class="location-img" src="../static/img/gos_usl.webp" alt="" width="400px"></div>
-                    <h3 class="location-block-title ff-gelassio"><p class="location-block-title" border-radius="15px">Государственные услуги</p></h3>
-                      
-              </a>    
-            </div>
-          </div>
-
-            <div class="transition pd-block">
-              <div class="location-block">
-                <a href="/cul_2">
-                  <div class="location-block-img"><img class="location-img" src="../static/img/obrz.webp" alt="" width="400px"></div>
-                    <h3 class="location-block-title ff-gelassio"><p class="location-block-title">Образование</p></h3>
-                      
-                </a>
-              </div>
-            </div>
-
-            <div class="transition pd-block">
-              <div class="location-block">
-                <a href="/cul_3">
-                  <div class="location-block-img"><img class="location-img" src="../static/img/zdrav.webp" alt="" width="400px"></div>
-                    <h3 class="location-block-title ff-gelassio"><p class="location-block-title">Здравоохранение</p></h3>
-                      
-                </a>
-              </div>
-            </div>
-
-            <div class="transition pd-block">
-              <div class="location-block">
-                <a href="/cul_4">
-                  <div class="location-block-img"><img class="location-img" src="../static/img/bank.webp" alt="" width="400px"></div>
-                    <h3 class="location-block-title ff-gelassio"><p class="location-block-title">Банковские услуги и финансы</p></h3>
-                      
-                </a>
-              </div>
-            </div>
-
-            <div class="transition pd-block">
-              <div class="location-block">
-                <a href="/cul_5">
-                  <div class="location-block-img"><img class="location-img" src="../static/img/agri.webp" alt="" width="400px"></div>
-                    <h3 class="location-block-title ff-gelassio"><p class="location-block-title">Сельское хозяйство</p></h3>
-                      
-                </a>
-              </div>
-            </div>
+      <div class="route-card">
+        <img src="../static/img/gastro1.jpg" alt="Гастрономический маршрут 1">
+        <div class="info">
+          <h3>Вкус города</h3>
+          <p>Маршрут по лучшим кафе, рынкам и местам, где можно попробовать местные деликатесы.</p>
         </div>
       </div>
-      </section>
-  
-  </main>
-  
+      <div class="route-card">
+        <img src="../static/img/culture2.jpg" alt="Культурный маршрут 2">
+        <div class="info">
+          <h3>Арт-прогулка</h3>
+          <p>Посещение галерей, уличного искусства и творческих пространств города.</p>
+        </div>
+      </div>
+      <div class="route-card">
+        <img src="../static/img/gastro2.jpg" alt="Гастрономический маршрут 2">
+        <div class="info">
+          <h3>Гастро-тур выходного дня</h3>
+          <p>Уикенд с дегустациями, мастер-классами и тематическими ресторанами.</p>
+        </div>
+      </div>
+      <div class="route-card">
+        <img src="../static/img/culture3.jpg" alt="Культурный маршрут 3">
+        <div class="info">
+          <h3>Путь ремесел</h3>
+          <p>Знакомство с традиционными ремеслами и мастерскими, где можно увидеть процесс создания изделий.</p>
+        </div>
+      </div>
+      <div class="route-card">
+        <img src="../static/img/gastro3.jpg" alt="Гастрономический маршрут 3">
+        <div class="info">
+          <h3>Винный маршрут</h3>
+          <p>Дегустации вин и гастротуризм по винодельням и уютным тавернам.</p>
+        </div>
+      </div>
+      <div class="route-card">
+        <img src="../static/img/culture4.jpg" alt="Культурный маршрут 4">
+        <div class="info">
+          <h3>Литературный след</h3>
+          <p>Прогулка по местам, связанным с известными писателями и произведениями.</p>
+        </div>
+      </div>
+      <div class="route-card">
+        <img src="../static/img/gastro4.jpg" alt="Гастрономический маршрут 4">
+        <div class="info">
+          <h3>Уличная еда</h3>
+          <p>Пробуй вкусные блюда на ярмарках, рынках и в фуд-траках.</p>
+        </div>
+      </div>
+      <div class="route-card">
+        <img src="../static/img/culture5.jpg" alt="Культурный маршрут 5">
+        <div class="info">
+          <h3>Современная культура</h3>
+          <p>Открой для себя современные культурные пространства, арт-центры и перформансы.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </body>
 </html>
