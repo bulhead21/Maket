@@ -1,4 +1,4 @@
-.body, html, .hh-main{
+.body, .html, .hh-main, .head, .header-top, .footer{
 	overflow-x: hidden;
 }
 .hh-main {
@@ -22,6 +22,7 @@
 	z-index: 500;
 	height: 75px;
 }
+
 .icons{
 	margin-left: 320px;
 	padding-top: 5px;
@@ -253,9 +254,9 @@
 		flex-direction: inline-block;
 	}
 	footer{
-		width: 80.1%;
+		width: 100%;
 		float: left;
-		padding: 10%;
+		padding-top: 10%;
 		background-color:#383434;
 		border-top: 3px solid silver;
 		margin-top: 20%;
@@ -323,7 +324,7 @@
     margin-top: 15px;
 }
 .social_icons{
-	margin-left: 200px;
+	margin-left: 0px;
 	display: flex;
 }
 .place-adding__input-file {

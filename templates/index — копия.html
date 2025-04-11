@@ -166,7 +166,6 @@ setInterval(() => {
         display: none;
       }
       
-      
       .nav-mobile {
         display: flex;
       }
@@ -322,9 +321,6 @@ setInterval(() => {
     .popular-card .info {
       padding: 15px;
     }
-    .info, h3, p, .routes {
-      text-decoration: none;
-    }
   </style>
   <title>Digital.kz</title>
 </head>
@@ -407,22 +403,18 @@ setInterval(() => {
 
   <section class="routes">
     <div class="route-option">
-      <a href="/gastronom" style="text-decoration: none; color:black">
       <img src="../static/img/gastronom.jpeg" alt="Гастрономический маршрут">
       <div class="info">
         <h3>🍽️ Гастрономический</h3>
         <p>Открой местные вкусы и традиции</p>
       </div>
-    </a>
     </div>
     <div class="route-option" id="choose">
-      <a href="/cultural_routes" style="text-decoration: none; color:black">
       <img src="../static/img/culture.jpg" alt="Культурный маршрут">
       <div class="info">
         <h3>🏛️ Культурный</h3>
         <p>Погрузись в историю и искусство</p>
       </div>
-    </a>
     </div>
   </section>
 
@@ -495,4 +487,15 @@ mobileMenu.classList.toggle('active');
     mobileMenu.classList.toggle('active');
     burger.classList.toggle('active');
   }
+
+  let scrollContainer = document.querySelector('.popular-scroll');
+  let scrollSpeed = 1; 
+
+  setInterval(() => {
+    scrollContainer.scrollLeft += scrollSpeed;
+    
+    if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
+      scrollContainer.scrollLeft = 0; 
+    }
+  }, 10);
 </script>
