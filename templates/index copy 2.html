@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RouteMuse</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Forum&family=Tinos&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    let scrollContainer = document.querySelector('.popular-scroll');
+    let scrollSpeed = 1; 
+
+setInterval(() => {
+  scrollContainer.scrollLeft += scrollSpeed;
+  
+  
+  if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
+    scrollContainer.scrollLeft = 0; 
+  }
+}, 10);
+ </script>
   <style>
     html {
       scroll-behavior: smooth;
@@ -213,62 +233,68 @@
     .popular-card .info {
       padding: 15px;
     }
-
-    footer {
-      background-color: #2e8b57;
-      color: white;
-      text-align: center;
-      padding: 40px 20px;
-      margin-top: 60px;
-    }
-
     @media (max-width: 768px) {
-      .burger {
-        display: flex;
-      }
-
       nav {
         display: none;
       }
+      .burger{
+        display:flex;
+      }
     }
+
+    @media (max-width: 768px) {
+	  header-top {
+	padding-top: 0; } 
+}
+
   </style>
- <script>
-    let scrollContainer = document.querySelector('.popular-scroll');
-    let scrollSpeed = 1; 
-
-setInterval(() => {
-  scrollContainer.scrollLeft += scrollSpeed;
-  
-  
-  if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
-    scrollContainer.scrollLeft = 0; 
-  }
-}, 10);
- </script>
+  <title>Digital.kz</title>
 </head>
+
 <body>
-  <header>
-    <div class="burger" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
+    
+    <div class="header-top">
+      <div class="burger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <nav>
+    <div class="icon">
+      <a class="flag" href="/index"><img src="../static/img/logo.png" style="margin-right: -10px;" alt="" width="67px"></a>
     </div>
-    <div class="logo">RouteMuse</div>
-    <nav>
-      <a href="#choose">Маршруты</a>
-      <a href="#about">О нас</a>
-      <a href="#contact">Контакты</a>
-      <a href="#login">Войти</a>
-    </nav>
-    <div class="nav-mobile">
-      <a href="#choose">Маршруты</a>
-      <a href="#about">О нас</a>
-      <a href="#contact">Контакты</a>
-      <a href="#login">Войти</a>
+
+    <div class="nav" style="padding:10px">
+      <a class="nav-item" href="/index">Главная</a>
+      <a class="nav-item" href="/faq">FAQ</a>
+      
     </div>
-  </header>
 
-
+    <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
+    <div class="icons">
+      <div class="settings">
+        <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
+        <div class="search" style="padding-top:3px">
+          <input type="search" placeholder="Type to search" class="search_input" id="searchInput" style="margin-left:-10px">
+          <button>
+            <i class="fa fa-search"><lord-icon src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="left: -16px; top:-8px;width:44px;height:44px;color:#fff;"></lord-icon></i>
+          </button>
+        </div>
+      </div>
+      
+      
+      {% if not current_user.is_authenticated %}
+        <a class="animated-icon3"  href="/user_reg">
+          <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:44px;height:44px"></lord-icon>
+        </a>
+      {% else %}
+        <a class="animated-icon3"  href="/private_office">
+          <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:44px;height:44px"></lord-icon>
+        </a>
+      {% endif %}
+    </div>
+  </nav>
+  </div>
 
   <section class="hero">
     <h1>Исследуй мир по вкусу и культуре</h1>
@@ -317,15 +343,7 @@ setInterval(() => {
           <h4>Фермерский рынок</h4>
           <p>Свежие продукты и местная кухня</p>
         </div>
-      </div>
-     
- 
-
-     
-      
-      
-      
-      
+      </div> 
     </div>
 </div>
   </section>
@@ -354,12 +372,13 @@ setInterval(() => {
         style="width:60px; "></a>
     </div>
   </footer>
+
 </body>
 </html>
 <script>
-    function toggleMenu() {
-  const mobileMenu = document.querySelector('.nav-mobile');
-  mobileMenu.classList.toggle('active');
+  function toggleMenu() {
+const mobileMenu = document.querySelector('.nav-mobile');
+mobileMenu.classList.toggle('active');
 }
 
-  </script>
+</script>

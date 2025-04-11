@@ -12,88 +12,445 @@
   <link href="https://fonts.googleapis.com/css2?family=Forum&family=Tinos&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/3d0e27e432.js"></script>
+  <script>
+    let scrollContainer = document.querySelector('.popular-scroll');
+    let scrollSpeed = 1; 
+
+setInterval(() => {
+  scrollContainer.scrollLeft += scrollSpeed;
+  
+  
+  if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
+    scrollContainer.scrollLeft = 0; 
+  }
+}, 10);
+ </script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+  
+    body {
+      background-color: #f5f5f0;
+      color: #333;
+    }
+  
+    .header-top {
+      background-color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      flex-wrap: wrap;
+      position: relative;
+    }
+  
+
+  
+    .burger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+      z-index: 11;
+    }
+  
+    .burger div {
+      width: 25px;
+      height: 3px;
+      background-color: #333;
+      transition: all 0.3s ease;
+    }
+  
+    nav {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+  
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+  
+    .nav-mobile {
+      display: none;
+      flex-direction: column;
+      background-color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 250px;
+      padding: 80px 20px 20px;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+      z-index: 10;
+      transition: transform 0.3s ease;
+      transform: translateX(-100%);
+    }
+  
+    .nav-mobile.active {
+      transform: translateX(0);
+    }
+  
+    .mobile-nav-content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+  
+    .nav-mobile .nav-item {
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
+  
+    .mobile-icons {
+      margin-top: auto;
+      padding: 20px 0;
+    }
+  
+    .search-mobile {
+      display: flex;
+      margin-bottom: 20px;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+  
+    .search-mobile input {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-right: 5px;
+    }
+  
+    .search-mobile button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+  
+    .nav-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 10px;
+    }
+  
+    @media (max-width: 768px) {
+      .header-top {
+        padding: 15px 20px;
+      }
+      
+      .burger {
+        display: flex;
+      }
+      
+      nav {
+        display: none;
+      }
+      
+      .nav-mobile {
+        display: flex;
+      }
+      
+      /* Анимация бургера при открытии */
+      .burger.active div:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      
+      .burger.active div:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .burger.active div:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f0;
+      color: #333;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267') center/cover no-repeat;
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .hero .yakor-button {
+      padding: 12px 30px;
+      font-size: 1rem;
+      border: none;
+      background-color: #2e8b57;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .yakor {
+      text-decoration: none;
+      color: #f5f5f0;
+    }
+
+    .routes {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 60px 0;
+      gap: 40px;
+      padding: 0 20px;
+    }
+
+    .route-option {
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      width: 300px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .route-option:hover {
+      transform: translateY(-10px);
+    }
+
+    .route-option img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .route-option .info {
+      padding: 20px;
+    }
+
+    .route-option h3 {
+      margin-bottom: 10px;
+    }
+
+    .popular-routes {
+      margin: 40px 20px;
+      text-align: center;
+    }
+
+    .popular-routes h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .popular-scroll {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 10px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      justify-content: center;
+    }
+
+    .popular-scroll::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .popular-scroll::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
+
+    .popular-card {
+      flex: 0 0 auto;
+      width: 220px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      scroll-snap-align: start;
+    }
+
+    .popular-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
+
+    .popular-card .info {
+      padding: 15px;
+    }
+  </style>
   <title>Digital.kz</title>
 </head>
 
 <body>
+    
+  <div class="header-top">
+    <div class="burger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <nav>
+      <div class="icon">
+        <a class="flag" href="/index"><img src="../static/img/logo.png" style="margin-right: -10px;" alt="" width="67px"></a>
+      </div>
   
-    <div class="header-top">
-    <div class="icon">
-      <a class="flag" href="/index"><img src="../static/img/logo.png" style="margin-right: -10px;" alt="" width="67px"></a>
-    </div>
-
-    <div class="nav" style="padding:10px">
-      <a class="nav-item" href="/index">Главная</a>
-      <a class="nav-item" href="/faq">FAQ</a>
-      
-    </div>
-
-    <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
-    <div class="icons">
-      <div class="settings">
-        <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
-        <div class="search" style="padding-top:3px">
-          <input type="search" placeholder="Type to search" class="search_input" id="searchInput" style="margin-left:-10px">
-          <button>
-            <i class="fa fa-search"><lord-icon src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="left: -16px; top:-8px;width:44px;height:44px;color:#fff;"></lord-icon></i>
-          </button>
+      <div class="nav" style="padding:10px">
+        <a class="nav-item" href="/index">Главная</a>
+        <a class="nav-item" href="/faq">FAQ</a>
+      </div>
+  
+      <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
+      <div class="icons">
+        <div class="settings">
+          <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
+          <div class="search" style="padding-top:3px">
+            <input type="search" placeholder="Type to search" class="search_input" id="searchInput" style="margin-left:-10px">
+            <button>
+              <i class="fa fa-search"><lord-icon src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="left: -16px; top:-8px;width:44px;height:44px;color:#fff;"></lord-icon></i>
+            </button>
+          </div>
+        </div>
+        
+        {% if not current_user.is_authenticated %}
+          <a class="animated-icon3" href="/user_reg">
+            <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:44px;height:44px"></lord-icon>
+          </a>
+        {% else %}
+          <a class="animated-icon3" href="/private_office">
+            <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:44px;height:44px"></lord-icon>
+          </a>
+        {% endif %}
+      </div>
+    </nav>
+    
+    <!-- Мобильное меню с иконками -->
+    <div class="nav-mobile">
+      <div class="mobile-nav-content">
+        <a class="nav-item" href="/index">Главная</a>
+        <a class="nav-item" href="/faq">FAQ</a>
+        
+        <div class="mobile-icons">
+          <div class="search-mobile">
+            <input type="search" placeholder="Type to search" class="search_input">
+            <button>
+              <lord-icon src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="width:30px;height:30px;color:#333;"></lord-icon>
+            </button>
+          </div>
+          
+          {% if not current_user.is_authenticated %}
+            <a class="nav-icon" href="/user_reg">
+              <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:36px;height:36px"></lord-icon>
+            </a>
+          {% else %}
+            <a class="nav-icon" href="/private_office">
+              <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:36px;height:36px"></lord-icon>
+            </a>
+          {% endif %}
         </div>
       </div>
-      
-      
-      {% if not current_user.is_authenticated %}
-        <a class="animated-icon3"  href="/user_reg">
-          <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:44px;height:44px"></lord-icon>
-        </a>
-      {% else %}
-        <a class="animated-icon3"  href="/private_office">
-          <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:44px;height:44px"></lord-icon>
-        </a>
-      {% endif %}
     </div>
   </div>
-  <img src="../static/img/main_image.jpg" alt="" width="100%" height="100%">
-  <main>
-    <section class="location">
-      
-      <div class="container">
-        <h2 class="inner-title">Изучите информацию</h2>
-        <h3 class="inner-subtitle location-subtitle">Выберите направление</h3>
 
-        <div class="location-wrapper">
+  <section class="hero">
+    <h1>Исследуй мир по вкусу и культуре</h1>
+    <p>Выберите культурный или гастрономический маршрут — и отправляйтесь в путь уже сегодня!</p>
+    <button class="yakor-button"><a class="yakor" href="#choose">Начать путешествиe</a></button>
+  </section>
 
-         <div class="privet">
-          <div class="transition">
-              <div class="location-block">
-                <a href="/cultural_routes">
-                  <div class="location-block-img"><img class="location-img" src="../static/img/digitalisation.webp" alt="" width="400px" height="253px"></div>
-                    <h3 class="location-block-title ff-gelassio" ><p class="location-block-title" border-radius="15px" class=".searchable">Цифровизация казахстана</p></h3>
-                </a>
-              </div>
-          </div>
+  <section class="routes">
+    <div class="route-option">
+      <a href="">
+      <img src="../static/img/gastronom.jpeg" alt="Гастрономический маршрут">
+      <div class="info">
+        <h3>🍽️ Гастрономический</h3>
+        <p>Открой местные вкусы и традиции</p>
+      </div>
+    </a>
+    </div>
+    <div class="route-option" id="choose">
+      <a href="">
+      <img src="../static/img/culture.jpg" alt="Культурный маршрут">
+      <div class="info">
+        <h3>🏛️ Культурный</h3>
+        <p>Погрузись в историю и искусство</p>
+      </div>
+    </a>
+    </div>
+  </section>
 
-        
-        </div>
-  
-        <div class="salam">
-          <div class="transition">
-            <div class="location-block">
-              <a href="/gastronom">
-                <div class="location-block-img"><img class="location-img" src="../static/img/forum.webp" alt="" width="400px" height="253px"></div>
-                <h3 class="location-block-title ff-gelassio" ><p class="location-block-title" border-radius="15px" class=".searchable">Форум</p></h3>
-              </a>
-            </div>
-          </div>
-        </div>
-
+  <section class="popular-routes">
+    <div class="popular-routes_scroll">
+    <h2>Популярные маршруты</h2>
+    <div class="popular-scroll">
+      <div class="popular-card">
+        <img src="../static/img/route1.jpg" alt="Route 1">
+        <div class="info">
+          <h4>Горы Алматы</h4>
+          <p>Невероятные виды и чистый воздух</p>
         </div>
       </div>
-    </section>
-  </main>
+      <div class="popular-card">
+        <img src="../static/img/route2.jpg" alt="Route 2">
+        <div class="info">
+          <h4>Старый город</h4>
+          <p>Исторические улочки и архитектура</p>
+        </div>
+      </div>
+      <div class="popular-card">
+        <img src="../static/img/route3.jpg" alt="Route 3">
+        <div class="info">
+          <h4>Фермерский рынок</h4>
+          <p>Свежие продукты и местная кухня</p>
+        </div>
+      </div> 
+    </div>
+</div>
+  </section>
 
-
-  <script src="../static/js/script.js"></script>
   <footer>
     <div class="call_us">
       Call us<br>
@@ -118,5 +475,20 @@
         style="width:60px; "></a>
     </div>
   </footer>
+
 </body>
 </html>
+<script>
+  function toggleMenu() {
+const mobileMenu = document.querySelector('.nav-mobile');
+mobileMenu.classList.toggle('active');
+}
+</script>
+<script>
+  function toggleMenu() {
+    const mobileMenu = document.querySelector('.nav-mobile');
+    const burger = document.querySelector('.burger');
+    mobileMenu.classList.toggle('active');
+    burger.classList.toggle('active');
+  }
+</script>
