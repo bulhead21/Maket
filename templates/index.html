@@ -166,6 +166,7 @@ setInterval(() => {
         display: none;
       }
       
+      
       .nav-mobile {
         display: flex;
       }
@@ -321,6 +322,9 @@ setInterval(() => {
     .popular-card .info {
       padding: 15px;
     }
+    .info, h3, p, .routes {
+      text-decoration: none;
+    }
   </style>
   <title>Digital.kz</title>
 </head>
@@ -403,7 +407,7 @@ setInterval(() => {
 
   <section class="routes">
     <div class="route-option">
-      <a href="">
+      <a href="/gastronom" style="text-decoration: none; color:black">
       <img src="../static/img/gastronom.jpeg" alt="Гастрономический маршрут">
       <div class="info">
         <h3>🍽️ Гастрономический</h3>
@@ -412,7 +416,7 @@ setInterval(() => {
     </a>
     </div>
     <div class="route-option" id="choose">
-      <a href="">
+      <a href="/cultural_routes" style="text-decoration: none; color:black">
       <img src="../static/img/culture.jpg" alt="Культурный маршрут">
       <div class="info">
         <h3>🏛️ Культурный</h3>
