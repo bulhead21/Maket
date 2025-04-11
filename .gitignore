@@ -7,3 +7,7 @@ databases/places.db
 .vscode/settings.json
 databases/places.db
 databases/places.db
+*.venv
+./venv 
+*.env
+./env
