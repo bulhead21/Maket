@@ -1,111 +1,157 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-  <meta charset="UTF-8"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <link rel="stylesheet" href="../static/css/style.css">
-  <link rel="stylesheet" href="../static/css/cul_1.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com"> 
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-  <link href="https://fonts.googleapis.com/css2?family=Forum&family=Tinos&display=swap" rel="stylesheet"> 
-  <link rel="preconnect" href="https://fonts.googleapis.com"> 
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-  <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@600&display=swap" rel="stylesheet"> 
-  <script src="script.js"></script> 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/> 
-  <script src="https://api-maps.yandex.ru/2.1/?apikey=8ce69368-cb23-4ace-acfe-0e75d0a2318c&lang=ru_RU" type="script.js"> 
-      </script> 
-  <title>Digital.kz</title> 
-</head> 
-
-<body> 
-  <script src="script.js"></script> 
-  <div class="header-top">
-    <div class="icon">
-      <a class="flag" href="/index"><img src="../static/img/logo.png" alt="" width="73px"></a>
-    </div>
-
-    <div class="nav">
-      <a class="nav-item" href="/index">Главная</a>
-      <a class="nav-item" href="/guide">FAQ</a>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Уличная еда Алматы</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .body, html,map{
+      overflow-x:hidden;
       
-    </div>
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f7f4ef;
+      color: #2f3e2f;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-image: url('../static/img/gastronom.jpeg');
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      text-decoration: none;
+      color:white;
+    }
+    .header-button {
+      position: absolute;
+      bottom: 20px;
+      background-color: #f0cd9c;
+      color: #2f3e2f;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .container {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 1rem;
+    }
+    .icons {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .icons div {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+    }
+    .route-point {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .route-point img {
+      width: 120px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .route-info h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+    .route-info p {
+      margin: 4px 0;
+      font-size: 14px;
+    }
+    .map {
+  width: 100%;
+  max-width: 900px;
+  height: 600px;
+  margin: 2rem auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.a_but
+{
+  text-decoration: none;
+  color:black;
+}
 
-    <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
+
+  </style>
+</head>
+<body>
+  <header>
+    <button class="header-button"><a class='a_but' href="#map">Маршрут на карте</a></button>
+  </header>
+
+  <div class="container">
+    <h1>О маршруте</h1>
+    <p>Попробуйте разнообразные блюда локальной кухни Алматы, исследуя оживлённые базары и популярные точки уличной еды. Этот гастрономический маршрут идеально подойдёт, чтобы насладиться атмосферой и вкусами города.</p>
     <div class="icons">
-      <div class="settings">
-        <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
-        <div class="search">
-          <input type="search" placeholder="Type to search" class="search_input" id="searchInput">
-          <button>
-          
-            <i class="fa fa-search"><lord-icon src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="width:46px;height:46px;color:#fff;"></lord-icon></i>
-          </button>
-        </div>
+      <div>☕ Еда</div>
+      <div>🧶 Пешком</div>
+      <div>📷 Фото</div>
+    </div>
+
+    <div class="route-point">
+      <img src="../static/img/route3.jpg" alt="Зелёный базар">
+      <div class="route-info">
+        <h3>Зелёный базар</h3>
+        <p>Попробуйте местные сухофрукты и хлеб.</p>
+        <p><strong>30 мин.</strong></p>
       </div>
-      
-      
-      {% if not current_user.is_authenticated %}
-        <a class="animated-icon3"  href="/user_reg">
-          <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:48px;height:48px"></lord-icon>
-        </a>
-      {% else %}
-        <a class="animated-icon3"  href="/private_office">
-          <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:48px;height:48px"></lord-icon>
-        </a>
-      {% endif %}
-    </div>
-  </div>
-
-<main>
-  <h1 style="margin-top: 5%;">Цифровизация государственных услуг в Казахстане</h1>
-  <section class="section-1">
-  <div class="satellite">
-    <div class="satellite-img"></div>
-    <div class="satellite-text">
-        <P>Цифровизация государственных услуг в Казахстане активно развивается и охватывает различные аспекты жизни граждан и функционирования государственного аппарата. Основная платформа, через которую предоставляются цифровые государственные услуги в Казахстане, — это портал электронного правительства "eGov.kz". Ниже приведены основные направления и достижения в цифровизации госуслуг в Казахстане:</P>
-    </div>
-</div>
-</section>
-<div class="container">
-        <div class="service">
-            <img src="../static/img/image.png" alt="eGov">
-            <p><strong>Портал "eGov.kz"</strong>:  Этот портал предоставляет широкий спектр услуг, доступных онлайн, включая регистрацию браков, рождений, смертей, получение справок и документов, оформление разрешений и лицензий. Пользователи могут подавать заявления, получать различные справки и документы, а также платить налоги и штрафы через интернет.<a href="https://egov.kz/cms/ru" class="link">Перейти</a></p>
-            
-          </div>
-        <div class="service">
-            <img src="../static/img/egov_mobile.jpg" alt="eGov Mobile">
-            <p><strong>Мобильное приложение "eGov Mobile"</strong>: Это приложение позволяет получать различные государственные услуги через смартфоны. С его помощью можно, например, проверить штрафы, налоговую задолженность, использовать цифровую подпись.<a href="https://play.google.com/store/apps/details?id=kz.mobile.mgov&hl=ru&gl=US&pli=1 class="link">Перейти</a></p>
-        </div>
-        <div class="service">
-            <img src="../static/img/digi_icon.jpg" alt="Цифровая идентификация">
-            <p><strong>Цифровая идентификация</strong>:  В Казахстане внедряются системы цифровой идентификации, такие как мобильная идентификация и электронная подпись, которые значительно упрощают доступ к онлайн-услугам и обеспечивают их безопасность.<a href="https://digital-id.kz/partner" class="link">Перейти</a></p>
-        </div>
-        <div class="service">
-            <img src="../static/img/smart_city.jpg" alt="Умный город">
-            <p><strong>Проекты "Умный город"</strong>: В рамках стратегии развития "умных городов" внедряются различные технологические решения для повышения качества жизни населения и оптимизации управления городскими ресурсами.<a href="https://egov.kz/cms/ru/smart-cities" class="link">Перейти</a></p>
-        </div>
-        <div class="service">
-            <img src="../static/img/blockchain.jpg" alt="Блокчейн">
-            <p><strong>Блокчейн-технологии</strong>: Казахстан также исследует возможности использования блокчейн-технологий для улучшения прозрачности и безопасности государственных услуг.<a href="https://egov.kz/cms/ru/robotization" class="link">Перейти</a></p>
-        </div>
-        <div class="service">
-            <img src="../static/img/health_icon.png" alt="Здравоохранение">
-            <p><strong>Образование и здравоохранение</strong>: Цифровизация также касается системы образования и здравоохранения, где через интернет можно записаться на приём к врачу, получить результаты анализов или оформить больничный лист, а также использовать электронные образовательные ресурсы.<a href="https://www.gov.kz/memleket/entities/dsm/activities/98?lang=ru" class="link">Перейти</a></p>
-        </div>
     </div>
 
+    <div class="route-point">
+      <img src="../static/img/navat.webp" alt="Чайхана">
+      <div class="route-info">
+        <h3>Чайхана</h3>
+        <p>Насладитесь ароматным шашлыком и лагманом.</p>
+        <p><strong>50 мин.</strong></p>
+      </div>
+    </div>
+
+    <div class="route-point">
+      <img src="../static/img/foodtrack.jpeg" alt="Фуд-траки">
+      <div class="route-info">
+        <h3>Фуд-траки</h3>
+        <p>Завершите прогулку бургерами и донерами.</p>
+        <p><strong>1 ч.</strong></p>
+      </div>
+    </div>
   </div>
-  <div class="con_text"><h1 >ЦОНы в Алматы</h1></div>
-  <div class="location_wrapper">
-  <div class="location__block" style="margin-top: 8%; margin-left: 18%;">
-    <iframe src="https://yandex.kz/map-widget/v1/?lang=ru_RU&amp;scroll=true&amp;/?apikey=8ce69368-cb23-4ace-acfe-0e75d0a2318c/maps/ru/162/almaty/?display-text=%D0%A6%D0%9E%D0%9D&ll=76.756497%2C43.294159&mode=search&sctx=ZAAAAAgBEAAaKAoSCY%2FhsZ%2FFK1NAEd%2F7G7RXoUVAEhIJQnxgx38B5T8RVisTfqmf0z8iBgABAgMEBSgKOABA3uUBSAFiHnJlbGV2X3NlcnZpY2VfYXJlYV9wZXJjZW50PTEwMGoCa3qdAc3MTD2gAQCoAQC9AXO122HCAZMB2dGe8NgFzNGhyQTVq4zp4gKTrLOM6wSh7fPW9QWYrIGksQLUs8TphwbekNyw5gX8ruXDuwTehoSl3AOxp8LSXpfN7MS1BLmEq4TMAd%2Brqo7fAYLC6O2xApPZr8f5BJHiqqqbBp%2FglsjMA5ynnpHvBMSVk%2FkI64aI5pQEiqD10tsFoLCyjucEruS158YB3bOW844GggIeKChjYXRlZ29yeV9pZDooMTY1MTU2MTE4NTg3KSkpigIMMTY1MTU2MTE4NTg3kgIAmgIMZGVza3RvcC1tYXBz&sll=76.756497%2C43.294159&sspn=1.368618%2C0.638926&text=%7B%22text%22%3A%22%D0%A6%D0%9E%D0%9D%22%2C%22what%22%3A%5B%7B%22attr_name%22%3A%22category_id%22%2C%22attr_values%22%3A%5B%22165156118587%22%5D%7D%5D%7D&z=9.94"  
-frameborder="0" allowfullscreen="true"  
-style = "display: flex; 
-width:100%;  
-height:55vh;margin-top: 0px;">
-  <div class="description"><p>bimbimbambimbimbambimbimbambimbimbam<br>bimbimbambimbimbambimbimbambimbimbambimbimbambimbimbam<br>bimbimbambimbimbambimbimbambimbimbambimbimbambimbimbam<br>bimbimbambimbimbambimbimbambimbimbambimbimbambimbimbam</p></div>
-  </div>
-  
-</main>
+    <div class="map">
+      <iframe src="https://yandex.kz/map-widget/v1/?lang=ru_RU&amp;scroll=true&amp;/?apikey=8ce69368-cb23-4ace-acfe-0e75d0a2318c/maps/ru/162/almaty/?ll=76.945001%2C43.249617&mode=routes&rtext=43.250152%2C76.944584~43.248846%2C76.945791~43.249390%2C76.946830~43.249655%2C76.947809~43.255200%2C76.946954~43.255315%2C76.943248~43.254013%2C76.943373~43.247333%2C76.941786~43.249167%2C76.943984~43.250205%2C76.944417&rtt=pd&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D1067449150~ymapsbm1%3A%2F%2Forg%3Foid%3D148941022304~~~ymapsbm1%3A%2F%2Forg%3Foid%3D1091157901~ymapsbm1%3A%2F%2Forg%3Foid%3D24938488579~ymapsbm1%3A%2F%2Forg%3Foid%3D146629534558~ymapsbm1%3A%2F%2Forg%3Foid%3D128454894573~&z=16.78
+  `    "  
+  id="map"
+  frameborder="0" allowfullscreen="true"
+  width="100%" 
+  height="100%" 
+  frameborder="0" 
+  allowfullscreen="true">
+  >
+    </iframe>
+    </div>
+
 </body>
+</html>
