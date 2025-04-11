@@ -322,9 +322,39 @@ setInterval(() => {
     .popular-card .info {
       padding: 15px;
     }
-    .info, h3, p, .routes {
-      text-decoration: none;
-    }
+    .header-top {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.burger-container {
+  position: relative;
+  z-index: 101;
+}
+
+.burger {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 102;
+}
+
+@media (max-width: 768px) {
+  .header-top {
+    padding: 15px 20px 15px 60px; /* Добавляем отступ слева для бургера */
+  }
+  
+  .burger {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+  }
+  
+  .nav-mobile {
+    padding-top: 80px; /* Увеличиваем отступ для бургера */
+  }
+}
   </style>
   <title>Digital.kz</title>
 </head>
@@ -332,10 +362,12 @@ setInterval(() => {
 <body>
     
   <div class="header-top">
-    <div class="burger" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
+    <div class="burger-container">
+      <div class="burger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
     <nav>
       <div class="icon">
@@ -494,5 +526,32 @@ mobileMenu.classList.toggle('active');
     const burger = document.querySelector('.burger');
     mobileMenu.classList.toggle('active');
     burger.classList.toggle('active');
+  }
+</script>
+<script>
+  function toggleMenu() {
+    const mobileMenu = document.querySelector('.nav-mobile');
+    const burger = document.querySelector('.burger');
+    mobileMenu.classList.toggle('active');
+    burger.classList.toggle('active');
+    
+    // Добавляем или удаляем обработчик клика по документу
+    if (mobileMenu.classList.contains('active')) {
+      document.addEventListener('click', closeMenuOnClickOutside);
+    } else {
+      document.removeEventListener('click', closeMenuOnClickOutside);
+    }
+  }
+
+  function closeMenuOnClickOutside(e) {
+    const mobileMenu = document.querySelector('.nav-mobile');
+    const burger = document.querySelector('.burger');
+    
+    // Проверяем, был ли клик вне меню и бургера
+    if (!mobileMenu.contains(e.target) && !e.target.closest('.burger')) {
+      mobileMenu.classList.remove('active');
+      burger.classList.remove('active');
+      document.removeEventListener('click', closeMenuOnClickOutside);
+    }
   }
 </script>
