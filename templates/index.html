@@ -15,11 +15,8 @@
   <script>
     let scrollContainer = document.querySelector('.popular-scroll');
     let scrollSpeed = 1; 
-
-setInterval(() => {
+  setInterval(() => {
   scrollContainer.scrollLeft += scrollSpeed;
-  
-  
   if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
     scrollContainer.scrollLeft = 0; 
   }
@@ -45,16 +42,15 @@ setInterval(() => {
     .header-top {
       background-color: white;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      padding: 20px 60px;
+      padding: 0;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       flex-wrap: wrap;
       position: relative;
-    }
-  
+      overflow:hidden;
 
-  
+    }
     .burger {
       display: none;
       flex-direction: column;
@@ -125,8 +121,8 @@ setInterval(() => {
   
     .search-mobile {
       display: flex;
-      margin-bottom: 20px;
-      padding: 10px 0;
+      margin-bottom: 0px;
+      padding: 0;
       border-bottom: 1px solid #eee;
     }
   
@@ -340,7 +336,7 @@ setInterval(() => {
 
 @media (max-width: 768px) {
   .header-top {
-    padding: 15px 20px 15px 60px; /* Добавляем отступ слева для бургера */
+    padding: 15px 20px 15px 0px; /* Добавляем отступ слева для бургера */
   }
 }
   /* Добавляем новые стили */
