@@ -37,9 +37,18 @@ def info():
 def cultural_routes():
     return render_template("cultural_routes.html")
 
+@app.route('/button_clicked/<int:button_id>')
+def button_clicked(button_id: int):
+    return render_template('button_clicked.html', button_id=button_id)
+
 @app.route('/cul_1')
 def cul_1():
+    print(button_clicked(''))
     return render_template("cul_1.html")
+    
+
+
+
 
 @app.route('/cul_2')
 def cul_2():
