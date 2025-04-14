@@ -283,7 +283,7 @@
   }
   .popular-item {
     min-width: 80%;
-    margin: 16px;
+    margin-right: 16px;
     flex-shrink: 0;
     background: #eee;
     padding: 20px;
@@ -299,32 +299,11 @@
     padding: 20px;
     border-radius: 10px;
   }
-
-    .popular-card {
-      flex: 0 0 auto;
-      width: 220px;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-      scroll-snap-align: start;
+  @media (max-width: 768px) {
+      .popular-item{
+        margin-left: 20px;
+      }
     }
-
-    .popular-card img {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-    }
-
-    .popular-card .info {
-      padding: 15px;
-    }
-    .header-top {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
 .burger-container {
   position: relative;
   z-index: 101;
