@@ -15,6 +15,7 @@ from data import db_session
 from data.user import User
 import secrets
 from flask import session
+from flask import jsonify
 tk=Tk()
 width = tk.winfo_screenwidth()
 app = Flask(__name__)
@@ -29,6 +30,20 @@ oauth = OAuth(app)
 def index():
     return render_template("index.html", current_user=current_user)
 
+@app.route('/mark_done', methods=['POST'])
+@login_required
+def mark_done():
+    data = request.get_json()
+    route_id = data.get("route_id")
+    db_sess = db_session.create_session()
+    user = User()
+    
+    print(f"Пользователь {current_user.email} прошел маршрут {route_id}")
+
+    
+
+    return jsonify({"message": "OK"}), 200
+
 @app.route('/info')
 def info():
     return render_template("info.html")
@@ -37,13 +52,10 @@ def info():
 def cultural_routes():
     return render_template("cultural_routes.html")
 
-@app.route('/button_clicked/<int:button_id>')
-def button_clicked(button_id: int):
-    return render_template('button_clicked.html', button_id=button_id)
+
 
 @app.route('/cul_1')
 def cul_1():
-    print(button_clicked(''))
     return render_template("cul_1.html")
     
 
