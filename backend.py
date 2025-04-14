@@ -41,6 +41,24 @@ def mark_done():
     if route_id == 'cul_1':
         progress_chek = 1
     current_user.progress += progress_chek
+    if route_id == 'cul_1':
+        progress_chek = 1
+    current_user.progress += progress_chek
+    if route_id == 'cul_2':
+        progress_chek = 1
+    current_user.progress += progress_chek
+    if route_id == 'cul_3':
+        progress_chek = 1
+    current_user.progress += progress_chek
+    if route_id == 'cul_4':
+        progress_chek = 1
+    current_user.progress += progress_chek
+    if route_id == 'cul_5':
+        progress_chek = 1
+    current_user.progress += progress_chek
+    if route_id == 'cul_6':
+        progress_chek = 1
+    current_user.progress += progress_chek
     print(f"Пользователь {current_user.progress} ")
 
     
