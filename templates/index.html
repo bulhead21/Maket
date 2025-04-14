@@ -13,7 +13,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>
-<<<<<<< HEAD
     const scrollContainer = document.getElementById('popular-scroll');
 
 // Клонируем элементы для бесконечной ленты
@@ -26,14 +25,6 @@ setInterval(() => {
   scrollContainer.scrollLeft += scrollSpeed;
   if (scrollContainer.scrollLeft >= resetAt) {
     scrollContainer.scrollLeft = 0;
-=======
-    let scrollContainer = document.querySelector('.popular-scroll');
-    let scrollSpeed = 1; 
-  setInterval(() => {
-  scrollContainer.scrollLeft += scrollSpeed;
-  if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
-    scrollContainer.scrollLeft = 0; 
->>>>>>> b8e3db1fa3629a5734f29afa2d87abc90334020e
   }
 }, 10);
  </script>
@@ -476,7 +467,10 @@ setInterval(() => {
     
     <div class="icon">
       <a class="flag" href="/index">
-        <img src="../static/img/logo.png" style="margin-left:295px;" href="/index" alt="Логотип">
+        <a class="animated-icon2" href="/favorits">
+          <lord-icon src="https://cdn.lordicon.com/xyboiuok.json" trigger="hover" style="width:48px;height:48px; margin-left:260px"></lord-icon> 
+        </a>
+        <img src="../static/img/logo.png" style="margin-left:265px;" href="/index" alt="Логотип">
       </a>
     </div>
     <div class="mobile-menu-overlay hidden"></div>
