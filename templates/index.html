@@ -32,19 +32,16 @@ setInterval(() => {
     html {
       scroll-behavior: smooth;
     }
-  
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
     }
-  
     body {
       background-color: #f5f5f0;
       color: #333;
     }
-  
     .header-top {
       background-color: white;
       display: flex;
@@ -63,26 +60,22 @@ setInterval(() => {
       gap: 5px;
       z-index: 11;
     }
-  
     .burger div {
       width: 25px;
       height: 3px;
       background-color: #333;
       transition: all 0.3s ease;
     }
-  
     nav {
       display: flex;
-      gap: 15px;
+      gap: 0px;
       align-items: center;
     }
-  
     nav a {
       text-decoration: none;
       color: #333;
       font-weight: 500;
     }
-  
     .nav-mobile {
       display: none;
       flex-direction: column;
@@ -98,17 +91,14 @@ setInterval(() => {
       transition: transform 0.3s ease;
       transform: translateX(-100%);
     }
-  
     .nav-mobile.active {
       transform: translateX(0);
     }
-  
     .mobile-nav-content {
       display: flex;
       flex-direction: column;
       height: 100%;
     }
-  
     .nav-mobile .nav-item {
       margin-bottom: 20px;
       font-size: 1.2rem;
@@ -118,19 +108,16 @@ setInterval(() => {
       padding: 10px;
       border-bottom: 1px solid #eee;
     }
-  
     .mobile-icons {
       margin-top: auto;
       padding: 20px 0;
     }
-  
     .search-mobile {
       display: flex;
       margin-bottom: 0px;
       padding: 0;
       border-bottom: 1px solid #eee;
     }
-  
     .search-mobile input {
       flex: 1;
       padding: 8px;
@@ -138,7 +125,6 @@ setInterval(() => {
       border-radius: 4px;
       margin-right: 5px;
     }
-  
     .search-mobile button {
       background: none;
       border: none;
@@ -146,14 +132,12 @@ setInterval(() => {
       display: flex;
       align-items: center;
     }
-  
     .nav-icon {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       margin-left: 10px;
     }
-  
     @media (max-width: 768px) {
       .header-top {
         padding: 15px 20px;
@@ -185,8 +169,6 @@ setInterval(() => {
         transform: rotate(-45deg) translate(5px, -5px);
       }
     }
-    
-
     * {
       margin: 0;
       padding: 0;
@@ -433,33 +415,33 @@ setInterval(() => {
     </div>
     <nav>
       <div class="icon">
-        <a class="flag" href="/index"><img src="../static/img/logo.png" style="margin-right: -10px" alt="" width="64px"></a>
+        <a class="flag" href="/index"><img src="../static/img/logo.png" style="" alt="" width="62px"></a>
       </div>
   
-      <div class="nav" style="padding:10px;padding-top:12px">
+      <div class="nav" style="padding:13px;padding-top:15px">
         <a class="nav-item" href="/index">Главная</a>
         <a class="nav-item" href="/faq">FAQ</a>
       </div>
   
       <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
       <div class="icons">
-        <div class="settings">
+        <div class="settings" style="padding-top:3px">
           <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
-          <div class="search" style="padding-top:4px">
+          <div class="search">
             <input type="search" placeholder="Type to search" class="search_input" id="searchInput" style="margin-left:-10px">
             <button>
-              <i class="fa fa-search"><lord-icon src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="left: -16px; top:-8px;width:44px;height:44px;color:#fff;"></lord-icon></i>
+              <i class="fa fa-search"><lord-icon src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="left:-16px; top:-7px;width:42px;height:42px;color:#fff;"></lord-icon></i>
             </button>
           </div>
         </div>
         
         {% if not current_user.is_authenticated %}
           <a class="animated-icon3" href="/user_reg">
-            <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:44px;height:44px"></lord-icon>
+            <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:42px;height:42px"></lord-icon>
           </a>
         {% else %}
           <a class="animated-icon3" href="/private_office">
-            <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:44px;height:44px"></lord-icon>
+            <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:42px;height:42px"></lord-icon>
           </a>
         {% endif %}
       </div>
