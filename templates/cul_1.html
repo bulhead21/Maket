@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Уличная еда Алматы</title>
   <style>
+      *:focus:not(:focus-visible) {
+    outline: none;
+  }
     html {
       scroll-behavior: smooth;
     }
@@ -204,15 +207,21 @@
 </body>
 </html>
 <script>
-  function markRouteDone(button) {
-    if (!button.classList.contains('done')) {
-      button.textContent = 'Спасибо!';
-      button.classList.add('done');
-    }
-  }
+  let selectedRouteId = null; 
 
-  function resetRoute(button) {
-    button.textContent = '✔ Маршрут пройден';
-    button.classList.remove('done');
+function markRouteDone(button) {
+  if (!button.classList.contains('done')) {
+    button.textContent = 'Спасибо!';
+    button.classList.add('done');
+    selectedRouteId = button.id; 
+    console.log("Выбранный маршрут:", selectedRouteId); 
   }
+}
+
+function resetRoute(button) {
+  button.textContent = '✔ Маршрут пройден';
+  button.classList.remove('done');
+  selectedRouteId = null; 
+  console.log("Маршрут сброшен");
+}
 </script>
