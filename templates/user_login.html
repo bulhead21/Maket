@@ -18,6 +18,12 @@
             font-family: sans-serif;
             letter-spacing: 1px;
         }
+        @media (max-width: 768px) {
+             .form {
+             transform: scale(1);}}
+             @media (max-width: 980px) {
+             .form {
+             transform: scale(2);}}
         .form_input,
         .form_button{
           font-family: sans-serif;
@@ -85,6 +91,27 @@
           0% {opacity: 0;}
           100% {opacity: 1;}
         }
+        .reg{
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          color: #fff;
+          background-color: #0071f0;
+          outline: none;
+          cursor: pointer;
+          transform: 0.3s;
+          text-decoration: none;
+        }
+        .reg:focus,
+        .reg:hover{
+          background-color: rgba(0,113,240,0.7);
+        }
+        .reg:focus ~ .form_label,
+        .reg:not(:placeholder-shown) ~ .form_label{
+          top: -18px;
+          font-size: 12px;
+          color:#e0e0e0;
+        }
     </style>
 </head>
 <body>
@@ -102,8 +129,6 @@
       <input method="POST" type="checkbox" id="rememberMe" name="remember"> <label for="rememberMe">Запомнить меня</label>
     </div>
     <button class="form_button">Continue</button>
-
-  
     <a class="reg" href="/user_reg">Registration</a>
   </form>
 </body>
