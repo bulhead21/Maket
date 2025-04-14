@@ -12,16 +12,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Forum&family=Tinos&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>
-    let scrollContainer = document.querySelector('.popular-scroll');
-    let scrollSpeed = 1; 
-  setInterval(() => {
-  scrollContainer.scrollLeft += scrollSpeed;
-  if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
-    scrollContainer.scrollLeft = 0; 
-  }
-}, 10);
- </script>
   <style>
      *:focus:not(:focus-visible) {
     outline: none;
@@ -657,4 +647,30 @@ mobileMenu.classList.toggle('active');
   document.querySelectorAll('.nav-mobile a').forEach(link => {
     link.addEventListener('click', closeMenu);
   });
+  const scrollContainer = document.querySelector('.popular-scroll');
+  let scrollSpeed = 0.5; // пикселей за кадр
+  let isPaused = false;
+
+  function autoScroll() {
+    if (!isPaused) {
+      scrollContainer.scrollLeft += scrollSpeed;
+
+      // если докрутили до конца — возвращаем в начало
+      if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
+        scrollContainer.scrollLeft = 0;
+      }
+    }
+    requestAnimationFrame(autoScroll);
+  }
+
+  scrollContainer.addEventListener('mouseenter', () => {
+    isPaused = true;
+  });
+
+  scrollContainer.addEventListener('mouseleave', () => {
+    isPaused = false;
+  });
+
+  autoScroll();
+
 </script>
