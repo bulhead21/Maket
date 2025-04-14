@@ -12,10 +12,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Forum&family=Tinos&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-     *:focus:not(:focus-visible) {
-    outline: none;
+  <script>
+    let scrollContainer = document.querySelector('.popular-scroll');
+    let scrollSpeed = 1; 
+  setInterval(() => {
+  scrollContainer.scrollLeft += scrollSpeed;
+  if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
+    scrollContainer.scrollLeft = 0; 
   }
+}, 10);
+ </script>
+  <style>
     html {
       scroll-behavior: smooth;
     }
@@ -42,7 +49,6 @@
       flex-wrap: wrap;
       position: relative;
       overflow:hidden;
-
     }
     .burger {
       display: none;
@@ -272,40 +278,49 @@
     }
 
     .popular-scroll {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Firefox */
-  }
-  .popular-scroll::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
-  }
-  .popular-item {
-    min-width: 80%;
-    margin-right: 16px;
-    flex-shrink: 0;
-    background: #eee;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 18px;
-  }
-  .item {
-    min-width: 200px;
-    margin-right: 20px;
-    flex-shrink: 0;
-    background: #f2f2f2;
-    padding: 20px;
-    border-radius: 10px;
-  }
-  @media (max-width: 768px) {
-      .popular-item{
-        margin-left: 20px;
-        width: 300px;
-        height: 200px;
-      }
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 10px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      justify-content: center;
     }
+
+    .popular-scroll::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .popular-scroll::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
+
+    .popular-card {
+      flex: 0 0 auto;
+      width: 220px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      scroll-snap-align: start;
+    }
+
+    .popular-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
+
+    .popular-card .info {
+      padding: 15px;
+    }
+    .header-top {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
 .burger-container {
   position: relative;
   z-index: 101;
@@ -373,6 +388,29 @@
   .mobile-menu-overlay.active {
     display: block;
   }
+  .header-top {
+    padding: 0 20px; /* Добавляем отступы по бокам */
+  }
+
+  .icon {
+    display: flex; /* Всегда показываем логотип */
+    align-items: center;
+  }
+
+  .burger-container {
+    order: 1; /* Бургер слева */
+  }
+  @media (max-width: 768px) {
+    .icon img {
+      width: 50px; /* Уменьшаем размер логотипа на мобильных */
+    }
+    
+    /* Скрываем десктопную навигацию */
+    nav {
+      display: none;
+    }
+  }
+  
   </style>
   <title>Digital.kz</title>
 </head>
@@ -389,10 +427,10 @@
     </div>
     <nav>
       <div class="icon">
-        <a class="flag" href="/index"><img src="../static/img/logo.png" style="margin-right: -10px;" alt="" width="67px"></a>
+        <a class="flag" href="/index"><img src="../static/img/logo.png" style="margin-right: -10px" alt="" width="64px"></a>
       </div>
   
-      <div class="nav" style="padding:10px">
+      <div class="nav" style="padding:10px;padding-top:12px">
         <a class="nav-item" href="/index">Главная</a>
         <a class="nav-item" href="/faq">FAQ</a>
       </div>
@@ -401,7 +439,7 @@
       <div class="icons">
         <div class="settings">
           <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
-          <div class="search" style="padding-top:3px">
+          <div class="search" style="padding-top:4px">
             <input type="search" placeholder="Type to search" class="search_input" id="searchInput" style="margin-left:-10px">
             <button>
               <i class="fa fa-search"><lord-icon src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="left: -16px; top:-8px;width:44px;height:44px;color:#fff;"></lord-icon></i>
@@ -421,6 +459,13 @@
       </div>
     </nav>
     
+    <div class="icon">
+      <a class="flag" href="/index">
+        <img src="../static/img/logo.png" style="margin-left:295px;" href="/index" alt="Логотип">
+      </a>
+    </div>
+    <div class="mobile-menu-overlay hidden"></div>
+
     <!-- Мобильное меню с иконками -->
     <div class="nav-mobile">
       <div class="mobile-nav-content">
@@ -430,8 +475,8 @@
         <div class="mobile-icons">
           <!-- Измененная структура поиска -->
           <div class="mobile-search-container">
-            <div class="search-icon-mobile" onclick="toggleMobileSearch()">
-              <lord-icon src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="width:30px;height:30px;color:#333;"></lord-icon>
+            <div class="search-icon-mobile" style="padding-left:9px" onclick="toggleMobileSearch()">
+              <lord-icon src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="width:36px;height:36px;color:#333;"></lord-icon>
             </div>
             <div class="search-mobile hidden">
               <input type="search" placeholder="Type to search" class="search_input">
@@ -638,17 +683,4 @@ mobileMenu.classList.toggle('active');
   document.querySelectorAll('.nav-mobile a').forEach(link => {
     link.addEventListener('click', closeMenu);
   });
-
-  // Дублируем контент для плавного зацикливания
-  content.innerHTML += content.innerHTML;
-
-  let scrollContainer = document.querySelector('.popular-scroll');
-  let scrollSpeed = 1; 
-  setInterval(() => {
-    scrollContainer.scrollLeft += scrollSpeed;
-    if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
-      scrollContainer.scrollLeft = 0; 
-    }
-  }, 10);
-
 </script>
