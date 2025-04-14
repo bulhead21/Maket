@@ -65,9 +65,9 @@ def mark_done():
 
     return jsonify({"message": "OK"}), 200
 
-@app.route('/favourite_routes')
+@app.route('/favorits')
 @login_required
-def favourite_routes():
+def favorits():
     
     favourite = [
         {
@@ -85,7 +85,7 @@ def favourite_routes():
             'url': '/cul_1'
         }
     ]
-    return render_template("favourite_routes.html", favourite=favourite)
+    return render_template("favorits.html")
 
 
 @app.route('/info')
