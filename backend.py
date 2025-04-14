@@ -65,6 +65,29 @@ def mark_done():
 
     return jsonify({"message": "OK"}), 200
 
+@app.route('/favourite_routes')
+@login_required
+def favourite_routes():
+    
+    favourite = [
+        {
+            'id': 1,
+            'title': 'Уличная еда Алматы',
+            'desc': 'Откройте для себя самые вкусные точки города.',
+            'image': 'route1.jpg',
+            'url': '/gas_1'
+        },
+        {
+            'id': 2,
+            'title': 'Исторический центр',
+            'desc': 'Погрузитесь в культуру и историю Алматы.',
+            'image': 'route2.jpg',
+            'url': '/cul_1'
+        }
+    ]
+    return render_template("favourite_routes.html", favourite=favourite)
+
+
 @app.route('/info')
 def info():
     return render_template("info.html")

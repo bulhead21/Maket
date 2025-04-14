@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Избранные маршруты</title>
+  <title>Избранное</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -101,31 +101,21 @@
 </header>
 
 <div class="container">
+  {% for route in favourite %}
   <div class="card">
-    <img src="/static/img/route1.jpg" alt="Маршрут 1">
+    <img src="{{ url_for('static', filename='img/' ~ route.image) }}" alt="{{ route.title }}">
     <div class="card-body">
-      <div class="card-title">Уличная еда Алматы</div>
-      <div class="card-desc">Откройте для себя самые вкусные точки города.</div>
+      <div class="card-title">{{ route.title }}</div>
+      <div class="card-desc">{{ route.desc }}</div>
     </div>
     <div class="card-buttons">
-      <button class="btn btn-view">Открыть</button>
-      <button class="btn btn-remove">Удалить</button>
+      <a href="{{ route.url }}"><button class="btn btn-view">Открыть</button></a>
+      <form method="POST" action="{{ url_for('remove_favourite', route_id=route.id) }}">
+        <button type="submit" class="btn btn-remove">Удалить</button>
+      </form>
     </div>
   </div>
-
-  <div class="card">
-    <img src="/static/img/route2.jpg" alt="Маршрут 2">
-    <div class="card-body">
-      <div class="card-title">Исторический центр</div>
-      <div class="card-desc">Погрузитесь в культуру и историю Алматы.</div>
-    </div>
-    <div class="card-buttons">
-      <button class="btn btn-view">Открыть</button>
-      <button class="btn btn-remove">Удалить</button>
-    </div>
-  </div>
-
-  <!-- Можно добавить больше карточек по аналогии -->
+  {% endfor %}
 </div>
 
 </body>
