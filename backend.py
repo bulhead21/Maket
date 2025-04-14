@@ -15,7 +15,8 @@ from data import db_session
 from data.user import User
 import secrets
 from flask import session
-from flask import jsonify
+from flask import jsonify, request
+
 tk=Tk()
 width = tk.winfo_screenwidth()
 app = Flask(__name__)
@@ -37,19 +38,30 @@ def mark_done():
     route_id = data.get("route_id")
     
     db_sess = db_session.create_session()
-    user = db_sess.query(User).get(current_user.id)
-    
-    if not user.completed_routes:
-        user.completed_routes = {}
-    
-    if not user.completed_routes.get(route_id):
-        user.completed_routes[route_id] = True
-        user.progress += 1
-        db_sess.commit()
-    
-    db_sess.close()
-    print(current_user.progress)
-    return jsonify({"message": "OK", "completed": True})
+    try:
+        user = db_sess.query(User).get(current_user.id)
+        
+        # Инициализируем completed_routes если пусто
+        if user.completed_routes is None:
+            user.completed_routes = {}
+        
+        # Если маршрут еще не завершен
+        if not user.completed_routes.get(route_id, False):
+            user.completed_routes[route_id] = True
+            user.progress = sum(1 for v in user.completed_routes.values() if v)
+            db_sess.commit()
+        
+        return jsonify({
+            "status": "success",
+            "completed": True,
+            "progress": user.progress
+        })
+        
+    except Exception as e:
+        db_sess.rollback()
+        return jsonify({"status": "error", "message": str(e)}), 500
+    finally:
+        db_sess.close()
 
 @app.route('/unmark_done', methods=['POST'])
 @login_required
@@ -58,18 +70,25 @@ def unmark_done():
     route_id = data.get("route_id")
     
     db_sess = db_session.create_session()
-    user = db_sess.query(User).get(current_user.id)
-    
-    if user.completed_routes and user.completed_routes.get(route_id):
-        user.completed_routes[route_id] = False
-        user.progress = max(0, user.progress - 1)
-        db_sess.commit()
-    
-    db_sess.close()
-    print(current_user.progress)
-    return jsonify({"message": "OK", "completed": False})
+    try:
+        user = db_sess.query(User).get(current_user.id)
         
-
+        if user.completed_routes and user.completed_routes.get(route_id, False):
+            user.completed_routes[route_id] = False
+            user.progress = sum(1 for v in user.completed_routes.values() if v)
+            db_sess.commit()
+        
+        return jsonify({
+            "status": "success",
+            "completed": False,
+            "progress": user.progress
+        })
+        
+    except Exception as e:
+        db_sess.rollback()
+        return jsonify({"status": "error", "message": str(e)}), 500
+    finally:
+        db_sess.close()
 @app.route('/favorits')
 @login_required
 def favorits():
