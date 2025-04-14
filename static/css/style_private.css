@@ -346,17 +346,14 @@
 	position: relative;
 }
 .line__green{
-	width: 100%;
+
 	position: absolute;
 	background-color: green;
 	height: 5px;
 	border-radius: 200px;
 	animation: Achievment 5s ease-in infinite;
 }
-@keyframes Achievment{
-	from{ right:100%}
-	to{right:50%}
-}
+
 .location__block__FavouriteRoutes{
 	text-decoration: none;
 	margin-bottom: 15px;

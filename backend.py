@@ -35,35 +35,40 @@ def index():
 def mark_done():
     data = request.get_json()
     route_id = data.get("route_id")
-    db_sess = db_session.create_session()
-    user = User()
-    progress_chek = 0
-    if route_id == 'cul_1':
-        progress_chek = 1
-    current_user.progress += progress_chek
-    if route_id == 'cul_1':
-        progress_chek = 1
-    current_user.progress += progress_chek
-    if route_id == 'cul_2':
-        progress_chek = 1
-    current_user.progress += progress_chek
-    if route_id == 'cul_3':
-        progress_chek = 1
-    current_user.progress += progress_chek
-    if route_id == 'cul_4':
-        progress_chek = 1
-    current_user.progress += progress_chek
-    if route_id == 'cul_5':
-        progress_chek = 1
-    current_user.progress += progress_chek
-    if route_id == 'cul_6':
-        progress_chek = 1
-    current_user.progress += progress_chek
-    print(f"Пользователь {current_user.progress} ")
-
     
+    db_sess = db_session.create_session()
+    user = db_sess.query(User).get(current_user.id)
+    
+    if not user.completed_routes:
+        user.completed_routes = {}
+    
+    if not user.completed_routes.get(route_id):
+        user.completed_routes[route_id] = True
+        user.progress += 1
+        db_sess.commit()
+    
+    db_sess.close()
+    print(current_user.progress)
+    return jsonify({"message": "OK", "completed": True})
 
-    return jsonify({"message": "OK"}), 200
+@app.route('/unmark_done', methods=['POST'])
+@login_required
+def unmark_done():
+    data = request.get_json()
+    route_id = data.get("route_id")
+    
+    db_sess = db_session.create_session()
+    user = db_sess.query(User).get(current_user.id)
+    
+    if user.completed_routes and user.completed_routes.get(route_id):
+        user.completed_routes[route_id] = False
+        user.progress = max(0, user.progress - 1)
+        db_sess.commit()
+    
+    db_sess.close()
+    print(current_user.progress)
+    return jsonify({"message": "OK", "completed": False})
+        
 
 @app.route('/favorits')
 @login_required

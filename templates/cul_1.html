@@ -181,13 +181,18 @@
         <p><strong>1 ч.</strong></p>
       </div>
     </div>
-      {% if  current_user.is_authenticated %}
-    
-    <button class="route-done-btn" onclick="markRouteDone(this)" ondblclick="resetRoute(this)" id="cul_1">✔ Маршрут пройден</button>
-  
-  {%else%}
-  <a href="/user_reg"><button class="route-done-btn"  id="cul_1">✔ Маршрут пройден</button></a>
-  {% endif %}
+    {% if current_user.is_authenticated %}
+    {% set is_completed = current_user.completed_routes.get('cul_1', False) %}
+    <button class="route-done-btn {% if is_completed %}done{% endif %}" 
+            onclick="handleRouteClick(this)"
+            id="cul_1">
+        {% if is_completed %}Спасибо!{% else %}✔ Маршрут пройден{% endif %}
+    </button>
+{% else %}
+    <a href="/user_reg">
+        <button class="route-done-btn" id="cul_1">✔ Маршрут пройден</button>
+    </a>
+{% endif %}
 </div>
 
     <div class="map">
@@ -207,31 +212,53 @@
 </body>
 </html>
 <script>
-  function markRouteDone(button) {
+const routeButtons = {};
+
+async function handleRouteClick(button) {
     const routeId = button.id;
-
-    if (!button.classList.contains('done')) {
-      button.textContent = 'Спасибо!';
-      button.classList.add('done');
-
-      fetch('/mark_done', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          
-        },
-        body: JSON.stringify({ route_id: routeId })
-      }).then(response => {
-        if (!response.ok) {
-          console.error('Ошибка при отправке ID маршрута');
-        }
-      });
+    
+    if (!routeButtons[routeId]) {
+        routeButtons[routeId] = {
+            lastClick: 0,
+            timeout: null
+        };
     }
-  }
+    
+    const now = Date.now();
+    const btnState = routeButtons[routeId];
+    
+    // Двойной клик (менее 300ms между кликами)
+    if (now - btnState.lastClick < 300) {
+        clearTimeout(btnState.timeout);
+        btnState.lastClick = 0;
+        await toggleRouteDone(button, false);
+        return;
+    }
+    
+    btnState.lastClick = now;
+    btnState.timeout = setTimeout(async () => {
+        await toggleRouteDone(button, true);
+    }, 300);
+}
 
-  function resetRoute(button) {
-    button.textContent = '✔ Маршрут пройден';
-    button.classList.remove('done');
-  }
-</script>
+async function toggleRouteDone(button, complete) {
+    const routeId = button.id;
+    const endpoint = complete ? '/mark_done' : '/unmark_done';
+    
+    try {
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({route_id: routeId})
+        });
+        
+        const data = await response.json();
+        if (data.message === "OK") {
+            button.textContent = complete ? 'Спасибо!' : '✔ Маршрут пройден';
+            complete ? button.classList.add('done') : button.classList.remove('done');
+        }
+    } catch (error) {
+        console.error('Ошибка:', error);
+    }
+}
 </script>
