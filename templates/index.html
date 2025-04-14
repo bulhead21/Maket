@@ -648,29 +648,20 @@ mobileMenu.classList.toggle('active');
     link.addEventListener('click', closeMenu);
   });
   const scrollContainer = document.querySelector('.popular-scroll');
-  let scrollSpeed = 0.5; // пикселей за кадр
-  let isPaused = false;
 
-  function autoScroll() {
-    if (!isPaused) {
-      scrollContainer.scrollLeft += scrollSpeed;
+  // Дублируем элементы для бесшовной прокрутки
+  scrollContainer.innerHTML += scrollContainer.innerHTML;
 
-      // если докрутили до конца — возвращаем в начало
-      if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
-        scrollContainer.scrollLeft = 0;
-      }
+  let scrollSpeed = 1;
+
+  setInterval(() => {
+    scrollContainer.scrollLeft += scrollSpeed;
+
+    // Как только прокрутка доходит до середины (копии),
+    // возвращаемся к началу без заметного рывка
+    if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 2) {
+      scrollContainer.scrollLeft = 0;
     }
-    requestAnimationFrame(autoScroll);
-  }
-
-  scrollContainer.addEventListener('mouseenter', () => {
-    isPaused = true;
-  });
-
-  scrollContainer.addEventListener('mouseleave', () => {
-    isPaused = false;
-  });
-
-  autoScroll();
+  }, 16);
 
 </script>
