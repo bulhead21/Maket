@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>
+<<<<<<< HEAD
     const scrollContainer = document.getElementById('popular-scroll');
 
 // Клонируем элементы для бесконечной ленты
@@ -25,6 +26,14 @@ setInterval(() => {
   scrollContainer.scrollLeft += scrollSpeed;
   if (scrollContainer.scrollLeft >= resetAt) {
     scrollContainer.scrollLeft = 0;
+=======
+    let scrollContainer = document.querySelector('.popular-scroll');
+    let scrollSpeed = 1; 
+  setInterval(() => {
+  scrollContainer.scrollLeft += scrollSpeed;
+  if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
+    scrollContainer.scrollLeft = 0; 
+>>>>>>> b8e3db1fa3629a5734f29afa2d87abc90334020e
   }
 }, 10);
  </script>
