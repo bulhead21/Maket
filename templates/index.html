@@ -272,13 +272,44 @@
     }
 
     .popular-scroll {
-    overflow-x: hidden;
+    overflow: hidden;
     white-space: nowrap;
     display: flex;
+    flex-wrap: nowrap;
   }
 
-  .popular-scroll .content {
+  .scroll-track {
     display: inline-flex;
+    animation: scroll-left 15s linear infinite;
+  }
+
+  .item {
+    min-width: 80vw; /* для мобилки — почти весь экран */
+    margin-right: 10px;
+    background: #e0ffe0;
+    padding: 20px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    text-align: center;
+    font-size: 20px;
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .item {
+      min-width: 200px;
+    }
+    .scroll-track {
+      animation-duration: 30s; /* помедленнее на десктопе */
+    }
   }
 
   .item {
