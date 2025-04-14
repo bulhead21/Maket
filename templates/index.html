@@ -272,23 +272,23 @@
     }
 
     .popular-scroll {
-      display: flex;
-      overflow-x: auto;
-      gap: 20px;
-      padding: 10px;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: thin;
-      justify-content: center;
-    }
+    overflow-x: hidden;
+    white-space: nowrap;
+    display: flex;
+  }
 
-    .popular-scroll::-webkit-scrollbar {
-      height: 8px;
-    }
+  .popular-scroll .content {
+    display: inline-flex;
+  }
 
-    .popular-scroll::-webkit-scrollbar-thumb {
-      background: #ccc;
-      border-radius: 4px;
-    }
+  .item {
+    min-width: 200px;
+    margin-right: 20px;
+    flex-shrink: 0;
+    background: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+  }
 
     .popular-card {
       flex: 0 0 auto;
@@ -648,20 +648,23 @@ mobileMenu.classList.toggle('active');
     link.addEventListener('click', closeMenu);
   });
   const scrollContainer = document.querySelector('.popular-scroll');
+  const content = document.getElementById('scroll-content');
 
-  // Дублируем элементы для бесшовной прокрутки
-  scrollContainer.innerHTML += scrollContainer.innerHTML;
+  // Дублируем контент для плавного зацикливания
+  content.innerHTML += content.innerHTML;
 
-  let scrollSpeed = 1;
+  let scrollSpeed = 0.5;
 
-  setInterval(() => {
+  function animateScroll() {
     scrollContainer.scrollLeft += scrollSpeed;
 
-    // Как только прокрутка доходит до середины (копии),
-    // возвращаемся к началу без заметного рывка
-    if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 2) {
+    if (scrollContainer.scrollLeft >= content.scrollWidth / 2) {
       scrollContainer.scrollLeft = 0;
     }
-  }, 16);
+
+    requestAnimationFrame(animateScroll);
+  }
+
+  animateScroll();
 
 </script>
