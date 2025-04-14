@@ -207,21 +207,31 @@
 </body>
 </html>
 <script>
-  let selectedRouteId = null; 
+  function markRouteDone(button) {
+    const routeId = button.id;
 
-function markRouteDone(button) {
-  if (!button.classList.contains('done')) {
-    button.textContent = 'Спасибо!';
-    button.classList.add('done');
-    selectedRouteId = button.id; 
-    console.log("Выбранный маршрут:", selectedRouteId); 
+    if (!button.classList.contains('done')) {
+      button.textContent = 'Спасибо!';
+      button.classList.add('done');
+
+      fetch('/mark_done', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          
+        },
+        body: JSON.stringify({ route_id: routeId })
+      }).then(response => {
+        if (!response.ok) {
+          console.error('Ошибка при отправке ID маршрута');
+        }
+      });
+    }
   }
-}
 
-function resetRoute(button) {
-  button.textContent = '✔ Маршрут пройден';
-  button.classList.remove('done');
-  selectedRouteId = null; 
-  console.log("Маршрут сброшен");
-}
+  function resetRoute(button) {
+    button.textContent = '✔ Маршрут пройден';
+    button.classList.remove('done');
+  }
+</script>
 </script>

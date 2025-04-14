@@ -37,8 +37,29 @@ def mark_done():
     route_id = data.get("route_id")
     db_sess = db_session.create_session()
     user = User()
-    
-    print(f"Пользователь {current_user.email} прошел маршрут {route_id}")
+    progress_chek = 0
+    if route_id == 'cul_1':
+        progress_chek = 1
+    current_user.progress += progress_chek
+    if route_id == 'cul_1':
+        progress_chek = 1
+    current_user.progress += progress_chek
+    if route_id == 'cul_2':
+        progress_chek = 1
+    current_user.progress += progress_chek
+    if route_id == 'cul_3':
+        progress_chek = 1
+    current_user.progress += progress_chek
+    if route_id == 'cul_4':
+        progress_chek = 1
+    current_user.progress += progress_chek
+    if route_id == 'cul_5':
+        progress_chek = 1
+    current_user.progress += progress_chek
+    if route_id == 'cul_6':
+        progress_chek = 1
+    current_user.progress += progress_chek
+    print(f"Пользователь {current_user.progress} ")
 
     
 
@@ -204,6 +225,7 @@ def reg_form():
     user.email = email
     user.phone_num = phone_num
     user.set_password(password)
+    user.progress = 0
     db_sess.add(user)
     db_sess.commit()
     db_sess.close()
