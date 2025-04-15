@@ -399,10 +399,12 @@ body {
     .dashboard-container {
         grid-template-columns: 1fr;
     }
-    
-    .sidebar {
-        display: none;
+    .sidebar
+    {
+      width: 50px;
     }
+    
+
 }
 
 @media (max-width: 768px) {
@@ -424,17 +426,202 @@ body {
         grid-template-columns: 1fr;
     }
 }
+.avatar-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+    object-fit: cover;
+}
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        left: -220px;
+        top: 0;
+        width: 200px;
+        background: #222;
+        height: 100%;
+        transition: left 0.3s ease;
+        z-index: 999;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .burger {
+        display: block;
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        font-size: 24px;
+        background: none;
+        border: none;
+        color: white;
+        z-index: 1000;
+    }
+}
+.avatar {
+    width: 100px;         
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ccc; 
+}
+/* Мобильное меню */
+.mobile-header {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: var(--dark);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.mobile-logo {
+    height: 30px;
+}
+
+.burger-menu {
+    width: 30px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.burger-menu span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: var(--white);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Анимация бургера */
+.burger-menu.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.burger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-menu.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Боковая панель - общие стили */
+.sidebar {
+    background: var(--dark);
+    color: var(--white);
+    padding: 30px 20px;
+    position: relative;
+    z-index: 10;
+    height: 100vh;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+}
+
+/* Основное содержимое */
+.main-content {
+    padding: 30px;
+    overflow-y: auto;
+    transition: margin-left 0.3s ease;
+}
+
+/* Адаптивность */
+
+    .mobile-header {
+        display: flex;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 280px;
+        transform: translateX(-100%);
+        z-index: 999;
+    }
+
+    .sidebar.mobile-active {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+        margin-top: 60px;
+        width: 100%;
+    }
+
+    .profile-card {
+        margin-top: 40px;
+    }
+
+
+@media (max-width: 576px) {
+    .sidebar {
+        width: 80%;
+    
+    }
+}
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
     </style>
 </head>
 <body>
     <div class="dashboard-container">
+      <header>
+        <div class="mobile-header">
+          <div class="burger-menu" id="burger-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+          </div>
+          <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="mobile-logo">
+      </div>
+      </header>
         <!-- Боковая панель -->
-        <aside class="sidebar">
+        <aside class="sidebar"  id="sidebar">
             <div class="profile-card">
-                <div class="avatar animate__animated animate__fadeIn">
-                    <img src="{{ url_for('static', filename='img/avatar.jpg') }}" alt="Аватар">
-                    <div class="online-status"></div>
-                </div>
+              <form id="avatar-form" action="/upload_avatar" method="POST" enctype="multipart/form-data">
+                <label for="avatar-input">
+                  {% if current_user.avatar %}
+                  <a href="/private_office"><img src="../static/avatars/ ~ current_user.avatar" 
+                      alt="avatar" 
+                      class="avatar"></a>
+              {% else %}
+              <a href="/private_office"><img src="{{ url_for('static', filename='avatars/default.png') }}" alt="default avatar"></a>
+              {% endif %}
+                </label>
+                <input type="file" id="avatar-input" name="avatar" accept="image/*" style="display: none" onchange="document.getElementById('avatar-form').submit();" />
+            </form>
                 <h2>{{ current_user.name }} {{ current_user.surname }}</h2>
                 <p class="email">{{ current_user.email }}</p>
                 <div class="rating">
@@ -444,10 +631,8 @@ body {
             </div>
 
             <nav class="menu">
-                <a href="#" class="active"><i class="fas fa-home"></i> Главная</a>
-                <a href="#"><i class="fas fa-route"></i> Мои маршруты</a>
-                <a href="#"><i class="fas fa-cog"></i> Настройки</a>
-                <a href="#"><i class="fas fa-bell"></i> Уведомления</a>
+                <a href="/index" class="active"><i class="fas fa-home"></i> Главная</a>
+                <a href="/favorit"><i class="fas fa-route"></i> Мои маршруты</a>
                 <a href="/logout"><i class="fas fa-sign-out-alt"></i> Выход</a>
             </nav>
 
@@ -559,6 +744,9 @@ body {
     </div>
 
     <script >
+
+
+
       document.addEventListener('DOMContentLoaded', function() {
     // Инициализация прогресс-бара
     initProgressBar();
@@ -740,6 +928,37 @@ function setupEventListeners() {
 function handleApiError(error) {
     console.error('API Error:', error);
     // Можно показать уведомление пользователю
+}
+// Бургер-меню
+
+
+// Добавьте вызов функции в DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    initBurgerMenu();
+    // ... остальной код инициализации
+});
+function initBurgerMenu() {
+    const burgerMenu = document.getElementById('burger-menu');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.createElement('div');
+    overlay.className = 'menu-overlay';
+    document.body.appendChild(overlay);
+    
+    burgerMenu.addEventListener('click', function() {
+        this.classList.toggle('active');
+        sidebar.classList.toggle('mobile-active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = sidebar.classList.contains('mobile-active') ? 'hidden' : '';
+    });
+    
+    overlay.addEventListener('click', () => {
+        burgerMenu.classList.remove('active');
+        sidebar.classList.remove('mobile-active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+    
+    // ... остальные обработчики
 }
     </script>
 </body>

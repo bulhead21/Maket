@@ -30,6 +30,7 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     completed_routes = sqlalchemy.Column(sqlalchemy.JSON, default=lambda: {
     f"cul_{i}": False for i in range(1, 7)  # 6 маршрутов
 })
+    avatar = sqlalchemy.Column(sqlalchemy.String)
     def set_password(self, password):
         self.password = generate_password_hash(password)
 
