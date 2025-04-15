@@ -424,17 +424,69 @@ body {
         grid-template-columns: 1fr;
     }
 }
+.avatar-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+    object-fit: cover;
+}
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        left: -220px;
+        top: 0;
+        width: 200px;
+        background: #222;
+        height: 100%;
+        transition: left 0.3s ease;
+        z-index: 999;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .burger {
+        display: block;
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        font-size: 24px;
+        background: none;
+        border: none;
+        color: white;
+        z-index: 1000;
+    }
+}
+.avatar {
+    width: 100px;         
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ccc; 
+}
+
     </style>
 </head>
 <body>
     <div class="dashboard-container">
+  
         <!-- Боковая панель -->
         <aside class="sidebar">
             <div class="profile-card">
-                <div class="avatar animate__animated animate__fadeIn">
-                    <img src="{{ url_for('static', filename='img/avatar.jpg') }}" alt="Аватар">
-                    <div class="online-status"></div>
-                </div>
+              <form id="avatar-form" action="/upload_avatar" method="POST" enctype="multipart/form-data">
+                <label for="avatar-input">
+                  {% if current_user.avatar %}
+                  <img src="../static/avatars/ ~ current_user.avatar" 
+                      alt="avatar" 
+                      class="avatar">
+              {% else %}
+                  <img src="{{ url_for('static', filename='avatars/default.png') }}" alt="default avatar">
+              {% endif %}
+                </label>
+                <input type="file" id="avatar-input" name="avatar" accept="image/*" style="display: none" onchange="document.getElementById('avatar-form').submit();" />
+            </form>
                 <h2>{{ current_user.name }} {{ current_user.surname }}</h2>
                 <p class="email">{{ current_user.email }}</p>
                 <div class="rating">
@@ -559,6 +611,9 @@ body {
     </div>
 
     <script >
+
+
+
       document.addEventListener('DOMContentLoaded', function() {
     // Инициализация прогресс-бара
     initProgressBar();

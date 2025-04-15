@@ -17,6 +17,9 @@ import secrets
 from flask import session
 from flask import jsonify, request
 import logging
+from flask import request, redirect, url_for
+import os
+from werkzeug.utils import secure_filename
 
 tk=Tk()
 width = tk.winfo_screenwidth()
@@ -29,6 +32,29 @@ oauth = OAuth(app)
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
+UPLOAD_FOLDER = 'static/avatars'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/upload_avatar', methods=['POST'])
+@login_required
+def upload_avatar():
+    db_sess = db_session.create_session()
+    user = db_sess.query(User).get(current_user.id)
+    file = request.files['avatar']
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)
+        # Сохраняем имя файла в БД
+        current_user.avatar = filename
+        db_sess.commit()
+    return redirect(url_for('private_office'))
 @app.route('/')
 @app.route('/index')
 def index():
@@ -330,6 +356,7 @@ def private_office():
     surname = current_user.surname
     email = current_user.email
     phone_num = current_user.phone_num
+    current_user.avatar = ''
     return render_template("private_office.html")
 
 @app.before_request
