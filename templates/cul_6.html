@@ -200,19 +200,7 @@
         <p><strong>1 ч.</strong></p>
       </div>
     </div>
-    {% if current_user.is_authenticated %}
-    {% set route_completed = current_user.completed_routes.get('cul_1', False) if current_user.completed_routes else False %}
-    <button class="route-done-btn {% if route_completed %}done{% endif %}"
-            onclick="handleRouteClick(this)"
-            id="cul_6">
-        {% if route_completed %}Спасибо!{% else %}✔ Маршрут пройден{% endif %}
-    </button>
-{% else %}
-    <a href="/user_reg">
-        <button class="route-done-btn" id="cul_6">✔ Маршрут пройден</button>
-    </a>
-{% endif %}
-
+    <button class="route-done-btn" id="cul_6">✔ Маршрут пройден</button>
 </div>
 
     <div class="map">
@@ -232,66 +220,68 @@
 </body>
 </html>
 <script>
-const routeHandlers = {};
-
-function setupRouteHandler(button) {
-    const routeId = button.id;
-    
-    if (!routeHandlers[routeId]) {
-        routeHandlers[routeId] = {
-            lastClick: 0,
-            timeout: null
-        };
+// Загрузка начального состояния
+async function loadInitialState() {
+    try {
+        const response = await fetch('/get_current_user_state');
+        const data = await response.json();
+        
+        if (data.completed_routes) {
+            Object.entries(data.completed_routes).forEach(([routeId, isCompleted]) => {
+                const button = document.getElementById(routeId);
+                if (button) {
+                    button.textContent = isCompleted ? 'Спасибо!' : '✔ Маршрут пройден';
+                    button.classList.toggle('done', isCompleted);
+                }
+            });
+        }
+    } catch (error) {
+        console.error("Ошибка загрузки состояния:", error);
     }
-    
-    return routeHandlers[routeId];
 }
 
+// Обработчик кликов
 async function handleRouteClick(button) {
-    const handler = setupRouteHandler(button);
-    const now = Date.now();
-    
-    // Двойной клик (интервал менее 300ms)
-    if (now - handler.lastClick < 300) {
-        clearTimeout(handler.timeout);
-        handler.lastClick = 0;
-        await toggleRouteCompletion(button, false);
-        return;
-    }
-    
-    handler.lastClick = now;
-    handler.timeout = setTimeout(async () => {
-        await toggleRouteCompletion(button, true);
-    }, 300);
-}
-
-async function toggleRouteCompletion(button, complete) {
     const routeId = button.id;
-    const endpoint = complete ? '/mark_done' : '/unmark_done';
+    const isCurrentlyCompleted = button.classList.contains('done');
+    const newState = !isCurrentlyCompleted;
     
     try {
         button.disabled = true;
-        const response = await fetch(endpoint, {
+        
+        const response = await fetch('/update_route_state', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({route_id: routeId})
+            body: JSON.stringify({
+                route_id: routeId,
+                new_state: newState
+            })
         });
         
-        const data = await response.json();
+        const result = await response.json();
         
-        if (data.status === "success") {
-            button.textContent = complete ? 'Спасибо!' : '✔ Маршрут пройден';
-            button.classList.toggle('done', complete);
-            
-            // Обновляем прогресс на странице если нужно
-            if (typeof updateProgress === 'function') {
-                updateProgress(data.progress);
-            }
+        if (result.status === "success") {
+            button.textContent = newState ? 'Спасибо!' : '✔ Маршрут пройден';
+            button.classList.toggle('done', newState);
+            console.log("Состояние обновлено:", result);
         }
     } catch (error) {
-        console.error('Ошибка:', error);
+        console.error("Ошибка обновления:", error);
+        // Возвращаем предыдущее состояние при ошибке
+        button.textContent = isCurrentlyCompleted ? 'Спасибо!' : '✔ Маршрут пройден';
+        button.classList.toggle('done', isCurrentlyCompleted);
     } finally {
         button.disabled = false;
     }
 }
+
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+    loadInitialState();
+    
+    // Назначаем обработчики всем кнопкам
+    document.querySelectorAll('.route-done-btn').forEach(btn => {
+        btn.onclick = () => handleRouteClick(btn);
+    });
+});
 </script>
