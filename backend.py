@@ -163,24 +163,50 @@ def update_route_state():
 @app.route('/favorits')
 @login_required
 def favorits():
-    
-    favourite = [
-        {
-            'id': 1,
-            'title': 'Уличная еда Алматы',
-            'desc': 'Откройте для себя самые вкусные точки города.',
-            'image': 'route1.jpg',
-            'url': '/gas_1'
-        },
-        {
-            'id': 2,
-            'title': 'Исторический центр',
-            'desc': 'Погрузитесь в культуру и историю Алматы.',
-            'image': 'route2.jpg',
-            'url': '/cul_1'
-        }
-    ]
     return render_template("favorits.html")
+@app.route('/api/favorites/add', methods=['POST'])
+@login_required
+def add_favorite():
+    data = request.get_json()
+    route_id = data.get('route_id')
+    
+    db_sess = db_session.create_session()
+    try:
+        user = db_sess.query(User).get(current_user.id)
+        if route_id not in user.favorite_routes:
+            user.favorite_routes.append(route_id)
+            db_sess.commit()
+        return jsonify({"status": "success"})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+    finally:
+        db_sess.close()
+
+@app.route('/api/favorites/remove', methods=['POST'])
+@login_required
+def remove_favorite():
+    data = request.get_json()
+    route_id = data.get('route_id')
+    
+    db_sess = db_session.create_session()
+    try:
+        user = db_sess.query(User).get(current_user.id)
+        if route_id in user.favorite_routes:
+            user.favorite_routes.remove(route_id)
+            db_sess.commit()
+        return jsonify({"status": "success"})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+    finally:
+        db_sess.close()
+
+@app.route('/api/favorites/list')
+@login_required
+def list_favorites():
+    return jsonify({
+        "favorites": current_user.favorite_routes,
+        "count": len(current_user.favorite_routes)
+    })
 
 
 @app.route('/info')
