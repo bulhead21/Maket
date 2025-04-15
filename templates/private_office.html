@@ -613,11 +613,11 @@ body {
               <form id="avatar-form" action="/upload_avatar" method="POST" enctype="multipart/form-data">
                 <label for="avatar-input">
                   {% if current_user.avatar %}
-                  <img src="../static/avatars/ ~ current_user.avatar" 
+                  <a href="/private_office"><img src="../static/avatars/ ~ current_user.avatar" 
                       alt="avatar" 
-                      class="avatar">
+                      class="avatar"></a>
               {% else %}
-                  <img src="{{ url_for('static', filename='avatars/default.png') }}" alt="default avatar">
+              <a href="/private_office"><img src="{{ url_for('static', filename='avatars/default.png') }}" alt="default avatar"></a>
               {% endif %}
                 </label>
                 <input type="file" id="avatar-input" name="avatar" accept="image/*" style="display: none" onchange="document.getElementById('avatar-form').submit();" />
@@ -631,10 +631,8 @@ body {
             </div>
 
             <nav class="menu">
-                <a href="#" class="active"><i class="fas fa-home"></i> Главная</a>
-                <a href="#"><i class="fas fa-route"></i> Мои маршруты</a>
-                <a href="#"><i class="fas fa-cog"></i> Настройки</a>
-                <a href="#"><i class="fas fa-bell"></i> Уведомления</a>
+                <a href="/index" class="active"><i class="fas fa-home"></i> Главная</a>
+                <a href="/favorit"><i class="fas fa-route"></i> Мои маршруты</a>
                 <a href="/logout"><i class="fas fa-sign-out-alt"></i> Выход</a>
             </nav>
 
