@@ -27,8 +27,9 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
 
     favorit = sqlalchemy.Column(sqlalchemy.String)
 
-    completed_routes = sqlalchemy.Column(sqlalchemy.JSON)
-
+    completed_routes = sqlalchemy.Column(sqlalchemy.JSON, default=lambda: {
+    f"cul_{i}": False for i in range(1, 7)  # 6 маршрутов
+})
     def set_password(self, password):
         self.password = generate_password_hash(password)
 
