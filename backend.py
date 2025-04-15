@@ -16,6 +16,10 @@ from data.user import User
 import secrets
 from flask import session
 from flask import jsonify, request
+import logging
+from flask import request, redirect, url_for
+import os
+from werkzeug.utils import secure_filename
 
 tk=Tk()
 width = tk.winfo_screenwidth()
@@ -25,67 +29,134 @@ app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=365)
 login_manager = LoginManager()
 login_manager.init_app(app)
 oauth = OAuth(app)
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
+
+UPLOAD_FOLDER = 'static/avatars'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/upload_avatar', methods=['POST'])
+@login_required
+def upload_avatar():
+    db_sess = db_session.create_session()
+    user = db_sess.query(User).get(current_user.id)
+    file = request.files['avatar']
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)
+        # Сохраняем имя файла в БД
+        current_user.avatar = filename
+        db_sess.commit()
+    return redirect(url_for('private_office'))
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template("index.html", current_user=current_user)
-
-@app.route('/mark_done', methods=['POST'])
+@app.route('/debug_user')
 @login_required
-def mark_done():
-    data = request.get_json()
-    route_id = data.get("route_id")
-    
+def debug_user():
+    db_sess = db_session.create_session()
+    user = db_sess.query(User).get(current_user.id)
+    return jsonify({
+        "id": user.id,
+        "completed_routes": user.completed_routes,
+        "progress": user.progress
+    })
+
+@app.route('/get_current_user_state')
+@login_required
+def get_current_user_state():
     db_sess = db_session.create_session()
     try:
         user = db_sess.query(User).get(current_user.id)
-        
-        # Инициализируем completed_routes если пусто
-        if user.completed_routes is None:
-            user.completed_routes = {}
-        
-        # Если маршрут еще не завершен
-        if not user.completed_routes.get(route_id, False):
-            user.completed_routes[route_id] = True
-            user.progress = sum(1 for v in user.completed_routes.values() if v)
-            db_sess.commit()
-        
         return jsonify({
-            "status": "success",
-            "completed": True,
-            "progress": user.progress
+            "completed_routes": user.completed_routes if user.completed_routes else {},
+            "progress": user.progress if user.progress else 0
         })
-        
-    except Exception as e:
-        db_sess.rollback()
-        return jsonify({"status": "error", "message": str(e)}), 500
     finally:
         db_sess.close()
+MAX_ROUTES = 6  # Константа в начале файла
 
-@app.route('/unmark_done', methods=['POST'])
+
+@app.route('/get_user_progress')
 @login_required
-def unmark_done():
+def get_user_progress():
+    return jsonify({
+        "progress": current_user.progress,
+        "max_routes": 6
+    })
+
+@app.route('/api/user/activities')
+@login_required
+def get_user_activities():
+    activities = []
+    if current_user.progress > 0:
+        activities.append({
+            "type": "route_completed",
+            "title": f"Вы завершили {current_user.progress} маршрут(ов)",
+            "date": datetime.now().strftime("%d.%m.%Y"),
+            "icon": "route"
+        })
+    if current_user.progress >= 3:
+        activities.append({
+            "type": "milestone",
+            "title": "Достигнуто 50% прогресса!",
+            "date": datetime.now().strftime("%d.%m.%Y"),
+            "icon": "star"
+        })
+    return jsonify(activities)
+@app.route('/update_route_state', methods=['POST'])
+@login_required
+def update_route_state():
     data = request.get_json()
     route_id = data.get("route_id")
+    new_state = data.get("new_state")
+    
+    if not route_id or new_state is None:
+        return jsonify({"status": "error", "message": "Missing parameters"}), 400
     
     db_sess = db_session.create_session()
     try:
-        user = db_sess.query(User).get(current_user.id)
+        # Важно: использовать merge для прикрепления объекта к сессии
+        user = db_sess.merge(current_user)
         
-        if user.completed_routes and user.completed_routes.get(route_id, False):
-            user.completed_routes[route_id] = False
-            user.progress = sum(1 for v in user.completed_routes.values() if v)
-            db_sess.commit()
+        # Инициализация если None
+        if user.completed_routes is None:
+            user.completed_routes = {
+                "cul_1": False,
+                "cul_2": False,
+                "cul_3": False,
+                "cul_4": False,
+                "cul_5": False
+            }
+        
+        # Обновляем состояние
+        user.completed_routes[route_id] = new_state
+        user.progress = sum(1 for v in user.completed_routes.values() if v)
+        
+        # Явное сохранение
+        db_sess.commit()
+        
+        # Принудительное обновление из БД
+        db_sess.refresh(user)
         
         return jsonify({
             "status": "success",
-            "completed": False,
-            "progress": user.progress
+            "new_state": new_state,
+            "progress": user.progress,
+            "all_routes": user.completed_routes  # Для отладки
         })
         
     except Exception as e:
         db_sess.rollback()
+        print(f"Database error: {str(e)}")
         return jsonify({"status": "error", "message": str(e)}), 500
     finally:
         db_sess.close()
@@ -285,6 +356,7 @@ def private_office():
     surname = current_user.surname
     email = current_user.email
     phone_num = current_user.phone_num
+    current_user.avatar = ''
     return render_template("private_office.html")
 
 @app.before_request

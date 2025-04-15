@@ -13,23 +13,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    
     html {
       scroll-behavior: smooth;
     }
-  
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
     }
-  
     body {
       background-color: #f5f5f0;
       color: #333;
     }
-  
     .header-top {
       background-color: white;
       display: flex;
@@ -48,26 +44,22 @@
       gap: 5px;
       z-index: 11;
     }
-  
     .burger div {
       width: 25px;
       height: 3px;
       background-color: #333;
       transition: all 0.3s ease;
     }
-  
     nav {
       display: flex;
-      gap: 15px;
+      gap: 0px;
       align-items: center;
     }
-  
     nav a {
       text-decoration: none;
       color: #333;
       font-weight: 500;
     }
-  
     .nav-mobile {
       display: none;
       flex-direction: column;
@@ -83,17 +75,14 @@
       transition: transform 0.3s ease;
       transform: translateX(-100%);
     }
-  
     .nav-mobile.active {
       transform: translateX(0);
     }
-  
     .mobile-nav-content {
       display: flex;
       flex-direction: column;
       height: 100%;
     }
-  
     .nav-mobile .nav-item {
       margin-bottom: 20px;
       font-size: 1.2rem;
@@ -103,19 +92,16 @@
       padding: 10px;
       border-bottom: 1px solid #eee;
     }
-  
     .mobile-icons {
       margin-top: auto;
       padding: 20px 0;
     }
-  
     .search-mobile {
       display: flex;
       margin-bottom: 0px;
       padding: 0;
       border-bottom: 1px solid #eee;
     }
-  
     .search-mobile input {
       flex: 1;
       padding: 8px;
@@ -123,7 +109,6 @@
       border-radius: 4px;
       margin-right: 5px;
     }
-  
     .search-mobile button {
       background: none;
       border: none;
@@ -131,14 +116,12 @@
       display: flex;
       align-items: center;
     }
-  
     .nav-icon {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       margin-left: 10px;
     }
-  
     @media (max-width: 768px) {
       .header-top {
         padding: 15px 20px;
@@ -170,8 +153,6 @@
         transform: rotate(-45deg) translate(5px, -5px);
       }
     }
-    
-
     * {
       margin: 0;
       padding: 0;
@@ -259,57 +240,71 @@
     }
 
     .popular-routes {
-      margin: 40px 20px;
-      text-align: center;
-    }
+  margin: 40px 20px;
+  text-align: center;
+}
 
-    .popular-routes h2 {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-    }
+.popular-routes h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
 
-    .popular-scroll {
-      display: flex;
-      overflow-x: auto;
-      gap: 20px;
-      padding: 10px;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: thin;
-      justify-content: center;
-    }
+/* ===== Мобильная версия ===== */
+@media (max-width: 767px) {
+  .popular-scroll {
+    display: flex;
+    gap: 20px;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 10px;
+    -webkit-overflow-scrolling: touch;
+  }
 
-    .popular-scroll::-webkit-scrollbar {
-      height: 8px;
-    }
+  .popular-card {
+    flex: 0 0 80%;
+    scroll-snap-align: center;
+  }
+}
 
-    .popular-scroll::-webkit-scrollbar-thumb {
-      background: #ccc;
-      border-radius: 4px;
-    }
+/* ===== Десктоп ===== */
+@media (min-width: 768px) {
+  .popular-scroll {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    overflow: hidden;
+  }
 
-    .popular-card {
-      flex: 0 0 auto;
-      width: 220px;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-      scroll-snap-align: start;
-    }
+  .popular-card {
+    flex: 0 0 220px;
+  }
+}
 
-    .popular-card img {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-    }
+.popular-scroll::-webkit-scrollbar {
+  height: 6px;
+}
 
-    .popular-card .info {
-      padding: 15px;
-    }
-    .header-top {
-  position: sticky;
-  top: 0;
-  z-index: 100;
+.popular-scroll::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.popular-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.popular-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+
+.popular-card .info {
+  padding: 15px;
 }
 
 .burger-container {
@@ -385,7 +380,9 @@
 
   .icon {
     display: flex; /* Всегда показываем логотип */
-    align-items: center;
+    align-items:center;
+    justify-content: flex-end;
+    margin-left:auto;
   }
 
   .burger-container {
@@ -393,41 +390,14 @@
   }
   @media (max-width: 768px) {
     .icon img {
-      width: 50px; /* Уменьшаем размер логотипа на мобильных */
+      width: 53px; /* Уменьшаем размер логотипа на мобильных */
+      height: 40px;
     }
-    
     /* Скрываем десктопную навигацию */
     nav {
       display: none;
     }
   }
-  
-  </style>
-  <style>
-    .scroll-wrapper {
-  overflow-x: scroll;
-  scroll-behavior: auto;
-  -webkit-overflow-scrolling: touch;
-  white-space: nowrap;
-  width: 100%;
-  position: relative;
-}
-
-.scroll-content {
-  display: inline-flex;
-}
-
-.item {
-  min-width: 200px;
-  margin-right: 10px;
-  height: 120px;
-  background: #8fc;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-}
   </style>
   <title>Digital.kz</title>
 </head>
@@ -444,45 +414,47 @@
     </div>
     <nav>
       <div class="icon">
-        <a class="flag" href="/index"><img src="../static/img/logo.png" style="margin-right: -10px" alt="" width="64px"></a>
+        <a class="flag" href="/index"><img src="../static/img/logo.png"  alt="" width="62px"></a>
       </div>
   
-      <div class="nav" style="padding:10px;padding-top:12px">
+      <div class="nav" style="padding:13px;padding-top:15px">
         <a class="nav-item" href="/index">Главная</a>
         <a class="nav-item" href="/faq">FAQ</a>
       </div>
   
       <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
       <div class="icons">
-        <div class="settings">
+        <div class="settings" style="padding-top:3px">
           <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
-          <div class="search" style="padding-top:4px">
+          <div class="search">
             <input type="search" placeholder="Type to search" class="search_input" id="searchInput" style="margin-left:-10px">
             <button>
-              <i class="fa fa-search"><lord-icon src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="left: -16px; top:-8px;width:44px;height:44px;color:#fff;"></lord-icon></i>
+              <i class="fa fa-search"><lord-icon src="https://cdn.lordicon.com/kkvxgpti.json" trigger="hover" style="left:-16px; top:-7px;width:42px;height:42px;color:#fff;"></lord-icon></i>
             </button>
           </div>
         </div>
-        
+        <a class="animated-icon2" href="/favorits">
+          <lord-icon src="https://cdn.lordicon.com/xyboiuok.json" trigger="hover" style="width:42px;height:42px"></lord-icon> 
+        </a>
         {% if not current_user.is_authenticated %}
           <a class="animated-icon3" href="/user_reg">
-            <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:44px;height:44px"></lord-icon>
+            <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:42px;height:42px"></lord-icon>
           </a>
         {% else %}
           <a class="animated-icon3" href="/private_office">
-            <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:44px;height:44px"></lord-icon>
+            <lord-icon src="https://cdn.lordicon.com/kthelypq.json" trigger="hover" style="width:42px;height:42px"></lord-icon>
           </a>
         {% endif %}
       </div>
     </nav>
     
     <div class="icon">
-      <a class="flag" href="/index">
         <a class="animated-icon2" href="/favorits">
-          <lord-icon src="https://cdn.lordicon.com/xyboiuok.json" trigger="hover" style="width:48px;height:48px; margin-left:260px"></lord-icon> 
+          <lord-icon src="https://cdn.lordicon.com/xyboiuok.json" trigger="hover" style="width:51px;height:48px"></lord-icon> 
         </a>
-        <img src="../static/img/logo.png" style="margin-left:265px;" href="/index" alt="Логотип">
-      </a>
+        <a href="/index">
+          <img src="../static/img/logo.png" alt="">
+       </a>
     </div>
     <div class="mobile-menu-overlay hidden"></div>
 
@@ -548,7 +520,7 @@
   <section class="popular-routes">
     <div class="popular-routes_scroll">
     <h2>Популярные маршруты</h2>
-    <div class="popular-scroll">
+    <div class="popular-scroll" id="popular-scroll-id">
       <div class="popular-card">
         <img src="../static/img/route1.jpg" alt="Route 1">
         <div class="info">
@@ -599,30 +571,41 @@
     </div>
   </footer>
   <script>
-    const wrapper = document.getElementById('loopScroll');
-    const content = wrapper.querySelector('.scroll-content');
-  
-    // Дублируем контент 2 раза (для плавного зацикливания)
-    content.innerHTML += content.innerHTML;
-  
-    // Начальная позиция — середина (чтобы можно было скроллить в обе стороны)
-    wrapper.scrollLeft = content.scrollWidth / 2;
-  
-    wrapper.addEventListener('scroll', () => {
-      const maxScroll = content.scrollWidth;
-      const currentScroll = wrapper.scrollLeft;
-  
-      // Если слишком влево — прыгаем вперёд
-      if (currentScroll <= 0) {
-        wrapper.scrollLeft = maxScroll / 2;
-      }
-  
-      // Если слишком вправо — прыгаем назад
-      if (currentScroll >= maxScroll - wrapper.clientWidth) {
-        wrapper.scrollLeft = maxScroll / 2;
-      }
-    });
-  </script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const scrollContainer = document.getElementById('popular-scroll-id');
+    const isMobile = window.innerWidth < 768;
+
+    if (isMobile && scrollContainer.children.length === 3) {
+      const cards = [...scrollContainer.children];
+      // Дублируем 3 спереди и 3 сзади
+      cards.forEach(card => {
+        scrollContainer.appendChild(card.cloneNode(true));
+      });
+      cards.slice().reverse().forEach(card => {
+        scrollContainer.prepend(card.cloneNode(true));
+      });
+
+      // Центруем на первой "настоящей" карточке
+      requestAnimationFrame(() => {
+        const cardWidth = scrollContainer.children[0].offsetWidth + 20; // включая gap
+        scrollContainer.scrollLeft = cardWidth * 3;
+      });
+
+      // Когда доходим до конца — мягкий цикл
+      scrollContainer.addEventListener('scroll', () => {
+        const cardWidth = scrollContainer.children[0].offsetWidth + 20;
+        const totalCards = scrollContainer.children.length;
+        const maxScroll = cardWidth * (totalCards - 3);
+
+        if (scrollContainer.scrollLeft <= 0) {
+          scrollContainer.scrollLeft = cardWidth * 3;
+        } else if (scrollContainer.scrollLeft >= maxScroll) {
+          scrollContainer.scrollLeft = cardWidth * 3;
+        }
+      });
+    }
+  });
+  </script>  
 </body>
 </html>
 <script>
