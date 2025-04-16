@@ -152,10 +152,50 @@
     cursor: default;
 }
 
-.route-done-btn:disabled {
-    opacity: 0.7;
-    cursor: wait;
+
+
+  .route-fav-btn {
+    background-color: #ba0d0d;
+    color: white;
+    font-size: 18px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    user-select: none;
+  }
+
+  .route-fav-btn:hover {
+    background-color: #d33017;
+    transform: scale(1.05);
+  }
+
+  .route-fav-btn:active {
+    transform: scale(0.98);
+  }
+
+  .route-fav-btn.done {
+    background-color: #6c757d;
+    cursor: pointer;
+    transform: none;
+  }
+  .route-fav-btn {
+    background-color: #ec1e17; /* Зеленый */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
 }
+
+.route-fav-btn.done {
+    background-color: #9E9E9E; /* Серый */
+    cursor: default;
+}
+
   </style>
 </head>
 <body>
@@ -201,8 +241,8 @@
       </div>
     </div>
     <button class="route-done-btn" id="cul_4">✔ Маршрут пройден</button>
+    <button class="route-fav-btn" id="cul_4_fav">Понравился </button>
 </div>
-
     <div class="map">
 
       <iframe src="https://yandex.kz/map-widget/v1/?lang=ru_RU&amp;scroll=true&amp;/?apikey=8ce69368-cb23-4ace-acfe-0e75d0a2318c/maps/ru/162/almaty/?ll=76.945001%2C43.249617&mode=routes&rtext=43.250152%2C76.944584~43.248846%2C76.945791~43.249390%2C76.946830~43.249655%2C76.947809~43.255200%2C76.946954~43.255315%2C76.943248~43.254013%2C76.943373~43.247333%2C76.941786~43.249167%2C76.943984~43.250205%2C76.944417&rtt=pd&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D1067449150~ymapsbm1%3A%2F%2Forg%3Foid%3D148941022304~~~ymapsbm1%3A%2F%2Forg%3Foid%3D1091157901~ymapsbm1%3A%2F%2Forg%3Foid%3D24938488579~ymapsbm1%3A%2F%2Forg%3Foid%3D146629534558~ymapsbm1%3A%2F%2Forg%3Foid%3D128454894573~&z=16.78
@@ -220,18 +260,97 @@
 </body>
 </html>
 <script>
-// Загрузка начального состояния
-async function loadInitialState() {
+  // Загрузка начального состояния
+  async function loadInitialState() {
+      try {
+          const response = await fetch('/get_current_user_state');
+          const data = await response.json();
+          
+          if (data.completed_routes) {
+              Object.entries(data.completed_routes).forEach(([routeId, isCompleted]) => {
+                  const button = document.getElementById(routeId);
+                  if (button) {
+                      button.textContent = isCompleted ? 'Спасибо!' : '✔ Маршрут пройден';
+                      button.classList.toggle('done', isCompleted);
+                  }
+              });
+          }
+      } catch (error) {
+          console.error("Ошибка загрузки состояния:", error);
+      }
+  }
+  
+  // Обработчик кликов
+  async function handleRouteClick(button) {
+      const routeId = button.id;
+      const isCurrentlyCompleted = button.classList.contains('done');
+      const newState = !isCurrentlyCompleted;
+      
+      try {
+          button.disabled = true;
+          
+          const response = await fetch('/update_route_state', {
+              method: 'POST',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({
+                  route_id: routeId,
+                  new_state: newState
+              })
+          });
+          
+          const result = await response.json();
+          
+          if (result.status === "success") {
+              button.textContent = newState ? 'Спасибо!' : '✔ Маршрут пройден';
+              button.classList.toggle('done', newState);
+              console.log("Состояние обновлено:", result);
+          }
+      } catch (error) {
+          console.error("Ошибка обновления:", error);
+          // Возвращаем предыдущее состояние при ошибке
+          button.textContent = isCurrentlyCompleted ? 'Спасибо!' : '✔ Маршрут пройден';
+          button.classList.toggle('done', isCurrentlyCompleted);
+      } finally {
+          button.disabled = false;
+      }
+  }
+  
+  // Инициализация при загрузке страницы
+  document.addEventListener('DOMContentLoaded', () => {
+      loadInitialState();
+      
+      // Назначаем обработчики всем кнопкам
+      document.querySelectorAll('.route-done-btn').forEach(btn => {
+          btn.onclick = () => handleRouteClick(btn);
+      });
+  });
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  // Загрузка начального состояния
+  async function loadInitialStateFav() {
     try {
-        const response = await fetch('/get_current_user_state');
+        const response = await fetch('/get_current_user_state_fav');
         const data = await response.json();
         
-        if (data.completed_routes) {
-            Object.entries(data.completed_routes).forEach(([routeId, isCompleted]) => {
+        if (data.favourite_routes) {  // ← исправлено с completed_routes на favourite_routes
+            Object.entries(data.favourite_routes).forEach(([routeId, isFavourite]) => {
                 const button = document.getElementById(routeId);
                 if (button) {
-                    button.textContent = isCompleted ? 'Спасибо!' : '✔ Маршрут пройден';
-                    button.classList.toggle('done', isCompleted);
+                    button.textContent = isFavourite ? 'в избранном ' : 'Понравился ';
+                    button.classList.toggle('done', isFavourite);
                 }
             });
         }
@@ -239,49 +358,53 @@ async function loadInitialState() {
         console.error("Ошибка загрузки состояния:", error);
     }
 }
+  
+  // Обработчик кликов
+  async function handleRouteClickFav(button) {
+      const routeId = button.id;
+      const isCurrentlyFavourite = button.classList.contains('done');
+      const newState = !isCurrentlyFavourite;
+      
+      try {
+          button.disabled = true;
+          
+          const response = await fetch('/update_route_state_fav', {
+              method: 'POST',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({
+                  route_id: routeId,
+                  new_state_fav: newState
+              })
+          });
+          
+          const result = await response.json();
+          
+          if (result.status === "success") {
+              button.textContent = newState ? 'в Избраном' : 'Понравился ';
+              button.classList.toggle('done', newState);
+              console.log("Состояние обновлено:", result);
+          }
+      } catch (error) {
+          console.error("Ошибка обновления:", error);
+          // Возвращаем предыдущее состояние при ошибке
+          button.textContent = isCurrentlyFavourite ? 'в Избраном' : 'Понравился ';
+          button.classList.toggle('done', isCurrentlyFavourite);
+      } finally {
+          button.disabled = false;
+      }
+  }
+  
+  // Инициализация при загрузке страницы
+  document.addEventListener('DOMContentLoaded', () => {
+      loadInitialStateFav();
+      
+      // Назначаем обработчики всем кнопкам
+      document.querySelectorAll('.route-fav-btn').forEach(btn => {
+          btn.onclick = () => handleRouteClickFav(btn);
+      });
+  });
+  </script>
+  
 
-// Обработчик кликов
-async function handleRouteClick(button) {
-    const routeId = button.id;
-    const isCurrentlyCompleted = button.classList.contains('done');
-    const newState = !isCurrentlyCompleted;
-    
-    try {
-        button.disabled = true;
-        
-        const response = await fetch('/update_route_state', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                route_id: routeId,
-                new_state: newState
-            })
-        });
-        
-        const result = await response.json();
-        
-        if (result.status === "success") {
-            button.textContent = newState ? 'Спасибо!' : '✔ Маршрут пройден';
-            button.classList.toggle('done', newState);
-            console.log("Состояние обновлено:", result);
-        }
-    } catch (error) {
-        console.error("Ошибка обновления:", error);
-        // Возвращаем предыдущее состояние при ошибке
-        button.textContent = isCurrentlyCompleted ? 'Спасибо!' : '✔ Маршрут пройден';
-        button.classList.toggle('done', isCurrentlyCompleted);
-    } finally {
-        button.disabled = false;
-    }
-}
 
-// Инициализация при загрузке страницы
-document.addEventListener('DOMContentLoaded', () => {
-    loadInitialState();
-    
-    // Назначаем обработчики всем кнопкам
-    document.querySelectorAll('.route-done-btn').forEach(btn => {
-        btn.onclick = () => handleRouteClick(btn);
-    });
-});
-</script>
+
