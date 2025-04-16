@@ -658,23 +658,17 @@ body {
                     <i class="fas fa-clock"></i>
                     <div>
                         <h3>Часов в пути</h3>
-                        <span class="stat-value">24</span>ч
+                        <span class="stat-value">{{ total_hours }}</span>ч
                     </div>
                 </div>
                 <div class="stat-card">
                     <i class="fas fa-camera"></i>
                     <div>
                         <h3>Фотографий</h3>
-                        <span class="stat-value">156</span>
+                        <span class="stat-value">{{total_photos}}</span>
                     </div>
                 </div>
-                <div class="stat-card">
-                    <i class="fas fa-trophy"></i>
-                    <div>
-                        <h3>Достижения</h3>
-                        <span class="stat-value">8</span>
-                    </div>
-                </div>
+                
             </section>
 
             <!-- Прогресс -->
@@ -699,15 +693,7 @@ body {
             </section>
 
             <!-- Последние активности -->
-            <section class="activity-section animate__animated animate__fadeInUp animate__delay-2s">
-                <div class="section-header">
-                    <h2>Последние активности</h2>
-                    <a href="#" class="see-all">Все активности</a>
-                </div>
-                <div class="activity-feed" id="activity-feed">
-                    <!-- Активности будут загружены через JS -->
-                </div>
-            </section>
+            
 
             <!-- Рекомендации -->
             <section class="recommendations-section">
@@ -852,8 +838,8 @@ function loadStatistics() {
     // Здесь может быть запрос к API
     // Пока используем mock-данные
     const stats = {
-        hours: 24,
-        photos: 156,
+        hours: { total_hours },
+        photos: {total_photos},
         achievements: 8
     };
     

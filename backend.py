@@ -443,7 +443,19 @@ def private_office():
     email = current_user.email
     phone_num = current_user.phone_num
     current_user.avatar = ''
-    return render_template("private_office.html")
+    db_sess = db_session.create_session()
+    user = db_sess.merge(current_user)
+    total_hours = user.get_total_hours(db_sess)
+    db_sess.close()
+    db_sess = db_session.create_session()
+    user = db_sess.merge(current_user)
+    total_photos = user.get_total_photos()  # Новый метод
+    db_sess.close()
+    
+    
+    
+    return render_template("private_office.html", total_hours=total_hours, 
+                    total_photos=total_photos)
 
 @app.before_request
 def make_session_permanent():

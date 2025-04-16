@@ -40,7 +40,31 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+    def get_total_hours(self, db_sess):
+        if not self.completed_routes:
+            return 0
 
+        # Получаем ID завершенных маршрутов (где значение True)
+        completed_ids = [int(route_id.replace('cul_', '')) 
+                        for route_id, completed in self.completed_routes.items() 
+                        if completed]
+
+        # Запрашиваем длительность этих маршрутов из БД
+        routes = db_sess.query(Route.duration).filter(Route.id.in_(completed_ids)).all()
+        
+        # Суммируем часы (предполагаем, что duration в формате "2 часа")
+        total_hours = 0
+        for (duration,) in routes:
+            if duration:
+                hours = duration  # Извлекаем число из строки "2 часа"
+                total_hours += hours
+
+        return total_hours
+    def get_total_photos(self):
+        if not self.completed_routes:
+            return 0
+        # Считаем количество завершённых маршрутов (True в completed_routes)
+        return sum(1 for completed in self.completed_routes.values() if completed)
 
 class Route(SqlAlchemyBase):
     __tablename__ = 'routes'
@@ -50,5 +74,5 @@ class Route(SqlAlchemyBase):
     title = sqlalchemy.Column(sqlalchemy.String)
     description = sqlalchemy.Column(sqlalchemy.Text)
     image_url = sqlalchemy.Column(sqlalchemy.String)
-    duration = sqlalchemy.Column(sqlalchemy.String)
+    duration = sqlalchemy.Column(sqlalchemy.FLOAT)
     difficulty = sqlalchemy.Column(sqlalchemy.String)
