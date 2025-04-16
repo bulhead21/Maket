@@ -801,12 +801,22 @@ body {
           <div class="profile-card">
             <form id="avatar-form" action="/upload_avatar" method="POST" enctype="multipart/form-data">
               <label for="avatar-input">
+            {% if current_user.is_authenticated %}
                 {% if current_user.avatar %}
                 <a href="/private_office"><img src="../static/avatars/ ~ current_user.avatar" 
                     alt="avatar" 
                     class="avatar"></a>
-            {% else %}
+                {% else %}
             <a href="/private_office"><img src="{{ url_for('static', filename='avatars/default.png') }}" alt="default avatar"></a>
+                {% endif %}
+            {%else%}
+            {% if current_user.avatar %}
+            <a href="/user_reg"><img src="../static/avatars/ ~ current_user.avatar" 
+                alt="avatar" 
+                class="avatar"></a>
+            {% else %}
+        <a href="user_reg"><img src="{{ url_for('static', filename='avatars/default.png') }}" alt="default avatar"></a>
+            {% endif %}
             {% endif %}
               </label>
               <input type="file" id="avatar-input" name="avatar" accept="image/*" style="display: none" onchange="document.getElementById('avatar-form').submit();" />
