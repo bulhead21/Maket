@@ -178,7 +178,7 @@ def debug_user_fav():
     user = db_sess.query(User).get(current_user.id)
     return jsonify({
         "id": user.id,
-        "favourit_routes": user.favourit_routes
+        "favourite_routes": user.favourite_routes
     })
 
 @app.route('/get_current_user_state_fav')
@@ -188,73 +188,46 @@ def get_current_user_state_fav():
     try:
         user = db_sess.query(User).get(current_user.id)
         return jsonify({
-            "completed_routes": user.completed_routes if user.completed_routes else {},
-            "progress": user.progress if user.progress else 0
+            "favourite_routes": user.favourite_routes if user.favourite_routes else {}
         })
     finally:
         db_sess.close()
 MAX_ROUTES = 6  # Константа в начале файла
 
-@app.route('/api/user/activities')
-@login_required
-def get_user_activities_fav():
-    activities = []
-    if current_user.progress > 0:
-        activities.append({
-            "type": "route_completed",
-            "title": f"Вы завершили {current_user.progress} маршрут(ов)",
-            "date": datetime.now().strftime("%d.%m.%Y"),
-            "icon": "route"
-        })
-    if current_user.progress >= 3:
-        activities.append({
-            "type": "milestone",
-            "title": "Достигнуто 50% прогресса!",
-            "date": datetime.now().strftime("%d.%m.%Y"),
-            "icon": "star"
-        })
-    return jsonify(activities)
-@app.route('/update_route_state', methods=['POST'])
+@app.route('/update_route_state_fav', methods=['POST'])
 @login_required
 def update_route_state_fav():
     data = request.get_json()
     route_id = data.get("route_id")
-    new_state = data.get("new_state")
+    new_state_fav = data.get("new_state_fav")
     
-    if not route_id or new_state is None:
+    if not route_id or new_state_fav is None:
         return jsonify({"status": "error", "message": "Missing parameters"}), 400
     
     db_sess = db_session.create_session()
     try:
-        # Важно: использовать merge для прикрепления объекта к сессии
         user = db_sess.merge(current_user)
         
         # Инициализация если None
-        if user.completed_routes is None:
-            user.completed_routes = {
-                "cul_1": False,
-                "cul_2": False,
-                "cul_3": False,
-                "cul_4": False,
-                "cul_5": False,
-                "cul_6": False
+        if user.favourite_routes is None:
+            user.favourite_routes = {
+                "cul_1_fav": False,
+                "cul_2_fav": False,
+                "cul_3_fav": False,
+                "cul_4_fav": False,
+                "cul_5_fav": False,
+                "cul_6_fav": False
             }
         
         # Обновляем состояние
-        user.completed_routes[route_id] = new_state
-        user.progress = sum(1 for v in user.completed_routes.values() if v)
+        user.favourite_routes[route_id] = new_state_fav
         
-        # Явное сохранение
         db_sess.commit()
-        
-        # Принудительное обновление из БД
         db_sess.refresh(user)
         
         return jsonify({
             "status": "success",
-            "new_state": new_state,
-            "progress": user.progress,
-            "all_routes": user.completed_routes  # Для отладки
+            "new_state_fav": new_state_fav,
         })
         
     except Exception as e:
@@ -263,7 +236,6 @@ def update_route_state_fav():
         return jsonify({"status": "error", "message": str(e)}), 500
     finally:
         db_sess.close()
-
 
 
 
