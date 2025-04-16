@@ -26,7 +26,9 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
 
     progress = sqlalchemy.Column(sqlalchemy.Integer)
 
-    favorite_routes = sqlalchemy.Column(sqlalchemy.JSON, default=list)
+    favorite_routes = sqlalchemy.Column(sqlalchemy.JSON, default=lambda: {
+    f"cul_{i}.fav": False for i in range(1, 7)  # 6 маршрутов
+})
 
     completed_routes = sqlalchemy.Column(sqlalchemy.JSON, default=lambda: {
     f"cul_{i}": False for i in range(1, 7)  # 6 маршрутов
