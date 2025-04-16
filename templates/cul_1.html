@@ -152,10 +152,28 @@
     cursor: default;
 }
 
-.route-done-btn:disabled {
-    opacity: 0.7;
-    cursor: wait;
+.route-fav
+{
+  background-color: #a82c1b; /* Зеленый */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
 }
+.route-fav.done {
+    background-color: #9E9E9E; /* Серый */
+    cursor: default;
+}
+.route-fav:hover {
+    background-color: #bb2814;
+    transform: scale(1.05);
+  }
+
+  .route-fav:active {
+    transform: scale(0.98);
+  }
   </style>
 </head>
 <body>
@@ -201,10 +219,9 @@
       </div>
     </div>
     <button class="route-done-btn" id="cul_1">✔ Маршрут пройден</button>
+    <button class="route-fav" id="cul_1.fav">Понравился ❤️</button>
 </div>
-  <button class="favorite-btn" data-route-id="cul_1">
-    <i class="far fa-heart"></i>
-  </button>
+
     <div class="map">
 
       <iframe src="https://yandex.kz/map-widget/v1/?lang=ru_RU&amp;scroll=true&amp;/?apikey=8ce69368-cb23-4ace-acfe-0e75d0a2318c/maps/ru/162/almaty/?ll=76.945001%2C43.249617&mode=routes&rtext=43.250152%2C76.944584~43.248846%2C76.945791~43.249390%2C76.946830~43.249655%2C76.947809~43.255200%2C76.946954~43.255315%2C76.943248~43.254013%2C76.943373~43.247333%2C76.941786~43.249167%2C76.943984~43.250205%2C76.944417&rtt=pd&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D1067449150~ymapsbm1%3A%2F%2Forg%3Foid%3D148941022304~~~ymapsbm1%3A%2F%2Forg%3Foid%3D1091157901~ymapsbm1%3A%2F%2Forg%3Foid%3D24938488579~ymapsbm1%3A%2F%2Forg%3Foid%3D146629534558~ymapsbm1%3A%2F%2Forg%3Foid%3D128454894573~&z=16.78
@@ -284,6 +301,46 @@ document.addEventListener('DOMContentLoaded', () => {
     // Назначаем обработчики всем кнопкам
     document.querySelectorAll('.route-done-btn').forEach(btn => {
         btn.onclick = () => handleRouteClick(btn);
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    // Инициализация кнопок избранного
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+        btn.addEventListener('click', async function() {
+            const routeId = this.dataset.routeId;
+            const isFavorite = this.classList.contains('active');
+            
+            try {
+                const endpoint = isFavorite ? '/api/favorites/remove' : '/api/favorites/add';
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({route_id: routeId})
+                });
+                
+                const data = await response.json();
+                
+                if (data.status === 'success' || data.status === 'exists') {
+                    this.classList.toggle('active');
+                    const icon = this.querySelector('i');
+                    icon.classList.toggle('far');
+                    icon.classList.toggle('fas');
+                    
+                    this.title = isFavorite ? 'Добавить в избранное' : 'Удалить из избранного';
+                    
+                    // Обновляем счетчик в навигации
+                    updateFavoritesCount(data.count);
+                    
+                    const message = isFavorite ? 
+                        'Маршрут удален из избранного' : 
+                        'Маршрут добавлен в избранное';
+                    showToast(message);
+                }
+            } catch (error) {
+                console.error('Error toggling favorite:', error);
+                showToast('Ошибка при сохранении', 'error');
+            }
+        });
     });
 });
 </script>

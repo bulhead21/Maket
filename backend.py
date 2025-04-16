@@ -4,15 +4,15 @@ import dns.resolver
 import datetime
 from tkinter import *
 from flask import Flask
-from flask import Flask, render_template, redirect, request, Response, session, send_file, jsonify
+from flask import Flask, render_template, redirect, request, Response, session, send_file, jsonify, Blueprint, abort
 from data import db_session
 from data.user import User
+from data.user import Route
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from flask import Flask, redirect, url_for, session
-from authlib.integrations.flask_client import OAuth
+from authlib.integrations.flask_client import OAuth  
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from data import db_session
-from data.user import User
 import secrets
 from flask import session
 from flask import jsonify, request
@@ -182,6 +182,95 @@ def favorits():
     ]
     return render_template("favorits.html")
 
+
+favorites_bp = Blueprint('favorites', __name__)
+
+@favorites_bp.route('/favorites', methods=['GET'])
+@login_required
+def get_favorites():
+    """Получить список избранных маршрутов пользователя"""
+    return jsonify({
+        "favorites": current_user.favorite_routes,
+        "count": len(current_user.favorite_routes)
+    })
+
+@favorites_bp.route('/favorites/add', methods=['POST'])
+@login_required
+def add_favorite():
+    """Добавить маршрут в избранное"""
+    route_id = request.json.get('route_id')
+    if not route_id:
+        return jsonify({"status": "error", "message": "Route ID is required"}), 400
+    
+    db_sess = db_session.create_session()
+    try:
+        user = db_sess.query(User).get(current_user.id)
+        if route_id not in user.favorite_routes:
+            user.favorite_routes.append(route_id)
+            db_sess.commit()
+            return jsonify({
+                "status": "success",
+                "count": len(user.favorite_routes)
+            })
+        return jsonify({"status": "exists"})
+    except Exception as e:
+        db_sess.rollback()
+        return jsonify({"status": "error", "message": str(e)}), 500
+    finally:
+        db_sess.close()
+
+@favorites_bp.route('/favorites/remove', methods=['POST'])
+@login_required
+def remove_favorite():
+    """Удалить маршрут из избранного"""
+    route_id = request.json.get('route_id')
+    if not route_id:
+        return jsonify({"status": "error", "message": "Route ID is required"}), 400
+    
+    db_sess = db_session.create_session()
+    try:
+        user = db_sess.query(User).get(current_user.id)
+        if route_id in user.favorite_routes:
+            user.favorite_routes.remove(route_id)
+            db_sess.commit()
+            return jsonify({
+                "status": "success",
+                "count": len(user.favorite_routes)
+            })
+        return jsonify({"status": "not_found"})
+    except Exception as e:
+        db_sess.rollback()
+        return jsonify({"status": "error", "message": str(e)}), 500
+    finally:
+        db_sess.close()
+
+# Регистрируем blueprint в приложении
+app.register_blueprint(favorites_bp, url_prefix='/api')
+
+
+@app.route('/api/routes')
+def get_routes():
+    route_ids = request.args.get('ids', '').split(',')
+    route_ids = [rid for rid in route_ids if rid]  # Фильтруем пустые значения
+    db_sess = db_session.create_session()
+    user = db_sess.query(User).get(current_user.id)
+    # Здесь должна быть логика получения маршрутов из БД
+    routes = []
+    
+    for rid in route_ids:
+        route = get_route_by_id(rid)  # Ваша функция получения маршрута
+        if route:
+            routes.append({
+                "id": route.id,
+                "title": route.title,
+                "image": route.image_url,
+                "short_description": route.short_description,
+                "duration": route.duration,
+                "location": route.location,
+                "type": route.type
+            })
+    
+    return jsonify(routes)
 
 @app.route('/info')
 def info():
