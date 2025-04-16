@@ -52,4 +52,3 @@ class Route(SqlAlchemyBase):
     image_url = sqlalchemy.Column(sqlalchemy.String)
     duration = sqlalchemy.Column(sqlalchemy.String)
     difficulty = sqlalchemy.Column(sqlalchemy.String)
-    created_at = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.utcnow)

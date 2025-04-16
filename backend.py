@@ -93,25 +93,7 @@ def get_user_progress():
         "max_routes": 6
     })
 
-@app.route('/api/user/activities')
-@login_required
-def get_user_activities():
-    activities = []
-    if current_user.progress > 0:
-        activities.append({
-            "type": "route_completed",
-            "title": f"Вы завершили {current_user.progress} маршрут(ов)",
-            "date": datetime.now().strftime("%d.%m.%Y"),
-            "icon": "route"
-        })
-    if current_user.progress >= 3:
-        activities.append({
-            "type": "milestone",
-            "title": "Достигнуто 50% прогресса!",
-            "date": datetime.now().strftime("%d.%m.%Y"),
-            "icon": "star"
-        })
-    return jsonify(activities)
+
 @app.route('/update_route_state', methods=['POST'])
 @login_required
 def update_route_state():
@@ -163,12 +145,36 @@ def update_route_state():
         db_sess.close()
 
 
-@app.route('/favorits')
+@app.route('/favourites')
 @login_required
-def favorits():
-    return render_template("favorits.html")
+def favourites():
+    db_sess = db_session.create_session()
+    
+    # Получаем избранные маршруты пользователя
+    user = db_sess.merge(current_user)  # merge для работы с сессией
+    favourite_routes = user.favourite_routes or {}  # Если None, то пустой словарь
+    
+    # Получаем ID маршрутов, которые в избранном (ключи вида "cul_1_fav" -> преобразуем в число)
+    favourite_route_ids = [
+        int(route_id.replace('_fav', '').replace('cul_', '')) 
+        for route_id, is_fav in favourite_routes.items() 
+        if is_fav
+    ]
+    
+    # Загружаем маршруты из базы
+    routes = db_sess.query(Route).filter(Route.id.in_(favourite_route_ids)).all()
+    
+    db_sess.close()
+    
+    return render_template('favourites.html', routes=routes)
 
-
+@app.route('/route/<string:route_id>')  # Принимает 'cul_1' или '1'
+def route_page(route_id):
+    db_sess = db_session.create_session()
+    # Удаляем 'cul_' для поиска в БД
+    route_num = int(route_id.replace('cul_', ''))
+    route = db_sess.query(Route).filter(Route.id == route_num).first()
+    return render_template('route.html', route=route)
 
 
 @app.route('/debug_user_fav')
