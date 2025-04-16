@@ -149,7 +149,7 @@
                             </div>
                             
                             <div class="actions">
-                                <a href="{{ url_for('route_page', route_id='cul_' ~ route.id) }}">Подробнее</a>
+                                <a href="/{{'cul_' ~ route.id}}">Подробнее</a>
                                 <button 
                                     class="remove-fav-btn" 
                                     data-route-id="cul_{{ route.id }}_fav"
