@@ -8,52 +8,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://kit.fontawesome.com/3d0e27e432.js" crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: {
-              50: '#f0fdf4',
-              100: '#dcfce7',
-              200: '#bbf7d0',
-              300: '#86efac',
-              400: '#4ade80',
-              500: '#22c55e',
-              600: '#16a34a',
-              700: '#15803d',
-              800: '#166534',
-              900: '#14532d',
-            },
-            secondary: {
-              50: '#fff7ed',
-              100: '#ffedd5',
-              200: '#fed7aa',
-              300: '#fdba74',
-              400: '#fb923c',
-              500: '#f97316',
-              600: '#ea580c',
-              700: '#c2410c',
-              800: '#9a3412',
-              900: '#7c2d12',
-            },
-          },
-          fontFamily: {
-            sans: ['Poppins', 'sans-serif'],
-            serif: ['Playfair Display', 'serif'],
-          },
-        }
-      }
-    }
-  </script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.min.css">
   <style>
     html {
       scroll-behavior: smooth;
@@ -145,11 +99,9 @@
       color: #333;
     }
 
-    /* Hero section */
     .hero {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                  url('https://images.unsplash.com/photo-1527631746610-bca00a040d60?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
-      min-height: 90vh;
+      background: url('../static/img/mainpage.jpg') center/cover no-repeat;
+      min-height: 85vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -157,189 +109,139 @@
       text-align: center;
       color: white;
       padding: 0 20px;
-      position: relative;
     }
-    
+
     .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 4rem;
-      margin-bottom: 1.5rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-      line-height: 1.2;
+      font-size: 3rem;
+      margin-bottom: 15px;
     }
-    
+
     .hero p {
-      font-size: 1.4rem;
-      margin-bottom: 2.5rem;
-      max-width: 700px;
-      opacity: 0.9;
+      font-size: 1.2rem;
+      margin-bottom: 30px;
     }
-    
-    .yakor-button {
-      padding: 1rem 2.5rem;
-      font-size: 1.1rem;
-      font-weight: 600;
+
+    .hero .yakor-button {
+      padding: 12px 30px;
+      font-size: 1rem;
       border: none;
-      background-color: #f97316;
+      background-color: #2e8b57;
       color: white;
-      border-radius: 50px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      text-transform: uppercase;
-      letter-spacing: 1px;
     }
-    
-    .yakor-button:hover {
-      background-color: #ea580c;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+
+    .yakor {
+      text-decoration: none;
+      color: #f5f5f0;
     }
-    
-    /* Route options */
+
     .routes {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      margin: 5rem 0;
-      gap: 2.5rem;
+      margin: 60px 0;
+      gap: 40px;
       padding: 0 20px;
     }
-    
+
     .route-option {
       background-color: white;
-      border-radius: 16px;
+      border-radius: 12px;
       overflow: hidden;
-      width: 350px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      transition: all 0.3s ease;
+      width: 300px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
       cursor: pointer;
-      position: relative;
     }
-    
+
     .route-option:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.12);
     }
-    
+
     .route-option img {
       width: 100%;
-      height: 220px;
+      height: 200px;
       object-fit: cover;
-      transition: transform 0.5s ease;
     }
-    
-    .route-option:hover img {
-      transform: scale(1.05);
-    }
-    
+
     .route-option .info {
-      padding: 1.5rem;
+      padding: 20px;
     }
-    
+
     .route-option h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      margin-bottom: 0.75rem;
-      color: #1e293b;
+      margin-bottom: 10px;
     }
-    
-    .route-option p {
-      color: #64748b;
-      font-size: 1rem;
-    }
-    
-    /* Popular routes */
+
     .popular-routes {
-      margin: 5rem auto;
-      text-align: center;
-      max-width: 1200px;
-      padding: 0 20px;
-    }
-    
-    .popular-routes h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      margin-bottom: 3rem;
-      color: #1e293b;
-      position: relative;
-      display: inline-block;
-    }
-    
-    .popular-routes h2:after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: #f97316;
-      border-radius: 2px;
-    }
-    .burger-container {
-      margin: 5rem auto;
-      text-align: center;
-      max-width: 1200px;
-      padding: 0 20px;
-    }
-    .popular-scroll {
-      display: flex;
-      gap: 1.5rem;
-      padding: 1rem;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-    }
-    
-    .popular-scroll::-webkit-scrollbar {
-      height: 8px;
-    }
-    
-    .popular-scroll::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 4px;
-    }
-    
-    .popular-card {
-      flex: 0 0 280px;
-      scroll-snap-align: center;
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-    
-    .popular-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.12);
-    }
-    
-    .popular-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-    
-    .popular-card .info {
-      padding: 1.25rem;
-      text-align: left;
-    }
-    
-    .popular-card h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
-      color: #1e293b;
-    }
-    
-    .popular-card p {
-      color: #64748b;
-      font-size: 0.9rem;
-    }
-    .burger-container {
+  margin: 40px 20px;
+  text-align: center;
+}
+
+.popular-routes h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+/* ===== Мобильная версия ===== */
+@media (max-width: 767px) {
+  .popular-scroll {
+    display: flex;
+    gap: 20px;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 10px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .popular-card {
+    flex: 0 0 80%;
+    scroll-snap-align: center;
+  }
+}
+
+/* ===== Десктоп ===== */
+@media (min-width: 768px) {
+  .popular-scroll {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    overflow: hidden;
+  }
+
+  .popular-card {
+    flex: 0 0 220px;
+  }
+}
+
+.popular-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.popular-scroll::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.popular-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.popular-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+
+.popular-card .info {
+  padding: 15px;
+}
+
+.burger-container {
   position: relative;
   z-index: 101;
 }
@@ -587,11 +489,10 @@
         width: 100%;
     }
 
-
     .profile-card {
-    text-align: center;
-    margin-bottom: 30px;
-}
+        margin-top: 40px;
+    }
+
 
 @media (max-width: 576px) {
     .sidebar {
@@ -665,10 +566,7 @@
     font-size: 1.2rem;
     margin-bottom: 5px;
     font-weight: 600;
-    color: black;
-    margin-top: 10px;
 }
-
 .email {
     color: var(--gray);
     font-size: 0.9rem;
@@ -849,660 +747,6 @@
         .quick-link:hover:after {
             width: 100%;
         }
-        html {
-      scroll-behavior: smooth;
-      -webkit-text-size-adjust: 100%;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-    body {
-      background-color: #f8fafc;
-      color: #1e293b;
-      line-height: 1.6;
-      font-family: 'Poppins', sans-serif;
-      overflow-x: hidden;
-    }
-    
-    /* Testimonials */
-    .testimonials {
-      background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
-      color: white;
-      padding: 4rem 1.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .testimonials .section-title {
-      color: white;
-    }
-    
-    .testimonials .section-title:after {
-      background: white;
-    }
-    
-    .testimonial-slider {
-      max-width: 1000px;
-      margin: 0 auto;
-      position: relative;
-    }
-    
-    .testimonial-slide {
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      padding: 2rem;
-      text-align: center;
-      display: none;
-    }
-    
-    .testimonial-slide.active {
-      display: block;
-      animation: fadeIn 0.5s ease;
-    }
-    
-    .testimonial-avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid white;
-      margin: 0 auto 1rem;
-    }
-    
-    .testimonial-quote {
-      font-style: italic;
-      margin-bottom: 1.5rem;
-      position: relative;
-    }
-    
-    .testimonial-quote:before,
-    .testimonial-quote:after {
-      content: '"';
-      font-size: 2rem;
-      color: rgba(255,255,255,0.3);
-      position: absolute;
-    }
-    
-    .testimonial-quote:before {
-      top: -20px;
-      left: -10px;
-    }
-    
-    .testimonial-quote:after {
-      bottom: -30px;
-      right: -10px;
-    }
-    
-    .testimonial-author {
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-    
-    .testimonial-role {
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-    
-    .testimonial-nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    
-    .testimonial-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    
-    .testimonial-dot.active {
-      background: white;
-      transform: scale(1.2);
-    }
-    
-    /* Newsletter */
-    .newsletter {
-      background: #f1f5f9;
-      padding: 4rem 1.5rem;
-      text-align: center;
-    }
-    
-    .newsletter-form {
-      max-width: 600px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-    }
-    
-    .newsletter-input {
-      flex: 1;
-      min-width: 250px;
-      padding: 1rem;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      font-size: 1rem;
-      outline: none;
-      transition: all 0.3s;
-    }
-    
-    .newsletter-input:focus {
-      border-color: #f97316;
-      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
-    }
-    
-    .newsletter-button {
-      padding: 1rem 2rem;
-      background: #f97316;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-      min-width: 200px;
-    }
-    
-    .newsletter-button:hover {
-      background: #ea580c;
-      transform: translateY(-2px);
-    }
-    html {
-      scroll-behavior: smooth;
-      -webkit-text-size-adjust: 100%;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-    body {
-      background-color: #f8fafc;
-      color: #1e293b;
-      line-height: 1.6;
-      font-family: 'Poppins', sans-serif;
-      overflow-x: hidden;
-    }
-    
-    /* Testimonials */
-    .testimonials {
-      background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
-      color: white;
-      padding: 4rem 1.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .testimonials .section-title {
-      color: white;
-    }
-    
-    .testimonials .section-title:after {
-      background: white;
-    }
-    
-    .testimonial-slider {
-      max-width: 1000px;
-      margin: 0 auto;
-      position: relative;
-    }
-    
-    .testimonial-slide {
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      padding: 2rem;
-      text-align: center;
-      display: none;
-    }
-    
-    .testimonial-slide.active {
-      display: block;
-      animation: fadeIn 0.5s ease;
-    }
-    
-    .testimonial-avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid white;
-      margin: 0 auto 1rem;
-    }
-    
-    .testimonial-quote {
-      font-style: italic;
-      margin-bottom: 1.5rem;
-      position: relative;
-    }
-    
-    .testimonial-quote:before,
-    .testimonial-quote:after {
-      content: '"';
-      font-size: 2rem;
-      color: rgba(255,255,255,0.3);
-      position: absolute;
-    }
-    
-    .testimonial-quote:before {
-      top: -20px;
-      left: -10px;
-    }
-    
-    .testimonial-quote:after {
-      bottom: -30px;
-      right: -10px;
-    }
-    
-    .testimonial-author {
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-    
-    .testimonial-role {
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-    
-    .testimonial-nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    
-    .testimonial-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    
-    .testimonial-dot.active {
-      background: white;
-      transform: scale(1.2);
-    }
-    
-    /* Newsletter */
-    .newsletter {
-      background: #f1f5f9;
-      padding: 4rem 1.5rem;
-      text-align: center;
-    }
-    
-    .newsletter-form {
-      max-width: 600px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-    }
-    
-    .newsletter-input {
-      flex: 1;
-      min-width: 250px;
-      padding: 1rem;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      font-size: 1rem;
-      outline: none;
-      transition: all 0.3s;
-    }
-    
-    .newsletter-input:focus {
-      border-color: #f97316;
-      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
-    }
-    
-    .newsletter-button {
-      padding: 1rem 2rem;
-      background: #f97316;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-      min-width: 200px;
-    }
-    
-    .newsletter-button:hover {
-      background: #ea580c;
-      transform: translateY(-2px);
-    }
-    
-    /* Footer */
-    .footer {
-      position: relative;
-      background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
-      color: white;
-      padding-top: 5rem;
-      padding-bottom: 3rem;
-      overflow: hidden;
-    }
-    
-    .footer-wave {
-      position: absolute;
-      top: -1px;
-      left: 0;
-      width: 100%;
-      overflow: hidden;
-      line-height: 0;
-    }
-    
-    .footer-wave svg {
-      position: relative;
-      display: block;
-      width: calc(100% + 1.3px);
-      height: 80px;
-    }
-    
-    .footer-wave .shape-fill {
-      fill: #ffffff;
-    }
-    
-    .footer-content {
-      position: relative;
-      z-index: 10;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-    
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-    
-    .footer-section h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      position: relative;
-      display: inline-block;
-    }
-    
-    .footer-section h3:after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 50px;
-      height: 3px;
-      background: white;
-      border-radius: 2px;
-    }
-    
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    
-    .contact-item i {
-      font-size: 1.1rem;
-    }
-    
-    .social-links {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-    
-    .social-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-    }
-    
-    .social-icon:hover {
-      transform: translateY(-3px);
-      background: rgba(255, 255, 255, 0.2);
-    }
-    
-    .social-icon i {
-      font-size: 1.2rem;
-    }
-    
-    .quick-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    
-    .quick-link {
-      color: white;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      position: relative;
-      width: fit-content;
-    }
-    
-    .quick-link:after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -2px;
-      left: 0;
-      background-color: white;
-      transition: width 0.3s ease;
-    }
-    
-    .quick-link:hover:after {
-      width: 100%;
-    }
-    
-    .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-      padding-top: 2rem;
-      text-align: center;
-    }
-    
-    .copyright {
-      margin-bottom: 1rem;
-    }
-    
-    .design-credit {
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-    
-    .design-credit i {
-      color: #ef4444;
-    }
-    
-    /* Back to top button */
-    .back-to-top {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: #f97316;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      cursor: pointer;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s;
-      z-index: 999;
-    }
-    
-    .back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-    
-    .back-to-top:hover {
-      background: #ea580c;
-      transform: translateY(-3px);
-    }
-    
-    /* Animations */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-    
-    /* Section title */
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.25rem;
-      margin-bottom: 3rem;
-      color: #1e293b;
-      position: relative;
-      text-align: center;
-    }
-    
-    .section-title:after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: #f97316;
-      border-radius: 2px;
-    }
-    
-    /* Responsive */
-    @media (min-width: 768px) {
-      .section {
-        padding: 6rem 2rem;
-      }
-    }
-    
-    @media (min-width: 1024px) {
-      .section {
-        padding: 8rem 3rem;
-      }
-      
-      .section-title {
-        font-size: 2.5rem;
-      }
-      
-      .footer-content {
-        padding: 0 3rem;
-      }
-    }
- 
-    .mobile-logo {
-      height: 30px;
-      margin-left: 50px; /* Center logo accounting for burger */
-    }
-
-    .burger-menu {
-      width: 30px;
-      height: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      cursor: pointer;
-      z-index: 1001;
-    }
-
-    .burger-menu span {
-      display: block;
-      height: 3px;
-      width: 100%;
-      background: #333;
-      border-radius: 3px;
-      transition: all 0.3s ease;
-    }
-
-    /* Burger animation */
-    .burger-menu.active span:nth-child(1) {
-      transform: translateY(8px) rotate(45deg);
-    }
-
-    .burger-menu.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .burger-menu.active span:nth-child(3) {
-      transform: translateY(-8px) rotate(-45deg);
-    }
-
-    /* Centered Avatar */
-    .profile-card {
-      text-align: center;
-      margin: 40px auto 30px;
-      padding: 0 15px;
-      padding-bottom: 30px;
-      margin-bottom: 30px;
-    }
-
-    .avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      margin: 0 auto 15px;
-      display: block;
-      object-fit: cover;
-      border: 3px solid #4CAF50;
-    }
-
-
-      
-      .sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 280px;
-        height: 100vh;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
-        z-index: 999;
-        background: white;
-        overflow-y: auto;
-      }
-
-      .sidebar.mobile-active {
-        transform: translateX(0);
-      }
-
-      .menu-overlay.active {
-        display: block;
-        opacity: 1;
-      }
-    }
-
   </style>
 
   <title>Digital.kz</title>
@@ -1571,138 +815,61 @@
       </aside>
 
 
-      <div class="menu-overlay" id="menu-overlay"></div>
+  <section class="hero">
+    <h1>Исследуй мир по вкусу и культуре</h1>
+    <p>Выберите культурный или гастрономический маршрут — и отправляйтесь в путь уже сегодня!</p>
+    <button class="yakor-button"><a class="yakor" href="#choose">Начать путешествиe</a></button>
+  </section>
 
-      <!-- Hero Section -->
-      <section class="hero">
-        <h1 class="animate-fade-in-up">Откройте для себя скрытые жемчужины Казахстана</h1>
-        <p class="animate-fade-in-up delay-1">Исследуйте потрясающие пейзажи, богатую культуру и незабываемые приключения</p>
-        <button class="yakor-button animate-fade-in-up delay-2"><a class="yakor" href="#choose">Начать путешествие</a></button>
-      </section>
-    
-      <!-- Route Options -->
-      <section class="routes">
-        <div class="route-option animate-fade-in-up delay-1">
-          <a href="/gastronom" style="text-decoration: none; color:inherit">
-            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Gastronomic Route">
-            <div class="info">
-              <h3>🍽️ Гастрономическое путешествие</h3>
-              <p>Попробуйте истинный вкус казахстанской кухни</p>
-            </div>
-          </a>
-        </div>
-        
-        <div class="route-option animate-fade-in-up delay-2" id="choose">
-          <a href="/cultural_routes" style="text-decoration: none; color:inherit">
-            <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Cultural Route">
-            <div class="info">
-              <h3>🏛️ Культурное погружение</h3>
-              <p>Погрузитесь в многовековое наследие Казахстана</p>
-            </div>
-          </a>
-        </div>
-        
-        <div class="route-option animate-fade-in-up delay-3">
-          <a href="#" style="text-decoration: none; color:inherit">
-            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Adventure Route">
-            <div class="info">
-              <h3>⛰️ Тропы приключений</h3>
-              <p>Испытайте мощь дикой природы Казахстана</p>
-            </div>
-          </a>
-        </div>
-      </section>
-    
-      <!-- Popular Routes -->
-      <section class="popular-routes">
-        <h2>Популярные Маршруты</h2>
-        <div class="popular-scroll" id="popular-scroll-id">
-          <div class="popular-card">
-            <img src="../static/img/route1.jpg" alt="Almaty Mountains">
-            <div class="info">
-              <h4>Горы Алматы</h4>
-              <p>Невероятные виды и чистый горный воздух</p>
-            </div>
-          </div>
-          
-          <div class="popular-card">
-            <img src="../static/img/route2.jpg" alt="Old Town">
-            <div class="info">
-              <h4>Старый город</h4>
-              <p>Очаровательные улочки и архитектура советской эпохи</p>
-            </div>
-          </div>
-          
-          <div class="popular-card">
-            <img src="../static/img/route3.jpg" alt="Farmers Market">
-            <div class="info">
-              <h4>Зелёный базар</h4>
-              <p>Оживлённый рынок со свежими продуктами</p>
-            </div>
-          </div>
-          
-          <div class="popular-card">
-            <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Charyn Canyon">
-            <div class="info">
-              <h4>Чарынский Каньон</h4>
-              <p>Kazakhstan's answer to the Grand Canyon</p>
-            </div>
-          </div>
-          
-          <div class="popular-card">
-            <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Kolsai Lakes">
-            <div class="info">
-              <h4>Озеро</h4>
-              <p>Three stunning mountain lakes to explore</p>
-            </div>
-          </div>
-        </div>
-      </section>
-<!-- Testimonials Section -->
-<section class="testimonials" id="testimonials">
-  <h2 class="section-title">Traveler Stories</h2>
-  
-  <div class="testimonial-slider">
-    <div class="testimonial-slide active">
-      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson" class="testimonial-avatar">
-      <p class="testimonial-quote">The mountain adventure route was absolutely breathtaking. Our guide was knowledgeable and made sure we had an unforgettable experience. Can't wait to come back!</p>
-      <h5 class="testimonial-author">Sarah Johnson</h5>
-      <p class="testimonial-role">Adventure Traveler from Canada</p>
+  <section class="routes">
+    <div class="route-option">
+      <a href="/gastronom" style="text-decoration: none; color:black">
+      <img src="../static/img/gastronom.jpeg" alt="Гастрономический маршрут">
+      <div class="info">
+        <h3>🍽️ Гастрономический</h3>
+        <p>Открой местные вкусы и традиции</p>
+      </div>
+    </a>
     </div>
-    
-    <div class="testimonial-slide">
-      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" class="testimonial-avatar">
-      <p class="testimonial-quote">As a solo traveler, I felt completely safe and well taken care of. The cultural discovery tour gave me deep insights into Kazakhstan's rich history.</p>
-      <h5 class="testimonial-author">Michael Chen</h5>
-      <p class="testimonial-role">Photographer from Singapore</p>
+    <div class="route-option" id="choose">
+      <a href="/cultural_routes" style="text-decoration: none; color:black">
+      <img src="../static/img/culture.jpg" alt="Культурный маршрут">
+      <div class="info">
+        <h3>🏛️ Культурный</h3>
+        <p>Погрузись в историю и искусство</p>
+      </div>
+    </a>
     </div>
-    
-    <div class="testimonial-slide">
-      <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Elena Petrova" class="testimonial-avatar">
-      <p class="testimonial-quote">The desert expedition was unlike anything I've experienced before. The landscapes were surreal and our guides were incredibly passionate about the region.</p>
-      <h5 class="testimonial-author">Elena Petrova</h5>
-      <p class="testimonial-role">Travel Blogger from Russia</p>
-    </div>
-    
-    <div class="testimonial-nav">
-      <div class="testimonial-dot active" data-slide="0"></div>
-      <div class="testimonial-dot" data-slide="1"></div>
-      <div class="testimonial-dot" data-slide="2"></div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- Newsletter Section -->
-<section class="newsletter" id="contact">
-  <h2 class="section-title">Stay Updated</h2>
-  <p class="mb-8 max-w-2xl mx-auto">Subscribe to our newsletter to receive updates on new routes, special offers, and travel tips for exploring Kazakhstan.</p>
-  
-  <form class="newsletter-form">
-    <input type="email" placeholder="Your email address" class="newsletter-input" required>
-    <button type="submit" class="newsletter-button">Subscribe</button>
-  </form>
-</section>
-
+  <section class="popular-routes">
+    <div class="popular-routes_scroll">
+    <h2>Популярные маршруты</h2>
+    <div class="popular-scroll" id="popular-scroll-id">
+      <div class="popular-card">
+        <img src="../static/img/route1.jpg" alt="Route 1">
+        <div class="info">
+          <h4>Горы Алматы</h4>
+          <p>Невероятные виды и чистый воздух</p>
+        </div>
+      </div>
+      <div class="popular-card">
+        <img src="../static/img/route2.jpg" alt="Route 2">
+        <div class="info">
+          <h4>Старый город</h4>
+          <p>Исторические улочки и архитектура</p>
+        </div>
+      </div>
+      <div class="popular-card">
+        <img src="../static/img/route3.jpg" alt="Route 3">
+        <div class="info">
+          <h4>Фермерский рынок</h4>
+          <p>Свежие продукты и местная кухня</p>
+        </div>
+      </div> 
+    </div>
+</div>
+  </section>
 
   <div class="relative bg-gradient-to-r from-green-600 to-emerald-500 text-white pt-16 pb-10 overflow-hidden">
     <!-- Wave shape divider - improved version -->
@@ -1766,8 +933,6 @@
                     <li><a href="#" class="hover:text-green-200 transition quick-link">Contact</a></li>
                 </ul>
             </div>
-
-            
         </div>
         
         <!-- Copyright -->
@@ -2135,96 +1300,6 @@ overlay.addEventListener('click', () => {
 
 // ... остальные обработчики
 }
-
-// Testimonial slider
-const testimonialSlides = document.querySelectorAll('.testimonial-slide');
-const testimonialDots = document.querySelectorAll('.testimonial-dot');
-let currentSlide = 0;
-
-function showSlide(index) {
-  testimonialSlides.forEach(slide => slide.classList.remove('active'));
-  testimonialDots.forEach(dot => dot.classList.remove('active'));
-  
-  testimonialSlides[index].classList.add('active');
-  testimonialDots[index].classList.add('active');
-  currentSlide = index;
-}
-
-testimonialDots.forEach((dot, index) => {
-  dot.addEventListener('click', () => showSlide(index));
-});
-
-// Auto-rotate testimonials
-setInterval(() => {
-  let nextSlide = (currentSlide + 1) % testimonialSlides.length;
-  showSlide(nextSlide);
-}, 5000);
-</script>
-
-<script>
-  // Testimonial slider
-  document.addEventListener('DOMContentLoaded', function() {
-    const testimonialSlides = document.querySelectorAll('.testimonial-slide');
-    const testimonialDots = document.querySelectorAll('.testimonial-dot');
-    let currentSlide = 0;
-    
-    function showSlide(index) {
-      testimonialSlides.forEach(slide => slide.classList.remove('active'));
-      testimonialDots.forEach(dot => dot.classList.remove('active'));
-      
-      testimonialSlides[index].classList.add('active');
-      testimonialDots[index].classList.add('active');
-      currentSlide = index;
-    }
-    
-    testimonialDots.forEach((dot, index) => {
-      dot.addEventListener('click', () => showSlide(index));
-    });
-    
-    // Auto-rotate testimonials
-    setInterval(() => {
-      let nextSlide = (currentSlide + 1) % testimonialSlides.length;
-      showSlide(nextSlide);
-    }, 5000);
-    
-    // Back to top button
-    const backToTop = document.getElementById('back-to-top');
-    
-    window.addEventListener('scroll', function() {
-      if (window.pageYOffset > 300) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
-      }
-    });
-    
-    backToTop.addEventListener('click', function(e) {
-      e.preventDefault();
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-    
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        if (this.getAttribute('href') === '#') return;
-        
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          const headerHeight = 0; // No header in this version
-          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-          
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-  });
 </script>
 
 </body>
