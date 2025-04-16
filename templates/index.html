@@ -3,17 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../static/css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Forum&family=Tinos&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/3d0e27e432.js" crossorigin="anonymous"></script>
   <style>
     html {
       scroll-behavior: smooth;
@@ -22,11 +14,11 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
     }
     body {
-      background-color: #f5f5f0;
-      color: #333;
+      background-color: var(--light);
+    color: var(--dark);
+    line-height: 1.6;
     }
     .header-top {
       background-color: white;
@@ -45,6 +37,7 @@
       cursor: pointer;
       gap: 5px;
       z-index: 11;
+      
     }
     .burger div {
       width: 25px;
@@ -96,7 +89,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
@@ -405,6 +398,7 @@
     align-items: center;
     padding: 15px;
     position: fixed;
+    background: var(--light);
     top: 0;
     left: 0;
     right: 0;
@@ -450,7 +444,7 @@
 
 /* Боковая панель - общие стили */
 .sidebar {
-    background: var(--white);
+    background: var(--light);
     color: var(--black);
     padding: 30px 20px;
     position: relative;
@@ -634,7 +628,7 @@
     --dark: #263238;
     --gray: #90A4AE;
     --danger: #F44336;
-    --white: #ffffff;}
+  }
 
     .profile-card {
     text-align: center;
@@ -693,6 +687,30 @@
     color: var(--gray);
 }
 
+/* .fa-home:before{
+  content:"\f015";
+}
+.menu a i {
+    width: 20px;
+    text-align: center;
+}
+.fa, .fas {
+    font-weight: 900;
+}
+.fa, .far, .fas {
+    font-family: "Font Awesome 5 Free";
+}
+.fa, .fab, .fad, .fal, .far, .fas {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;}
+    i {
+    font-style: italic;
+} */
 
   </style>
 
@@ -746,12 +764,14 @@
               </div>
           </div>
 
+          <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
           <nav class="menu">
-              <a href="/index" class="active"><i class="fas fa-home"></i> Главная</a>
-              <a href="/favorit"><i class="fas fa-route"></i> Мои маршруты</a>
-              <a href="/logout"><i class="fas fa-sign-out-alt"></i> Выход</a>
+            <a href="/index"><i class="fas fa-home"></i> Главная</a>
+            <a href="/favorit"><i class="fas fa-route"></i> Мои маршруты</a>
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i> Выход</a>
           </nav>
 
+  
           <div class="promo-banner">
               <h3>Премиум доступ</h3>
               <p>Откройте все возможности сервиса</p>
