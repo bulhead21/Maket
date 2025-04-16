@@ -134,7 +134,8 @@ def update_route_state():
                 "cul_2": False,
                 "cul_3": False,
                 "cul_4": False,
-                "cul_5": False
+                "cul_5": False,
+                "cul_6": False
             }
         
         # Обновляем состояние
@@ -160,92 +161,110 @@ def update_route_state():
         return jsonify({"status": "error", "message": str(e)}), 500
     finally:
         db_sess.close()
+
+
 @app.route('/favorits')
 @login_required
 def favorits():
-    
-    favourite = [
-        {
-            'id': 1,
-            'title': 'Уличная еда Алматы',
-            'desc': 'Откройте для себя самые вкусные точки города.',
-            'image': 'route1.jpg',
-            'url': '/gas_1'
-        },
-        {
-            'id': 2,
-            'title': 'Исторический центр',
-            'desc': 'Погрузитесь в культуру и историю Алматы.',
-            'image': 'route2.jpg',
-            'url': '/cul_1'
-        }
-    ]
     return render_template("favorits.html")
 
 
-favorites_bp = Blueprint('favorites', __name__)
 
-@favorites_bp.route('/favorites', methods=['GET'])
+
+@app.route('/debug_user_fav')
 @login_required
-def get_favorites():
-    """Получить список избранных маршрутов пользователя"""
+def debug_user_fav():
+    db_sess = db_session.create_session()
+    user = db_sess.query(User).get(current_user.id)
     return jsonify({
-        "favorites": current_user.favorite_routes,
-        "count": len(current_user.favorite_routes)
+        "id": user.id,
+        "favourit_routes": user.favourit_routes
     })
 
-@favorites_bp.route('/favorites/add', methods=['POST'])
+@app.route('/get_current_user_state_fav')
 @login_required
-def add_favorite():
-    """Добавить маршрут в избранное"""
-    route_id = request.json.get('route_id')
-    if not route_id:
-        return jsonify({"status": "error", "message": "Route ID is required"}), 400
-    
+def get_current_user_state_fav():
     db_sess = db_session.create_session()
     try:
         user = db_sess.query(User).get(current_user.id)
-        if route_id not in user.favorite_routes:
-            user.favorite_routes.append(route_id)
-            db_sess.commit()
-            return jsonify({
-                "status": "success",
-                "count": len(user.favorite_routes)
-            })
-        return jsonify({"status": "exists"})
+        return jsonify({
+            "completed_routes": user.completed_routes if user.completed_routes else {},
+            "progress": user.progress if user.progress else 0
+        })
+    finally:
+        db_sess.close()
+MAX_ROUTES = 6  # Константа в начале файла
+
+@app.route('/api/user/activities')
+@login_required
+def get_user_activities_fav():
+    activities = []
+    if current_user.progress > 0:
+        activities.append({
+            "type": "route_completed",
+            "title": f"Вы завершили {current_user.progress} маршрут(ов)",
+            "date": datetime.now().strftime("%d.%m.%Y"),
+            "icon": "route"
+        })
+    if current_user.progress >= 3:
+        activities.append({
+            "type": "milestone",
+            "title": "Достигнуто 50% прогресса!",
+            "date": datetime.now().strftime("%d.%m.%Y"),
+            "icon": "star"
+        })
+    return jsonify(activities)
+@app.route('/update_route_state', methods=['POST'])
+@login_required
+def update_route_state_fav():
+    data = request.get_json()
+    route_id = data.get("route_id")
+    new_state = data.get("new_state")
+    
+    if not route_id or new_state is None:
+        return jsonify({"status": "error", "message": "Missing parameters"}), 400
+    
+    db_sess = db_session.create_session()
+    try:
+        # Важно: использовать merge для прикрепления объекта к сессии
+        user = db_sess.merge(current_user)
+        
+        # Инициализация если None
+        if user.completed_routes is None:
+            user.completed_routes = {
+                "cul_1": False,
+                "cul_2": False,
+                "cul_3": False,
+                "cul_4": False,
+                "cul_5": False,
+                "cul_6": False
+            }
+        
+        # Обновляем состояние
+        user.completed_routes[route_id] = new_state
+        user.progress = sum(1 for v in user.completed_routes.values() if v)
+        
+        # Явное сохранение
+        db_sess.commit()
+        
+        # Принудительное обновление из БД
+        db_sess.refresh(user)
+        
+        return jsonify({
+            "status": "success",
+            "new_state": new_state,
+            "progress": user.progress,
+            "all_routes": user.completed_routes  # Для отладки
+        })
+        
     except Exception as e:
         db_sess.rollback()
+        print(f"Database error: {str(e)}")
         return jsonify({"status": "error", "message": str(e)}), 500
     finally:
         db_sess.close()
 
-@favorites_bp.route('/favorites/remove', methods=['POST'])
-@login_required
-def remove_favorite():
-    """Удалить маршрут из избранного"""
-    route_id = request.json.get('route_id')
-    if not route_id:
-        return jsonify({"status": "error", "message": "Route ID is required"}), 400
-    
-    db_sess = db_session.create_session()
-    try:
-        user = db_sess.query(User).get(current_user.id)
-        if route_id in user.favorite_routes:
-            user.favorite_routes.remove(route_id)
-            db_sess.commit()
-            return jsonify({
-                "status": "success",
-                "count": len(user.favorite_routes)
-            })
-        return jsonify({"status": "not_found"})
-    except Exception as e:
-        db_sess.rollback()
-        return jsonify({"status": "error", "message": str(e)}), 500
-    finally:
-        db_sess.close()
 
-# Регистрируем blueprint в приложении
-app.register_blueprint(favorites_bp, url_prefix='/api')
 
 
 @app.route('/api/routes')

@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../static/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Forum&family=Tinos&display=swap" rel="stylesheet">
@@ -50,48 +52,7 @@
       background-color: #333;
       transition: all 0.3s ease;
     }
-    nav {
-      display: flex;
-      gap: 0px;
-      align-items: center;
-    }
-    nav a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-    }
-    .nav-mobile {
-      display: none;
-      flex-direction: column;
-      background-color: white;
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 250px;
-      padding: 80px 20px 20px;
-      box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-      z-index: 10;
-      transition: transform 0.3s ease;
-      transform: translateX(-100%);
-    }
-    .nav-mobile.active {
-      transform: translateX(0);
-    }
-    .mobile-nav-content {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-    .nav-mobile .nav-item {
-      margin-bottom: 20px;
-      font-size: 1.2rem;
-      color: #333;
-      text-decoration: none;
-      font-weight: 500;
-      padding: 10px;
-      border-bottom: 1px solid #eee;
-    }
+
     .mobile-icons {
       margin-top: auto;
       padding: 20px 0;
@@ -116,30 +77,8 @@
       display: flex;
       align-items: center;
     }
-    .nav-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-left: 10px;
-    }
-    @media (max-width: 768px) {
-      .header-top {
-        padding: 15px 20px;
-      }
-      
-      .burger {
-        display: flex;
-      }
-      
-      nav {
-        display: none;
-      }
-      
-      
-      .nav-mobile {
-        display: flex;
-      }
-      
+  
+
       /* Анимация бургера при открытии */
       .burger.active div:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
@@ -152,7 +91,7 @@
       .burger.active div:nth-child(3) {
         transform: rotate(-45deg) translate(5px, -5px);
       }
-    }
+    
     * {
       margin: 0;
       padding: 0;
@@ -394,10 +333,7 @@
       height: 40px;
       padding-left:2px;
     }
-    /* Скрываем десктопную навигацию */
-    nav {
-      display: none;
-    }
+
   }
 
 
@@ -412,11 +348,19 @@
         grid-template-columns: 1fr;
     }
 }
-.avatar-img {
-    width: 80px;
-    height: 80px;
+.avatar {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    cursor: pointer;
+    margin: 0 auto 15px;
+    position: relative;
+    overflow: hidden;
+    border: 3px solid var(--primary);
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 @media (max-width: 768px) {
@@ -460,7 +404,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    background: var(--dark);
     position: fixed;
     top: 0;
     left: 0;
@@ -487,7 +430,7 @@
     display: block;
     height: 3px;
     width: 100%;
-    background: var(--white);
+    background: var(--black);
     border-radius: 3px;
     transition: all 0.3s ease;
 }
@@ -507,8 +450,8 @@
 
 /* Боковая панель - общие стили */
 .sidebar {
-    background: var(--dark);
-    color: var(--white);
+    background: var(--white);
+    color: var(--black);
     padding: 30px 20px;
     position: relative;
     z-index: 10;
@@ -586,7 +529,7 @@
 }
 
 .menu a {
-    color: var(--white);
+    color: var(--black);
     text-decoration: none;
     padding: 12px 15px;
     border-radius: 8px;
@@ -595,15 +538,55 @@
     gap: 12px;
     transition: all 0.3s;
 }
-
-.menu a:hover, .menu a.active {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateX(5px);
+.stat-card:hover {
+    transform: translateY(-5px);
 }
-
+.btn-outline:hover {
+    background: var(--primary);
+    color: white;
+}
+.menu a:hover, .menu a.active {
+    background: rgba(147, 141, 141, 0.49);
+    transform: translateX(5px);
+}.btn-premium:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(145, 143, 143, 0.469);
+}
 .menu a i {
     width: 20px;
     text-align: center;
+}
+.stat-card {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.3s;
+}
+.profile-card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+.email {
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+.rating {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(179, 166, 166, 0.1);
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.rating i {
+    color: var(--secondary);
+    margin-right: 5px;
 }
 
 .promo-banner {
@@ -641,9 +624,78 @@
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+:root {
+    --primary: #4CAF50;
+    --primary-dark: #388E3C;
+    --secondary: #FFC107;
+    --white: #ffffff;
+    --black:#000000;
+    --light: #f5f7fa;
+    --dark: #263238;
+    --gray: #90A4AE;
+    --danger: #F44336;
+    --white: #ffffff;}
+
+    .profile-card {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.profile-card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+.profile-card {
+        margin-top: 40px;
+    }
+/* Активности */
+.activity-feed {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.activity-item {
+    display: flex;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ECEFF1;
+    align-items: center;
+    gap: 15px;
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #E3F2FD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+}
+
+.activity-content {
+    flex: 1;
+}
+
+.activity-title {
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+.activity-date {
+    font-size: 0.8rem;
+    color: var(--gray);
+}
+
 
   </style>
-  </style>
+
   <title>Digital.kz</title>
 </head>
 
