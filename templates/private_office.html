@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой профиль | TravelKZ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <script src="https://kit.fontawesome.com/3d0e27e432.js" crossorigin="anonymous"></script>
-    <style>
-:root {
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title data-i18n="___travelkz">
+   Мой профиль | TravelKZ
+  </title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"/>
+  <script crossorigin="anonymous" src="https://kit.fontawesome.com/3d0e27e432.js">
+  </script>
+  <script src="/static/js/translate.js" defer></script>
+  <style>
+   :root {
     --primary: #4CAF50;
     --primary-dark: #388E3C;
     --secondary: #FFC107;
@@ -625,148 +629,225 @@ body {
     width: 20px;
     text-align: center;
 }
-    </style>
-</head>
-<body>
-    <div class="dashboard-container">
-      <header>
-        <div class="mobile-header">
-          <div class="burger-menu" id="burger-menu">
-              <span></span>
-              <span></span>
-              <span></span>
-          </div>
-          <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="mobile-logo">
-      </div>
-      </header>
-        <!-- Боковая панель -->
-        <aside class="sidebar"  id="sidebar">
-            <div class="profile-card">
-              <form id="avatar-form" action="/upload_avatar" method="POST" enctype="multipart/form-data">
-                <label for="avatar-input">
-                  {% if current_user.avatar %}
-                  <a href="/private_office"><img src="../static/avatars/ ~ current_user.avatar" 
-                      alt="avatar" 
-                      class="avatar"></a>
-              {% else %}
-              <a href="/private_office"><img src="{{ url_for('static', filename='avatars/default.png') }}" alt="default avatar"></a>
-              {% endif %}
-                </label>
-                <input type="file" id="avatar-input" name="avatar" accept="image/*" style="display: none" onchange="document.getElementById('avatar-form').submit();" />
-            </form>
-                <h2>{{ current_user.name }} {{ current_user.surname }}</h2>
-                <p class="email">{{ current_user.email }}</p>
-                <div class="rating">
-                    <i class="fas fa-star"></i>
-                    <span>4.8</span>
-                </div>
-            </div>
- <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
- <nav class="menu">
-    <a href="/index"><i class="fas fa-home"></i> Главная</a>
-    <a href="/favourites"><i class="fas fa-route"></i> Мои маршруты</a>
-    <a href="/logout"><i class="fas fa-sign-out-alt"></i> Выход</a>
-  </nav>
-  
-
-            <div class="promo-banner">
-                <h3>Премиум доступ</h3>
-                <p>Откройте все возможности сервиса</p>
-                <button class="btn-premium">Активировать</button>
-            </div>
-        </aside>
-
-        <!-- Основное содержание -->
-        <main class="main-content">
-            <!-- Статистика -->
-            <section class="stats-section animate__animated animate__fadeInUp">
-                <div class="stat-card">
-                    <i class="fas fa-route"></i>
-                    <div>
-                        <h3>Пройдено маршрутов</h3>
-                        <span class="stat-value" id="completed-routes">0</span>/6
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-clock"></i>
-                    <div>
-                        <h3>Часов в пути</h3>
-                        <span class="stat-value">{{ total_hours }}</span>ч
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-camera"></i>
-                    <div>
-                        <h3>Фотографий</h3>
-                        <span class="stat-value">{{total_photos}}</span>
-                    </div>
-                </div>
-                
-            </section>
-
-            <!-- Прогресс -->
-            <section class="progress-section animate__animated animate__fadeInUp animate__delay-1s">
-                <div class="section-header">
-                    <h2>Ваш прогресс</h2>
-                    <a href="#" class="see-all">Подробнее</a>
-                </div>
-                <div class="progress-container">
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progress-fill"></div>
-                    </div>
-                    <div class="progress-labels">
-                        <span>Начальный уровень</span>
-                        <span id="progress-percent">0%</span>
-                        <span>Эксперт</span>
-                    </div>
-                </div>
-                <div class="progress-description">
-                    <p>Пройдите все 6 маршрутов, чтобы получить статус "Эксперт Казахстана"</p>
-                </div>
-            </section>
-
-            <!-- Последние активности -->
-            
-
-            <!-- Рекомендации -->
-            <section class="recommendations-section">
-                <div class="section-header">
-                    <h2>Рекомендуем посетить</h2>
-                    <a href="#" class="see-all">Все рекомендации</a>
-                </div>
-                <div class="recommendations-grid">
-                    <div class="recommendation-card">
-                        <img src="../static/img/charin.jpeg" alt="Чарынский каньон">
-                        <div class="card-content">
-                            <h3>Чарынский каньон</h3>
-                            <div class="meta">
-                                <span><i class="fas fa-map-marker-alt"></i> Алматинская область</span>
-                                <span><i class="fas fa-clock"></i> 2 дня</span>
-                            </div>
-                            <button class="btn-outline">Добавить в план</button>
-                        </div>
-                    </div>
-                    <div class="recommendation-card">
-                        <img src="../static/img/ozero.jpg" alt="Озеро Каинды">
-                        <div class="card-content">
-                            <h3>Озеро Каинды</h3>
-                            <div class="meta">
-                                <span><i class="fas fa-map-marker-alt"></i> Северный Тянь-Шань</span>
-                                <span><i class="fas fa-clock"></i> 1 день</span>
-                            </div>
-                            <button class="btn-outline">Добавить в план</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
+  </style>
+ </head>
+ <body>
+  <div class="dashboard-container">
+   <header>
+    <div class="mobile-header">
+     <div class="burger-menu" id="burger-menu">
+      <span>
+      </span>
+      <span>
+      </span>
+      <span>
+      </span>
+     </div>
+     <img alt="Logo" class="mobile-logo" src="{{ url_for('static', filename='img/logo.png') }}"/>
     </div>
-
-    <script >
-
-
-
-      document.addEventListener('DOMContentLoaded', function() {
+   </header>
+   <!-- Боковая панель -->
+   <aside class="sidebar" id="sidebar">
+    <div class="profile-card">
+     <form action="/upload_avatar" enctype="multipart/form-data" id="avatar-form" method="POST">
+      <label for="avatar-input">
+       {% if current_user.avatar %}
+       <a href="/private_office">
+        <img alt="avatar" class="avatar" src="../static/avatars/ ~ current_user.avatar"/>
+       </a>
+       {% else %}
+       <a href="/private_office">
+        <img alt="default avatar" src="{{ url_for('static', filename='avatars/default.png') }}"/>
+       </a>
+       {% endif %}
+      </label>
+      <input accept="image/*" id="avatar-input" name="avatar" onchange="document.getElementById('avatar-form').submit();" style="display: none" type="file"/>
+     </form>
+     <h2>
+      {{ current_user.name }} {{ current_user.surname }}
+     </h2>
+     <p>
+      {{ current_user.email }}
+     </p>
+     <div class="rating">
+      <i class="fas fa-star">
+      </i>
+      <span data-i18n="48">
+       4.8
+      </span>
+     </div>
+    </div>
+    <script src="https://cdn.lordicon.com/lordicon-1.1.0.js">
+    </script>
+    <nav class="menu">
+     <a href="/index">
+      <i class="fas fa-home">
+      </i>
+      Главная
+     </a>
+     <a href="/favourites">
+      <i class="fas fa-route">
+      </i>
+      Мои маршруты
+     </a>
+     <a href="/logout">
+      <i class="fas fa-sign-out-alt">
+      </i>
+      Выход
+     </a>
+    </nav>
+    <div class="promo-banner">
+     <h3 data-i18n="_">
+      Премиум доступ
+     </h3>
+     <p data-i18n="___">
+      Откройте все возможности сервиса
+     </p>
+     <button class="btn-premium" data-i18n="">
+      Активировать
+     </button>
+    </div>
+   </aside>
+   <!-- Основное содержание -->
+   <main class="main-content">
+    <!-- Статистика -->
+    <section class="stats-section animate__animated animate__fadeInUp">
+     <div class="stat-card">
+      <i class="fas fa-route">
+      </i>
+      <div>
+       <h3 data-i18n="_">
+        Пройдено маршрутов
+       </h3>
+       <span class="stat-value" data-i18n="0" id="completed-routes">
+        0
+       </span>
+       /6
+      </div>
+     </div>
+     <div class="stat-card">
+      <i class="fas fa-clock">
+      </i>
+      <div>
+       <h3 data-i18n="__">
+        Часов в пути
+       </h3>
+       <span class="stat-value">
+        {{ total_hours }}
+       </span>
+       ч
+      </div>
+     </div>
+     <div class="stat-card">
+      <i class="fas fa-camera">
+      </i>
+      <div>
+       <h3 data-i18n="">
+        Фотографий
+       </h3>
+       <span class="stat-value">
+        {{total_photos}}
+       </span>
+      </div>
+     </div>
+    </section>
+    <!-- Прогресс -->
+    <section class="progress-section animate__animated animate__fadeInUp animate__delay-1s">
+     <div class="section-header">
+      <h2 data-i18n="_">
+       Ваш прогресс
+      </h2>
+      <a class="see-all" data-i18n="" href="#">
+       Подробнее
+      </a>
+     </div>
+     <div class="progress-container">
+      <div class="progress-bar">
+       <div class="progress-fill" id="progress-fill">
+       </div>
+      </div>
+      <div class="progress-labels">
+       <span data-i18n="_">
+        Начальный уровень
+       </span>
+       <span data-i18n="0" id="progress-percent">
+        0%
+       </span>
+       <span data-i18n="">
+        Эксперт
+       </span>
+      </div>
+     </div>
+     <div class="progress-description">
+      <p data-i18n="__6______">
+       Пройдите все 6 маршрутов, чтобы получить статус "Эксперт Казахстана"
+      </p>
+     </div>
+    </section>
+    <!-- Последние активности -->
+    <!-- Рекомендации -->
+    <section class="recommendations-section">
+     <div class="section-header">
+      <h2 data-i18n="_">
+       Рекомендуем посетить
+      </h2>
+      <a class="see-all" data-i18n="_" href="#">
+       Все рекомендации
+      </a>
+     </div>
+     <div class="recommendations-grid">
+      <div class="recommendation-card">
+       <img alt="Чарынский каньон" src="../static/img/charin.jpeg"/>
+       <div class="card-content">
+        <h3 data-i18n="_">
+         Чарынский каньон
+        </h3>
+        <div class="meta">
+         <span>
+          <i class="fas fa-map-marker-alt">
+          </i>
+          Алматинская область
+         </span>
+         <span>
+          <i class="fas fa-clock">
+          </i>
+          2 дня
+         </span>
+        </div>
+        <button class="btn-outline" data-i18n="__">
+         Добавить в план
+        </button>
+       </div>
+      </div>
+      <div class="recommendation-card">
+       <img alt="Озеро Каинды" src="../static/img/ozero.jpg"/>
+       <div class="card-content">
+        <h3 data-i18n="_">
+         Озеро Каинды
+        </h3>
+        <div class="meta">
+         <span>
+          <i class="fas fa-map-marker-alt">
+          </i>
+          Северный Тянь-Шань
+         </span>
+         <span>
+          <i class="fas fa-clock">
+          </i>
+          1 день
+         </span>
+        </div>
+        <button class="btn-outline" data-i18n="__">
+         Добавить в план
+        </button>
+       </div>
+      </div>
+     </div>
+    </section>
+   </main>
+  </div>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
     // Инициализация прогресс-бара
     initProgressBar();
     
@@ -979,8 +1060,6 @@ function initBurgerMenu() {
     
     // ... остальные обработчики
 }
-
-    </script>
-    
-</body>
+  </script>
+ </body>
 </html>
