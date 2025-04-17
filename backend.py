@@ -58,7 +58,10 @@ def upload_avatar():
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template("index.html", current_user=current_user)
+    db_sess = db_session.create_session()
+    popular_routes = User.get_popular_routes(db_sess, limit=5)
+    db_sess.close()
+    return render_template("index.html", current_user=current_user, popular_routes=popular_routes)
 @app.route('/debug_user')
 @login_required
 def debug_user():

@@ -1616,48 +1616,24 @@
       <!-- Popular Routes -->
       <section class="popular-routes">
         <h2>Популярные Маршруты</h2>
-        <div class="popular-scroll" id="popular-scroll-id">
-          <div class="popular-card">
-            <img src="../static/img/route1.jpg" alt="Almaty Mountains">
-            <div class="info">
-              <h4>Горы Алматы</h4>
-              <p>Невероятные виды и чистый горный воздух</p>
+        <div class="popular-scroll">
+            {% for item in popular_routes %}
+            <div class="popular-card">
+                <img src="{{ item.image_url or url_for('static', filename='img/default_route.jpg') }}" 
+                     alt="{{ item.title }}">
+                <div class="info">
+                    <h4>{{ item.title }}</h4>
+                    <p>{{ item.description|truncate(60) }}</p>
+                    <div class="popularity-badge">
+                        ★ {{ "%.1f"|format(item.popularity * 50) }}%
+                    </div>
+                </div>
             </div>
-          </div>
-          
-          <div class="popular-card">
-            <img src="../static/img/route2.jpg" alt="Old Town">
-            <div class="info">
-              <h4>Старый город</h4>
-              <p>Очаровательные улочки и архитектура советской эпохи</p>
-            </div>
-          </div>
-          
-          <div class="popular-card">
-            <img src="../static/img/route3.jpg" alt="Farmers Market">
-            <div class="info">
-              <h4>Зелёный базар</h4>
-              <p>Оживлённый рынок со свежими продуктами</p>
-            </div>
-          </div>
-          
-          <div class="popular-card">
-            <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Charyn Canyon">
-            <div class="info">
-              <h4>Чарынский Каньон</h4>
-              <p>Kazakhstan's answer to the Grand Canyon</p>
-            </div>
-          </div>
-          
-          <div class="popular-card">
-            <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Kolsai Lakes">
-            <div class="info">
-              <h4>Озеро</h4>
-              <p>Three stunning mountain lakes to explore</p>
-            </div>
-          </div>
+            {% else %}
+            <p>Популярные маршруты появятся позже</p>
+            {% endfor %}
         </div>
-      </section>
+    </section>
 <!-- Testimonials Section -->
 <section class="testimonials" id="testimonials">
   <h2 class="section-title">Traveler Stories</h2>
