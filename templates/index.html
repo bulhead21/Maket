@@ -1784,10 +1784,12 @@
             <p class="no-routes">Пока нет данных о популярных маршрутах</p>
         {% else %}
             <div class="popular-scroll">
+              
                 {% for route in popular_routes %}
+                
                 <div class="popular-card">
                     <img src="{{ route.image_url if route.image_url else url_for('static', filename='img/default_route.jpg') }}" 
-                         alt="{{ route.title }}">
+                        alt="{{ route.title }}">
                     <div class="info">
                         <h3>{{ route.title }}</h3>
                         <p class="description">{{ route.description|truncate(80) }}</p>
@@ -1799,34 +1801,40 @@
                             ★ {{ "%.0f"|format(route.popularity * 50) }}%
                         </div>
                     </div>
+                    <div class="actions">
+                      <a href="/{{'cul_' ~ route.id}}">Подробнее</a>
+                      
+                  </div>
                 </div>
+              
                 {% endfor %}
+              
             </div>
         {% endif %}
     </section>
     
 <!-- Testimonials Section -->
 <section class="testimonials" id="testimonials">
-  <h2 class="section-title">Traveler Stories</h2>
+  <h2 class="section-title">Истории путешествеников</h2>
   
   <div class="testimonial-slider">
     <div class="testimonial-slide active">
       <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson" class="testimonial-avatar">
-      <p class="testimonial-quote">The mountain adventure route was absolutely breathtaking. Our guide was knowledgeable and made sure we had an unforgettable experience. Can't wait to come back!</p>
+      <p class="testimonial-quote">"Всегда мечтал увидеть Алматы с высоты, но не знал, с чего начать. Нашёл маршрут «Кок-Тобе» на вашем сайте — всё было разложено по шагам: где сесть на автобус, лучшие точки для фото. В итоге встретил рассвет над городом! Теперь советую сервис всем друзьям."</p>
       <h5 class="testimonial-author">Sarah Johnson</h5>
       <p class="testimonial-role">Adventure Traveler from Canada</p>
     </div>
     
     <div class="testimonial-slide">
       <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" class="testimonial-avatar">
-      <p class="testimonial-quote">As a solo traveler, I felt completely safe and well taken care of. The cultural discovery tour gave me deep insights into Kazakhstan's rich history.</p>
+      <p class="testimonial-quote">"Решила в последний момент съездить в Чарынский каньон. Открыла приложение, за 5 минут сохранила маршрут в «Избранное». GPS-трекер вёл даже без интернета! Обожала эти красные скалы — как на другой планете."</p>
       <h5 class="testimonial-author">Michael Chen</h5>
       <p class="testimonial-role">Photographer from Singapore</p>
     </div>
     
     <div class="testimonial-slide">
       <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Elena Petrova" class="testimonial-avatar">
-      <p class="testimonial-quote">The desert expedition was unlike anything I've experienced before. The landscapes were surreal and our guides were incredibly passionate about the region.</p>
+      <p class="testimonial-quote">"Искали, куда свозить детей на выходные. Выбрали «Зелёный базар» через ваш сайт — там был чек-лист: что попробовать, где купить сувениры. Дети в восторге от чак-чака, а мы — от атмосферы!"</p>
       <h5 class="testimonial-author">Elena Petrova</h5>
       <p class="testimonial-role">Travel Blogger from Russia</p>
     </div>
@@ -2333,7 +2341,7 @@ testimonialDots.forEach((dot, index) => {
 setInterval(() => {
   let nextSlide = (currentSlide + 1) % testimonialSlides.length;
   showSlide(nextSlide);
-}, 5000);
+}, 8000);
 </script>
 
 <script>
@@ -2360,7 +2368,7 @@ setInterval(() => {
     setInterval(() => {
       let nextSlide = (currentSlide + 1) % testimonialSlides.length;
       showSlide(nextSlide);
-    }, 5000);
+    }, 8000);
     
     // Back to top button
     const backToTop = document.getElementById('back-to-top');
