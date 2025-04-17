@@ -1,223 +1,361 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Регистрация</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
         body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             margin: 0;
-            background-color: #f5f5f5;
+            padding: 20px;
         }
-        .form {
-            width: 340px;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        
+        .form-container {
+            width: 100%;
+            max-width: 420px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
         }
-        @media (max-width: 768px) {
-            .form {
-                transform: scale(1);
-                width: 300px;
-                padding: 30px;
-            }
-        }
-        @media (max-width: 480px) {
-            .form {
-                transform: scale(0.9);
-                width: 280px;
-                padding: 25px;
-            }
-        }
-        .form_title {
+        
+        .form-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
             text-align: center;
-            margin: 0 0 32px 0;
+            position: relative;
+        }
+        
+        .form-header h1 {
+            margin: 0;
             font-weight: 600;
-            color: #333;
             font-size: 24px;
         }
-        .form_group {
-            position: relative;
-            margin-bottom: 28px;
+        
+        .form-header p {
+            margin: 8px 0 0;
+            opacity: 0.9;
+            font-size: 14px;
         }
-        .form_label {
+        
+        .form-body {
+            padding: 30px;
+        }
+        
+        .form-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
             position: absolute;
             top: 10px;
-            left: 0;
-            color: #9e9e9e;
+            left: 15px;
+            color: #999;
+            font-size: 14px;
             transition: all 0.3s ease;
             pointer-events: none;
+            background: white;
+            padding: 0 5px;
         }
-        .form_input {
+        
+        .form-input {
             width: 100%;
-            padding: 8px 0;
-            border: none;
-            border-bottom: 1px solid #e0e0e0;
-            background-color: transparent;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
             outline: none;
-            transition: all 0.3s ease;
-            font-size: 16px;
         }
-        .form_input:focus {
-            border-bottom: 2px solid #1a73a8;
-        }
-        .form_input:focus ~ .form_label,
-        .form_input:not(:placeholder-shown) ~ .form_label {
-            top: -12px;
+        
+        .form-input:focus + .form-label,
+        .form-input:not(:placeholder-shown) + .form-label {
+            top: -10px;
+            left: 10px;
             font-size: 12px;
-            color: #1a73a8;
+            color: #667eea;
         }
-        .buttons-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 30px;
-        }
-        .form_button {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 6px;
-            color: #fff;
-            background-color: #0071f0;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            flex: 1;
-            max-width: 48%;
-        }
-        .form_button:hover {
-            background-color: #005bb5;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 113, 240, 0.2);
-        }
-        .back {
-            padding: 12px 24px;
-            border-radius: 6px;
-            color: #0071f0;
-            background-color: transparent;
-            border: 1px solid #0071f0;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            flex: 1;
-            max-width: 48%;
-        }
-        .back:hover {
-            background-color: rgba(0, 113, 240, 0.1);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 113, 240, 0.1);
-        }
-        .toggle-password {
+        
+        .password-toggle {
             position: absolute;
-            right: 0;
+            right: 15px;
             top: 50%;
             transform: translateY(-50%);
-            background: none;
-            border: none;
+            color: #999;
             cursor: pointer;
-            font-size: 18px;
-            color: #9e9e9e;
-            padding: 5px;
+            transition: all 0.3s ease;
         }
-        .toggle-password:hover {
-            color: #1a73a8;
+        
+        .password-toggle:hover {
+            color: #667eea;
         }
-        .google-login-btn {
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #667eea;
+            color: #667eea;
+        }
+        
+        .btn-outline:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+            margin: 0 10px;
+        }
+        
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #4285F4;
             color: white;
-            font-size: 16px;
-            font-weight: 500;
-            padding: 12px 24px;
-            border-radius: 6px;
-            text-decoration: none;
+            font-size: 18px;
             transition: all 0.3s ease;
-            width: 100%;
-            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        .google-login-btn img {
-            width: 20px;
-            height: 20px;
-            margin-right: 12px;
+        
+        .social-btn.google {
+            background: #4285F4;
         }
-        .google-login-btn:hover {
-            background-color: #357ae8;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(66, 133, 244, 0.2);
+        
+        .social-btn.facebook {
+            background: #3b5998;
         }
-        .error-message {
-            color: #e74c3c;
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
             font-size: 14px;
-            margin-top: 5px;
+            color: #666;
         }
-        @keyframes ani {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
+        
+        .form-footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
         }
-        .form {
-            opacity: 0;
-            animation: ani 0.5s forwards;
+        
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 480px) {
+            .form-container {
+                border-radius: 12px;
+            }
+            
+            .form-header {
+                padding: 25px 20px;
+            }
+            
+            .form-body {
+                padding: 25px 20px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .form-container {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        /* Floating decoration */
+        .floating {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.1);
+            z-index: -1;
+        }
+        
+        .floating-1 {
+            width: 200px;
+            height: 200px;
+            top: -50px;
+            left: -50px;
+        }
+        
+        .floating-2 {
+            width: 150px;
+            height: 150px;
+            bottom: -30px;
+            right: -30px;
         }
     </style>
 </head>
 <body>
-  <form class="form" method="POST" action="/reg_form">
-    <h1 class="form_title">Registration</h1>
+    <div class="floating floating-1"></div>
+    <div class="floating floating-2"></div>
     
-    <div class="form_group">
-        <input class="form_input" placeholder="" name="emailInput" id="emailInput" required>
-        <label class="form_label">Email</label>
-        {% if error %}
-        <p class="error-message">{{ error }}</p>
-        {% endif %}
+    <div class="form-container">
+        <div class="form-header">
+            <h1>Create Your Account</h1>
+            <p>Join our community and start your journey</p>
+        </div>
+        
+        <div class="form-body">
+            <form method="POST" action="/reg_form">
+                <div class="form-group">
+                    <input type="email" class="form-input" id="emailInput" name="emailInput" placeholder=" " required>
+                    <label for="emailInput" class="form-label">Email Address</label>
+                </div>
+                
+                <div class="form-group">
+                    <input type="tel" class="form-input" id="phone_num" name="phone_num" placeholder=" " required>
+                    <label for="phone_num" class="form-label">Phone Number</label>
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" class="form-input" id="passwordInput" name="passwordInput" placeholder=" " required>
+                    <label for="passwordInput" class="form-label">Password</label>
+                    <span class="password-toggle" onclick="togglePassword()">
+                        <i class="far fa-eye"></i>
+                    </span>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" class="form-input" id="nameInput" name="nameInput" placeholder=" " required>
+                    <label for="nameInput" class="form-label">First Name</label>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" class="form-input" id="surnameInput" name="surnameInput" placeholder=" " required>
+                    <label for="surnameInput" class="form-label">Last Name</label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Create Account</button>
+                
+                <div class="divider">or continue with</div>
+                
+                <div class="social-login">
+                    <a href="{{ url_for('login_google') }}" class="social-btn google">
+                        <i class="fab fa-google"></i>
+                    </a>
+                  
+                </div>
+                
+                <div class="form-footer">
+                    Already have an account? <a href="/user_login">Sign in</a>
+                </div>
+            </form>
+        </div>
     </div>
-    
-    <div class="form_group">
-        <input class="form_input" placeholder="" name="phone_num" id="phone_num" required>
-        <label class="form_label">Phone number</label>
-    </div>
-    
-    <div class="form_group">
-        <input class="form_input" type="password" placeholder="" name="passwordInput" id="passwordInput" required>
-        <label class="form_label">Password</label>
-        <button type="button" class="toggle-password" onclick="togglePassword()">👁️</button>
-    </div>
-    
-    <div class="form_group">
-        <input class="form_input" placeholder="" name="nameInput" id="nameInput" required>
-        <label class="form_label">Name</label>
-    </div>
-    
-    <div class="form_group">
-        <input class="form_input" placeholder="" name="surnameInput" id="surnameInput" required>
-        <label class="form_label">Surname</label>
-    </div>
-    
-    <a href="{{ url_for('login_google') }}" class="google-login-btn">
-        <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo">
-        Войти через Google
-    </a>
-    
-    <div class="buttons-container">
-        <button type="submit" class="form_button">Continue</button>
-        <a class="back" href="/user_login">Login</a>
-    </div>
-  </form>
 
-  <script>
-    function togglePassword() {
-      const passField = document.getElementById("passwordInput");
-      passField.type = passField.type === "password" ? "text" : "password";
-    }
-  </script>
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('passwordInput');
+            const icon = document.querySelector('.password-toggle i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+        
+        // Add floating animation to decoration elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const floating1 = document.querySelector('.floating-1');
+            const floating2 = document.querySelector('.floating-2');
+            
+            function animateFloating() {
+                floating1.style.transform = `translate(${Math.sin(Date.now() / 2000) * 10}px, ${Math.cos(Date.now() / 2000) * 10}px)`;
+                floating2.style.transform = `translate(${Math.sin(Date.now() / 2500) * 15}px, ${Math.cos(Date.now() / 2500) * 15}px)`;
+                requestAnimationFrame(animateFloating);
+            }
+            
+            animateFloating();
+        });
+    </script>
 </body>
 </html>
