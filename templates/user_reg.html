@@ -6,6 +6,7 @@
     <title>Registration</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
@@ -18,6 +19,8 @@
             align-items: center;
             margin: 0;
             padding: 20px;
+           
+            overflow-x:hidden;
         }
         
         .form-container {
@@ -54,6 +57,7 @@
         
         .form-body {
             padding: 30px;
+            
         }
         
         .form-group {
@@ -69,7 +73,7 @@
             font-size: 14px;
             transition: all 0.3s ease;
             pointer-events: none;
-            background: white;
+            background: #E8F0FE;
             padding: 0 5px;
         }
         
@@ -80,6 +84,7 @@
             border-radius: 8px;
             font-size: 15px;
             transition: all 0.3s ease;
+            background: #E8F0FE;
         }
         
         .form-input:focus {
@@ -223,11 +228,14 @@
             
             .form-body {
                 padding: 25px 20px;
+                
+                
             }
             
             .btn {
                 padding: 10px 20px;
             }
+            
         }
         
         /* Animation */
@@ -282,9 +290,10 @@
         <div class="form-body">
             <form method="POST" action="/reg_form">
                 <div class="form-group">
-                    <input type="email" class="form-input" id="emailInput" name="emailInput" placeholder=" " required>
+                    <input type="email" class="form-input" id="emailInput" name="emailInput" placeholder=" " required autocomplete="username">
                     <label for="emailInput" class="form-label">Email Address</label>
                 </div>
+                
                 
                 <div class="form-group">
                     <input type="tel" class="form-input" id="phone_num" name="phone_num" placeholder=" " required>
@@ -292,7 +301,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <input type="password" class="form-input" id="passwordInput" name="passwordInput" placeholder=" " required>
+                    <input type="password" class="form-input" id="passwordInput" name="passwordInput" placeholder=" " required autocomplete="new-password">
                     <label for="passwordInput" class="form-label">Password</label>
                     <span class="password-toggle" onclick="togglePassword()">
                         <i class="far fa-eye"></i>
