@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../static/css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Forum&family=Tinos&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <link href="../static/css/style.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com" rel="preconnect"/>
+   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+   <link href="https://fonts.googleapis.com" rel="preconnect"/>
+   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+   <link href="https://fonts.googleapis.com/css2?family=Forum&amp;family=Tinos&amp;display=swap" rel="stylesheet"/>
+   <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@600&amp;display=swap" rel="stylesheet"/>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+   <style>
     html {
       scroll-behavior: smooth;
     }
@@ -578,153 +578,214 @@
     opacity: 1;
     visibility: visible;
 }
-  </style>
-  </style>
-  <title>Digital.kz</title>
-</head>
-
-<body>
-    
+   </style>
+   <title data-i18n="digitalkz">
+    Digital.kz
+   </title>
+  </link>
+ </head>
+ <body>
   <div class="dashboard-container">
-    <header>
-      <div class="mobile-header">
-        <div class="burger-menu" id="burger-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
-       <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="mobile-logo"> 
+   <header>
+    <div class="mobile-header">
+     <div class="burger-menu" id="burger-menu">
+      <span>
+      </span>
+      <span>
+      </span>
+      <span>
+      </span>
+     </div>
+     <img alt="Logo" class="mobile-logo" src="{{ url_for('static', filename='img/logo.png') }}"/>
     </div>
-    </header>
-      <!-- Боковая панель -->
-      <aside class="sidebar"  id="sidebar">
-          <div class="profile-card">
-            <form id="avatar-form" action="/upload_avatar" method="POST" enctype="multipart/form-data">
-              <label for="avatar-input">
-            {% if current_user.is_authenticated %}
+   </header>
+   <!-- Боковая панель -->
+   <aside class="sidebar" id="sidebar">
+    <div class="profile-card">
+     <form action="/upload_avatar" enctype="multipart/form-data" id="avatar-form" method="POST">
+      <label for="avatar-input">
+       {% if current_user.is_authenticated %}
                 {% if current_user.avatar %}
-                <a href="/private_office"><img src="../static/avatars/ ~ current_user.avatar" 
-                    alt="avatar" 
-                    class="avatar"></a>
-                {% else %}
-            <a href="/private_office"><img src="{{ url_for('static', filename='avatars/default.png') }}" alt="default avatar"></a>
-                {% endif %}
+       <a href="/private_office">
+        <img alt="avatar" class="avatar" src="../static/avatars/ ~ current_user.avatar"/>
+       </a>
+       {% else %}
+       <a href="/private_office">
+        <img alt="default avatar" src="{{ url_for('static', filename='avatars/default.png') }}"/>
+       </a>
+       {% endif %}
             {%else%}
             {% if current_user.avatar %}
-            <a href="/user_reg"><img src="../static/avatars/ ~ current_user.avatar" 
-                alt="avatar" 
-                class="avatar"></a>
-            {% else %}
-        <a href="user_reg"><img src="{{ url_for('static', filename='avatars/default.png') }}" alt="default avatar"></a>
+       <a href="/user_reg">
+        <img alt="avatar" class="avatar" src="../static/avatars/ ~ current_user.avatar"/>
+       </a>
+       {% else %}
+       <a href="user_reg">
+        <img alt="default avatar" src="{{ url_for('static', filename='avatars/default.png') }}"/>
+       </a>
+       {% endif %}
             {% endif %}
-            {% endif %}
-              </label>
-              <input type="file" id="avatar-input" name="avatar" accept="image/*" style="display: none" onchange="document.getElementById('avatar-form').submit();" />
-          </form>
-              <h2>{{ current_user.name }} {{ current_user.surname }}</h2>
-              <p class="email">{{ current_user.email }}</p>
-              <div class="rating">
-                  <i class="fas fa-star"></i>
-                  <span>4.8</span>
-              </div>
-          </div>
-
-          <nav class="menu">
-              <a href="/index" class="active"><i class="fas fa-home"></i> Главная</a>
-              <a href="/favorit"><i class="fas fa-route"></i> Мои маршруты</a>
-              <a href="/logout"><i class="fas fa-sign-out-alt"></i> Выход</a>
-          </nav>
-
-          <div class="promo-banner">
-              <h3>Премиум доступ</h3>
-              <p>Откройте все возможности сервиса</p>
-              <button class="btn-premium">Активировать</button>
-          </div>
-      </aside>
-
-
-  <section class="hero">
-    <h1>Исследуй мир по вкусу и культуре</h1>
-    <p>Выберите культурный или гастрономический маршрут — и отправляйтесь в путь уже сегодня!</p>
-    <button class="yakor-button"><a class="yakor" href="#choose">Начать путешествиe</a></button>
-  </section>
-
-  <section class="routes">
+      </label>
+      <input accept="image/*" id="avatar-input" name="avatar" onchange="document.getElementById('avatar-form').submit();" style="display: none" type="file"/>
+     </form>
+     <h2 data-i18n="_current_username___current_usersurname_">
+      {{ current_user.name }} {{ current_user.surname }}
+     </h2>
+     <p class="email" data-i18n="_current_useremail_">
+      {{ current_user.email }}
+     </p>
+     <div class="rating">
+      <i class="fas fa-star">
+      </i>
+      <span data-i18n="48">
+       4.8
+      </span>
+     </div>
+    </div>
+    <nav class="menu">
+     <a class="active" href="/index">
+      <i class="fas fa-home">
+      </i>
+      Главная
+     </a>
+     <a href="/favorit">
+      <i class="fas fa-route">
+      </i>
+      Мои маршруты
+     </a>
+     <a href="/logout">
+      <i class="fas fa-sign-out-alt">
+      </i>
+      Выход
+     </a>
+    </nav>
+    <div class="promo-banner">
+     <h3 data-i18n="_">
+      Премиум доступ
+     </h3>
+     <p data-i18n="___">
+      Откройте все возможности сервиса
+     </p>
+     <button class="btn-premium" data-i18n="">
+      Активировать
+     </button>
+    </div>
+   </aside>
+   <section class="hero">
+    <h1 data-i18n="_____">
+     Исследуй мир по вкусу и культуре
+    </h1>
+    <p data-i18n="___________">
+     Выберите культурный или гастрономический маршрут — и отправляйтесь в путь уже сегодня!
+    </p>
+    <button class="yakor-button" data-i18n="_e">
+     <a class="yakor" data-i18n="_e" href="#choose">
+      Начать путешествиe
+     </a>
+    </button>
+   </section>
+   <section class="routes">
     <div class="route-option">
-      <a href="/gastronom" style="text-decoration: none; color:black">
-      <img src="../static/img/gastronom.jpeg" alt="Гастрономический маршрут">
+     <a href="/gastronom" style="text-decoration: none; color:black">
+      <img alt="Гастрономический маршрут" src="../static/img/gastronom.jpeg"/>
       <div class="info">
-        <h3>🍽️ Гастрономический</h3>
-        <p>Открой местные вкусы и традиции</p>
+       <h3 data-i18n="_">
+        🍽️ Гастрономический
+       </h3>
+       <p data-i18n="____">
+        Открой местные вкусы и традиции
+       </p>
       </div>
-    </a>
+     </a>
     </div>
     <div class="route-option" id="choose">
-      <a href="/cultural_routes" style="text-decoration: none; color:black">
-      <img src="../static/img/culture.jpg" alt="Культурный маршрут">
+     <a href="/cultural_routes" style="text-decoration: none; color:black">
+      <img alt="Культурный маршрут" src="../static/img/culture.jpg"/>
       <div class="info">
-        <h3>🏛️ Культурный</h3>
-        <p>Погрузись в историю и искусство</p>
+       <h3 data-i18n="_">
+        🏛️ Культурный
+       </h3>
+       <p data-i18n="____">
+        Погрузись в историю и искусство
+       </p>
       </div>
-    </a>
+     </a>
     </div>
-  </section>
-
-  <section class="popular-routes">
+   </section>
+   <section class="popular-routes">
     <div class="popular-routes_scroll">
-    <h2>Популярные маршруты</h2>
-    <div class="popular-scroll" id="popular-scroll-id">
+     <h2 data-i18n="_">
+      Популярные маршруты
+     </h2>
+     <div class="popular-scroll" id="popular-scroll-id">
       <div class="popular-card">
-        <img src="../static/img/route1.jpg" alt="Route 1">
-        <div class="info">
-          <h4>Горы Алматы</h4>
-          <p>Невероятные виды и чистый воздух</p>
-        </div>
+       <img alt="Route 1" src="../static/img/route1.jpg"/>
+       <div class="info">
+        <h4 data-i18n="_">
+         Горы Алматы
+        </h4>
+        <p data-i18n="____">
+         Невероятные виды и чистый воздух
+        </p>
+       </div>
       </div>
       <div class="popular-card">
-        <img src="../static/img/route2.jpg" alt="Route 2">
-        <div class="info">
-          <h4>Старый город</h4>
-          <p>Исторические улочки и архитектура</p>
-        </div>
+       <img alt="Route 2" src="../static/img/route2.jpg"/>
+       <div class="info">
+        <h4 data-i18n="_">
+         Старый город
+        </h4>
+        <p data-i18n="___">
+         Исторические улочки и архитектура
+        </p>
+       </div>
       </div>
       <div class="popular-card">
-        <img src="../static/img/route3.jpg" alt="Route 3">
-        <div class="info">
-          <h4>Фермерский рынок</h4>
-          <p>Свежие продукты и местная кухня</p>
-        </div>
-      </div> 
+       <img alt="Route 3" src="../static/img/route3.jpg"/>
+       <div class="info">
+        <h4 data-i18n="_">
+         Фермерский рынок
+        </h4>
+        <p data-i18n="____">
+         Свежие продукты и местная кухня
+        </p>
+       </div>
+      </div>
+     </div>
     </div>
-</div>
-  </section>
-
-  <footer>
+   </section>
+   <footer>
     <div class="call_us">
-      Call us<br>
-      <a href="tel:+77477840876" class="call_us_num" target="_blank">+7-(747)-784-08-76</a><br>
-      <a href="mailto:max.enileyev@gmail.com" class="call_us_email" target="_blank">Email</a><br>
-      <a href="https://yandex.kz/maps/ru/org/1107720387/?ll=76.900379%2C43.242069&z=16.19"
-      target="_blank" class='call_us_adr' >Жарокова 24</a>
+     Call us
+     <br/>
+     <a class="call_us_num" data-i18n="77477840876" href="tel:+77477840876" target="_blank">
+      +7-(747)-784-08-76
+     </a>
+     <br/>
+     <a class="call_us_email" data-i18n="email" href="mailto:max.enileyev@gmail.com" target="_blank">
+      Email
+     </a>
+     <br/>
+     <a class="call_us_adr" data-i18n="_24" href="https://yandex.kz/maps/ru/org/1107720387/?ll=76.900379%2C43.242069&amp;z=16.19" target="_blank">
+      Жарокова 24
+     </a>
     </div>
-    
-    <div class='social_icons'>
-      <a href="https://www.instagram.com/maxigic/?next=%2F" target="_blank">
-      <img src="../static/img/inst_icon.png" 
-      style="width:60px; "></a>
-      <a href="https://t.me/almaways" target="_blank">
-        <img src="../static/img/telegram_icon.png" 
-        style="width:60px; "></a>
-      <a href="https://www.youtube.com/@Almaways" target="_blank">
-        <img src="../static/img/youtube_icon.png" 
-        style="width:60px; "></a>
-      <a href="https://www.tiktok.com/@almaways" target="_blank">
-        <img src="../static/img/tiktok_icons.png" 
-        style="width:60px; "></a>
+    <div class="social_icons">
+     <a href="https://www.instagram.com/maxigic/?next=%2F" target="_blank">
+      <img src="../static/img/inst_icon.png" style="width:60px; "/>
+     </a>
+     <a href="https://t.me/almaways" target="_blank">
+      <img src="../static/img/telegram_icon.png" style="width:60px; "/>
+     </a>
+     <a href="https://www.youtube.com/@Almaways" target="_blank">
+      <img src="../static/img/youtube_icon.png" style="width:60px; "/>
+     </a>
+     <a href="https://www.tiktok.com/@almaways" target="_blank">
+      <img src="../static/img/tiktok_icons.png" style="width:60px; "/>
+     </a>
     </div>
-  </footer>
-  <script>
+   </footer>
+   <script>
     document.addEventListener('DOMContentLoaded', () => {
     const scrollContainer = document.getElementById('popular-scroll-id');
     const isMobile = window.innerWidth < 768;
@@ -759,17 +820,18 @@
       });
     }
   });
-  </script>  
-</body>
+   </script>
+  </div>
+ </body>
 </html>
 <script>
-  function toggleMenu() {
+ function toggleMenu() {
 const mobileMenu = document.querySelector('.nav-mobile');
 mobileMenu.classList.toggle('active');
 }
 </script>
 <script>
-  function toggleMenu() {
+ function toggleMenu() {
     const mobileMenu = document.querySelector('.nav-mobile');
     const burger = document.querySelector('.burger');
     mobileMenu.classList.toggle('active');
@@ -777,7 +839,7 @@ mobileMenu.classList.toggle('active');
   }
 </script>
 <script>
-  function toggleMenu() {
+ function toggleMenu() {
     const mobileMenu = document.querySelector('.nav-mobile');
     const burger = document.querySelector('.burger');
     mobileMenu.classList.toggle('active');
@@ -804,7 +866,7 @@ mobileMenu.classList.toggle('active');
   }
 </script>
 <script>
-  // Добавляем функцию для управления поиском
+ // Добавляем функцию для управления поиском
   function toggleMobileSearch() {
     const searchMobile = document.querySelector('.nav-mobile .search-mobile');
     searchMobile.classList.toggle('active');
@@ -826,7 +888,7 @@ mobileMenu.classList.toggle('active');
   });
 </script>
 <script>
-  function toggleMenu() {
+ function toggleMenu() {
     const mobileMenu = document.querySelector('.nav-mobile');
     const burger = document.querySelector('.burger');
     const overlay = document.querySelector('.mobile-menu-overlay');
@@ -865,15 +927,8 @@ mobileMenu.classList.toggle('active');
     link.addEventListener('click', closeMenu);
   });
 </script>
-
-
-
-
-<script >
-
-
-
-  document.addEventListener('DOMContentLoaded', function() {
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
 // Инициализация прогресс-бара
 initProgressBar();
 
@@ -1087,5 +1142,3 @@ overlay.addEventListener('click', () => {
 // ... остальные обработчики
 }
 </script>
-</body>
-</html>

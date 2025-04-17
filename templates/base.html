@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-</head>
-<body>
-    {% block content %}{% endblock %}
-
-    <!-- Подключение скриптов -->
-    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-</body>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title data-i18n="_block_title__endblock_">
+   {% block title %}{% endblock %}
+  </title>
+  <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet"/>
+ </head>
+ <body>
+  {% block content %}{% endblock %}
+  <!-- Подключение скриптов -->
+  <script src="{{ url_for('static', filename='js/scripts.js') }}">
+  </script>
+ </body>
 </html>

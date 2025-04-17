@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Регистрация</title>
-    <style>
-        body {
+ <head>
+  <title data-i18n="">
+   Регистрация
+  </title>
+  <script src="/static/js/translate.js" defer></script>
+  <style>
+   body {
             display:flex;
             justify-content: center;
             align-items: center;
@@ -156,50 +159,67 @@
         .toggle-password:hover {
             color: #1a73a8;
         }
-       
-    </style>
-</head>
-<body>
-  <form class ="form" method="POST" action="/reg_form">
-    <h1 class="form_title">Registration</h1>
-      <div class="form_group">
-        <input class="form_input" placeholder="" name="emailInput" id="emailInput" required>
-        <label class="form_label">Email</label>
-        {% if error %}
-        <p style="color: red;">{{ error }}</p>
-      </div>
-      {% endif %}
-    <div class="form_group">
-      <input class="form_input" placeholder="" name="phone_num" id="phone_num" required>
-      <label class="form_label">Phone number</label>
-    </div>
-    <div class="form_group">
-      <input class="form_input" type="password" placeholder="" name="passwordInput" id="passwordInput" required>
-      <label class="form_label">Password</label>
-      <button type="button" class="toggle-password" onclick="togglePassword()">👁️</button>
-    </div>
-    <div class="form_group">
-      <input class="form_input" placeholder="" name="nameInput" id="nameInput" required>
-      <label class="form_label">Name</label>
-    </div>
-    <div class="form_group">
-      <input class="form_input" placeholder="" name="surnameInput" id="surnameInput" required>
-      <label class="form_label">Surname</label>
-    </div>
-    <a href="{{ url_for('login_google') }}" class="google-login-btn">
-      <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo">
-      Войти через Google
-    </a>
-  
-    <button class="form_button">Continue</button>
-    <a class="back" href="/user_login">Login</a>
+  </style>
+ </head>
+ <body>
+  <form action="/reg_form" class="form" method="POST">
+   <h1 class="form_title" data-i18n="registration">
+    Registration
+   </h1>
+   <div class="form_group">
+    <input class="form_input" id="emailInput" name="emailInput" placeholder="" required=""/>
+    <label class="form_label" data-i18n="email">
+     Email
+    </label>
+    {% if error %}
+    <p data-i18n="_error_" style="color: red;">
+     {{ error }}
+    </p>
+   </div>
+   {% endif %}
+   <div class="form_group">
+    <input class="form_input" id="phone_num" name="phone_num" placeholder="" required=""/>
+    <label class="form_label" data-i18n="phone_number">
+     Phone number
+    </label>
+   </div>
+   <div class="form_group">
+    <input class="form_input" id="passwordInput" name="passwordInput" placeholder="" required="" type="password"/>
+    <label class="form_label" data-i18n="password">
+     Password
+    </label>
+    <button class="toggle-password" data-i18n="" onclick="togglePassword()" type="button">
+     👁️
+    </button>
+   </div>
+   <div class="form_group">
+    <input class="form_input" id="nameInput" name="nameInput" placeholder="" required=""/>
+    <label class="form_label" data-i18n="name">
+     Name
+    </label>
+   </div>
+   <div class="form_group">
+    <input class="form_input" id="surnameInput" name="surnameInput" placeholder="" required=""/>
+    <label class="form_label" data-i18n="surname">
+     Surname
+    </label>
+   </div>
+   <a class="google-login-btn" href="{{ url_for('login_google') }}">
+    <img alt="Google Logo" src="https://developers.google.com/identity/images/g-logo.png"/>
+    Войти через Google
+   </a>
+   <button class="form_button" data-i18n="continue">
+    Continue
+   </button>
+   <a class="back" data-i18n="login" href="/user_login">
+    Login
+   </a>
   </form>
-
   <script>
-    function togglePassword() {
+   function togglePassword() {
       const passField = document.getElementById("passwordInput");
       passField.type = (passField.type === "password") ? "text" : "password";
     }
   </script>
-</body>
+ </body>
 </html>

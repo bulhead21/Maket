@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://kit.fontawesome.com/3d0e27e432.js" crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <script src="https://cdn.tailwindcss.com"></script>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <script crossorigin="anonymous" src="https://kit.fontawesome.com/3d0e27e432.js">
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
   <script>
-    tailwind.config = {
+   tailwind.config = {
       theme: {
         extend: {
           colors: {
@@ -52,10 +55,10 @@
       }
     }
   </script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.min.css" rel="stylesheet"/>
   <style>
-    html {
+   html {
       scroll-behavior: smooth;
     }
     * {
@@ -1501,261 +1504,367 @@
         display: block;
         opacity: 1;
       }
-    
-
   </style>
-
-  <title>Digital.kz</title>
-</head>
-
-<body>
-    
+  <title data-i18n="digitalkz">
+   Digital.kz
+  </title>
+ </head>
+ <body>
   <div class="dashboard-container">
-    <header>
-      <div class="mobile-header">
-        <div class="burger-menu" id="burger-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
-       <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="mobile-logo"> 
+   <header>
+    <div class="mobile-header">
+     <div class="burger-menu" id="burger-menu">
+      <span>
+      </span>
+      <span>
+      </span>
+      <span>
+      </span>
+     </div>
+     <img alt="Logo" class="mobile-logo" src="{{ url_for('static', filename='img/logo.png') }}"/>
     </div>
-    </header>
-      <!-- Боковая панель -->
-      <aside class="sidebar"  id="sidebar">
-          <div class="profile-card">
-            <form id="avatar-form" action="/upload_avatar" method="POST" enctype="multipart/form-data">
-              <label for="avatar-input">
-            {% if current_user.is_authenticated %}
+   </header>
+   <!-- Боковая панель -->
+   <aside class="sidebar" id="sidebar">
+    <div class="profile-card">
+     <form action="/upload_avatar" enctype="multipart/form-data" id="avatar-form" method="POST">
+      <label for="avatar-input">
+       {% if current_user.is_authenticated %}
                 {% if current_user.avatar %}
-                <a href="/private_office"><img src="../static/avatars/ ~ current_user.avatar" 
-                    alt="avatar" 
-                    class="avatar"></a>
-                {% else %}
-            <a href="/private_office"><img src="{{ url_for('static', filename='avatars/default.png') }}" alt="default avatar"></a>
-                {% endif %}
+       <a href="/private_office">
+        <img alt="avatar" class="avatar" src="../static/avatars/ ~ current_user.avatar"/>
+       </a>
+       {% else %}
+       <a href="/private_office">
+        <img alt="default avatar" src="{{ url_for('static', filename='avatars/default.png') }}"/>
+       </a>
+       {% endif %}
             {%else%}
             {% if current_user.avatar %}
-            <a href="/user_reg"><img src="../static/avatars/ ~ current_user.avatar" 
-                alt="avatar" 
-                class="avatar"></a>
-            {% else %}
-        <a href="user_reg"><img src="{{ url_for('static', filename='avatars/default.png') }}" alt="default avatar"></a>
+       <a href="/user_reg">
+        <img alt="avatar" class="avatar" src="../static/avatars/ ~ current_user.avatar"/>
+       </a>
+       {% else %}
+       <a href="user_reg">
+        <img alt="default avatar" src="{{ url_for('static', filename='avatars/default.png') }}"/>
+       </a>
+       {% endif %}
             {% endif %}
-            {% endif %}
-              </label>
-              <input type="file" id="avatar-input" name="avatar" accept="image/*" style="display: none" onchange="document.getElementById('avatar-form').submit();" />
-          </form>
-              <h2>{{ current_user.name }} {{ current_user.surname }}</h2>
-              <p class="email">{{ current_user.email }}</p>
-              <div class="rating">
-                  <i class="fas fa-star"></i>
-                  <span>4.8</span>
-              </div>
-          </div>
-
-          <script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
-          <nav class="menu">
-            <a href="/index"><i class="fas fa-home"></i> Главная</a>
-            <a href="/favourites"><i class="fas fa-route"></i> Мои маршруты</a>
-            <a href="/logout"><i class="fas fa-sign-out-alt"></i> Выход</a>
-          </nav>
-
-  
-          <div class="promo-banner">
-              <h3>Премиум доступ</h3>
-              <p>Откройте все возможности сервиса</p>
-              <button class="btn-premium">Активировать</button>
-          </div>
-      </aside>
-
-
-      <div class="menu-overlay" id="menu-overlay"></div>
-
-      <!-- Hero Section -->
-      <section class="hero">
-        <h1 class="animate-fade-in-up">Откройте для себя скрытые жемчужины Казахстана</h1>
-        <p class="animate-fade-in-up delay-1">Исследуйте потрясающие пейзажи, богатую культуру и незабываемые приключения</p>
-        <button class="yakor-button animate-fade-in-up delay-2"><a class="yakor" href="#choose">Начать путешествие</a></button>
-      </section>
-    
-      <!-- Route Options -->
-      <section class="routes">
-        <div class="route-option animate-fade-in-up delay-1">
-          <a href="/gastronom" style="text-decoration: none; color:inherit">
-            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Gastronomic Route">
-            <div class="info">
-              <h3>🍽️ Гастрономическое путешествие</h3>
-              <p>Попробуйте истинный вкус казахстанской кухни</p>
-            </div>
-          </a>
-        </div>
-        
-        <div class="route-option animate-fade-in-up delay-2" id="choose">
-          <a href="/cultural_routes" style="text-decoration: none; color:inherit">
-            <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Cultural Route">
-            <div class="info">
-              <h3>🏛️ Культурное погружение</h3>
-              <p>Погрузитесь в многовековое наследие Казахстана</p>
-            </div>
-          </a>
-        </div>
-        
-        <div class="route-option animate-fade-in-up delay-3">
-          <a href="#" style="text-decoration: none; color:inherit">
-            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Adventure Route">
-            <div class="info">
-              <h3>⛰️ Тропы приключений</h3>
-              <p>Испытайте мощь дикой природы Казахстана</p>
-            </div>
-          </a>
-        </div>
-      </section>
-    
-      <!-- Popular Routes -->
-      <section class="popular-routes">
-        <h2>Популярные Маршруты</h2>
-        <div class="popular-scroll">
-            {% for item in popular_routes %}
-            <div class="popular-card">
-                <img src="{{ item.image_url or url_for('static', filename='img/default_route.jpg') }}" 
-                     alt="{{ item.title }}">
-                <div class="info">
-                    <h4>{{ item.title }}</h4>
-                    <p>{{ item.description|truncate(60) }}</p>
-                    <div class="popularity-badge">
-                        ★ {{ "%.1f"|format(item.popularity * 50) }}%
-                    </div>
-                </div>
-            </div>
-            {% else %}
-            <p>Популярные маршруты появятся позже</p>
-            {% endfor %}
-        </div>
-    </section>
-<!-- Testimonials Section -->
-<section class="testimonials" id="testimonials">
-  <h2 class="section-title">Traveler Stories</h2>
-  
-  <div class="testimonial-slider">
-    <div class="testimonial-slide active">
-      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson" class="testimonial-avatar">
-      <p class="testimonial-quote">The mountain adventure route was absolutely breathtaking. Our guide was knowledgeable and made sure we had an unforgettable experience. Can't wait to come back!</p>
-      <h5 class="testimonial-author">Sarah Johnson</h5>
-      <p class="testimonial-role">Adventure Traveler from Canada</p>
+      </label>
+      <input accept="image/*" id="avatar-input" name="avatar" onchange="document.getElementById('avatar-form').submit();" style="display: none" type="file"/>
+     </form>
+     <h2 data-i18n="_current_username___current_usersurname_">
+      {{ current_user.name }} {{ current_user.surname }}
+     </h2>
+     <p class="email" data-i18n="_current_useremail_">
+      {{ current_user.email }}
+     </p>
+     <div class="rating">
+      <i class="fas fa-star">
+      </i>
+      <span data-i18n="48">
+       4.8
+      </span>
+     </div>
     </div>
-    
-    <div class="testimonial-slide">
-      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" class="testimonial-avatar">
-      <p class="testimonial-quote">As a solo traveler, I felt completely safe and well taken care of. The cultural discovery tour gave me deep insights into Kazakhstan's rich history.</p>
-      <h5 class="testimonial-author">Michael Chen</h5>
-      <p class="testimonial-role">Photographer from Singapore</p>
+    <script src="https://cdn.lordicon.com/lordicon-1.1.0.js">
+    </script>
+    <nav class="menu">
+     <a href="/index">
+      <i class="fas fa-home">
+      </i>
+      Главная
+     </a>
+     <a href="/favourites">
+      <i class="fas fa-route">
+      </i>
+      Мои маршруты
+     </a>
+     <a href="/logout">
+      <i class="fas fa-sign-out-alt">
+      </i>
+      Выход
+     </a>
+    </nav>
+    <div class="promo-banner">
+     <h3 data-i18n="_">
+      Премиум доступ
+     </h3>
+     <p data-i18n="___">
+      Откройте все возможности сервиса
+     </p>
+     <button class="btn-premium" data-i18n="">
+      Активировать
+     </button>
     </div>
-    
-    <div class="testimonial-slide">
-      <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Elena Petrova" class="testimonial-avatar">
-      <p class="testimonial-quote">The desert expedition was unlike anything I've experienced before. The landscapes were surreal and our guides were incredibly passionate about the region.</p>
-      <h5 class="testimonial-author">Elena Petrova</h5>
-      <p class="testimonial-role">Travel Blogger from Russia</p>
+   </aside>
+   <div class="menu-overlay" id="menu-overlay">
+   </div>
+   <!-- Hero Section -->
+   <section class="hero">
+    <h1 class="animate-fade-in-up" data-i18n="_____">
+     Откройте для себя скрытые жемчужины Казахстана
+    </h1>
+    <p class="animate-fade-in-up delay-1" data-i18n="_______">
+     Исследуйте потрясающие пейзажи, богатую культуру и незабываемые приключения
+    </p>
+    <button class="yakor-button animate-fade-in-up delay-2" data-i18n="_">
+     <a class="yakor" data-i18n="_" href="#choose">
+      Начать путешествие
+     </a>
+    </button>
+   </section>
+   <!-- Route Options -->
+   <section class="routes">
+    <div class="route-option animate-fade-in-up delay-1">
+     <a href="/gastronom" style="text-decoration: none; color:inherit">
+      <img alt="Gastronomic Route" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=2070&amp;q=80"/>
+      <div class="info">
+       <h3 data-i18n="__">
+        🍽️ Гастрономическое путешествие
+       </h3>
+       <p data-i18n="____">
+        Попробуйте истинный вкус казахстанской кухни
+       </p>
+      </div>
+     </a>
     </div>
-    
-    <div class="testimonial-nav">
-      <div class="testimonial-dot active" data-slide="0"></div>
-      <div class="testimonial-dot" data-slide="1"></div>
-      <div class="testimonial-dot" data-slide="2"></div>
+    <div class="route-option animate-fade-in-up delay-2" id="choose">
+     <a href="/cultural_routes" style="text-decoration: none; color:inherit">
+      <img alt="Cultural Route" src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=2070&amp;q=80"/>
+      <div class="info">
+       <h3 data-i18n="__">
+        🏛️ Культурное погружение
+       </h3>
+       <p data-i18n="____">
+        Погрузитесь в многовековое наследие Казахстана
+       </p>
+      </div>
+     </a>
     </div>
-  </div>
-</section>
-
-<!-- Newsletter Section -->
-<section class="newsletter" id="contact">
-  <h2 class="section-title">Stay Updated</h2>
-  <p class="mb-8 max-w-2xl mx-auto">Subscribe to our newsletter to receive updates on new routes, special offers, and travel tips for exploring Kazakhstan.</p>
-  
-  <form class="newsletter-form">
-    <input type="email" placeholder="Your email address" class="newsletter-input" required>
-    <button type="submit" class="newsletter-button">Subscribe</button>
-  </form>
-</section>
-
-
-  <div class="relative bg-gradient-to-r from-green-600 to-emerald-500 text-white pt-16 pb-10 overflow-hidden">
+    <div class="route-option animate-fade-in-up delay-3">
+     <a href="#" style="text-decoration: none; color:inherit">
+      <img alt="Adventure Route" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=2070&amp;q=80"/>
+      <div class="info">
+       <h3 data-i18n="__">
+        ⛰️ Тропы приключений
+       </h3>
+       <p data-i18n="____">
+        Испытайте мощь дикой природы Казахстана
+       </p>
+      </div>
+     </a>
+    </div>
+   </section>
+   <!-- Popular Routes -->
+   <section class="popular-routes">
+    <h2 data-i18n="_">
+     Популярные Маршруты
+    </h2>
+    <div class="popular-scroll">
+     {% for item in popular_routes %}
+     <div class="popular-card">
+      <img alt="{{ item.title }}" src="{{ item.image_url or url_for('static', filename='img/default_route.jpg') }}"/>
+      <div class="info">
+       <h4 data-i18n="_itemtitle_">
+        {{ item.title }}
+       </h4>
+       <p data-i18n="_itemdescriptiontruncate60_">
+        {{ item.description|truncate(60) }}
+       </p>
+       <div class="popularity-badge" data-i18n="__1fformatitempopularity__50_">
+        ★ {{ "%.1f"|format(item.popularity * 50) }}%
+       </div>
+      </div>
+     </div>
+     {% else %}
+     <p data-i18n="___">
+      Популярные маршруты появятся позже
+     </p>
+     {% endfor %}
+    </div>
+   </section>
+   <!-- Testimonials Section -->
+   <section class="testimonials" id="testimonials">
+    <h2 class="section-title" data-i18n="traveler_stories">
+     Traveler Stories
+    </h2>
+    <div class="testimonial-slider">
+     <div class="testimonial-slide active">
+      <img alt="Sarah Johnson" class="testimonial-avatar" src="https://randomuser.me/api/portraits/women/44.jpg"/>
+      <p class="testimonial-quote" data-i18n="the_mountain_adventure_route_was_absolutely_breath">
+       The mountain adventure route was absolutely breathtaking. Our guide was knowledgeable and made sure we had an unforgettable experience. Can't wait to come back!
+      </p>
+      <h5 class="testimonial-author" data-i18n="sarah_johnson">
+       Sarah Johnson
+      </h5>
+      <p class="testimonial-role" data-i18n="adventure_traveler_from_canada">
+       Adventure Traveler from Canada
+      </p>
+     </div>
+     <div class="testimonial-slide">
+      <img alt="Michael Chen" class="testimonial-avatar" src="https://randomuser.me/api/portraits/men/32.jpg"/>
+      <p class="testimonial-quote" data-i18n="as_a_solo_traveler_i_felt_completely_safe_and_well">
+       As a solo traveler, I felt completely safe and well taken care of. The cultural discovery tour gave me deep insights into Kazakhstan's rich history.
+      </p>
+      <h5 class="testimonial-author" data-i18n="michael_chen">
+       Michael Chen
+      </h5>
+      <p class="testimonial-role" data-i18n="photographer_from_singapore">
+       Photographer from Singapore
+      </p>
+     </div>
+     <div class="testimonial-slide">
+      <img alt="Elena Petrova" class="testimonial-avatar" src="https://randomuser.me/api/portraits/women/68.jpg"/>
+      <p class="testimonial-quote" data-i18n="the_desert_expedition_was_unlike_anything_ive_expe">
+       The desert expedition was unlike anything I've experienced before. The landscapes were surreal and our guides were incredibly passionate about the region.
+      </p>
+      <h5 class="testimonial-author" data-i18n="elena_petrova">
+       Elena Petrova
+      </h5>
+      <p class="testimonial-role" data-i18n="travel_blogger_from_russia">
+       Travel Blogger from Russia
+      </p>
+     </div>
+     <div class="testimonial-nav">
+      <div class="testimonial-dot active" data-slide="0">
+      </div>
+      <div class="testimonial-dot" data-slide="1">
+      </div>
+      <div class="testimonial-dot" data-slide="2">
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- Newsletter Section -->
+   <section class="newsletter" id="contact">
+    <h2 class="section-title" data-i18n="stay_updated">
+     Stay Updated
+    </h2>
+    <p class="mb-8 max-w-2xl mx-auto" data-i18n="subscribe_to_our_newsletter_to_receive_updates_on_">
+     Subscribe to our newsletter to receive updates on new routes, special offers, and travel tips for exploring Kazakhstan.
+    </p>
+    <form class="newsletter-form">
+     <input class="newsletter-input" placeholder="Your email address" required="" type="email"/>
+     <button class="newsletter-button" data-i18n="subscribe" type="submit">
+      Subscribe
+     </button>
+    </form>
+   </section>
+   <div class="relative bg-gradient-to-r from-green-600 to-emerald-500 text-white pt-16 pb-10 overflow-hidden">
     <!-- Wave shape divider - improved version -->
     <div class="footer-wave">
-        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
-            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
-            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
-        </svg>
+     <svg data-name="Layer 1" preserveaspectratio="none" viewbox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
+      <path class="shape-fill" d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25">
+      </path>
+      <path class="shape-fill" d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5">
+      </path>
+      <path class="shape-fill" d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z">
+      </path>
+     </svg>
     </div>
-    
     <div class="container mx-auto px-4 footer-content">
-        <div class="flex flex-col md:flex-row justify-between items-center md:items-start">
-            <!-- Contact Info -->
-            <div class="mb-8 md:mb-0 text-center md:text-left">
-                <h3 class="text-2xl font-bold mb-4 flex items-center justify-center md:justify-start">
-                    <i class="fas fa-phone-alt mr-2"></i> Contact Us
-                </h3>
-                <div class="space-y-2">
-                    <p class="flex items-center justify-center md:justify-start">
-                        <i class="fas fa-phone mr-2"></i>
-                        <a href="tel:+77477840876" class="hover:text-green-200 transition quick-link">+7 (747) 784-08-76</a>
-                    </p>
-                    <p class="flex items-center justify-center md:justify-start">
-                        <i class="fas fa-envelope mr-2"></i>
-                        <a href="mailto:max.enileyev@gmail.com" class="hover:text-green-200 transition quick-link">max.enileyev@gmail.com</a>
-                    </p>
-                    <p class="flex items-center justify-center md:justify-start">
-                        <i class="fas fa-map-marker-alt mr-2"></i>
-                        <a href="https://yandex.kz/maps/ru/org/1107720387/" target="_blank" class="hover:text-green-200 transition quick-link">Zharkova 24, Almaty</a>
-                    </p>
-                </div>
-            </div>
-            
-            <!-- Social Media -->
-            <div class="mb-8 md:mb-0">
-                <h3 class="text-2xl font-bold mb-4 text-center">Follow Us</h3>
-                <div class="flex space-x-4 justify-center">
-                    <a href="https://www.instagram.com/maxigic/" target="_blank" class="social-icon">
-                        <i class="fab fa-instagram text-xl hover:text-pink-400 transition"></i>
-                    </a>
-                    <a href="https://t.me/almaways" target="_blank" class="social-icon">
-                        <i class="fab fa-telegram text-xl hover:text-blue-400 transition"></i>
-                    </a>
-                    <a href="https://www.youtube.com/@Almaways" target="_blank" class="social-icon">
-                        <i class="fab fa-youtube text-xl hover:text-red-500 transition"></i>
-                    </a>
-                    <a href="https://www.tiktok.com/@almaways" target="_blank" class="social-icon">
-                        <i class="fab fa-tiktok text-xl hover:text-black transition"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Quick Links -->
-            <div class="text-center md:text-left">
-                <h3 class="text-2xl font-bold mb-4">Quick Links</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-green-200 transition quick-link">Home</a></li>
-                    <li><a href="#" class="hover:text-green-200 transition quick-link">About Us</a></li>
-                    <li><a href="#" class="hover:text-green-200 transition quick-link">Services</a></li>
-                    <li><a href="#" class="hover:text-green-200 transition quick-link">Contact</a></li>
-                </ul>
-            </div>
-
-            
-        </div>
-        
-        <!-- Copyright -->
-        <div class="border-t border-green-400 mt-10 pt-6 text-center">
-            <p>&copy; 2023 Almaways. All rights reserved.</p>
-            <p class="mt-2 text-sm text-green-200">Designed with <i class="fas fa-heart text-red-400"></i> for you</p>
-        </div>
+     <div class="flex flex-col md:flex-row justify-between items-center md:items-start">
+      <!-- Contact Info -->
+      <div class="mb-8 md:mb-0 text-center md:text-left">
+       <h3 class="text-2xl font-bold mb-4 flex items-center justify-center md:justify-start">
+        <i class="fas fa-phone-alt mr-2">
+        </i>
+        Contact Us
+       </h3>
+       <div class="space-y-2">
+        <p class="flex items-center justify-center md:justify-start">
+         <i class="fas fa-phone mr-2">
+         </i>
+         <a class="hover:text-green-200 transition quick-link" data-i18n="7_747_7840876" href="tel:+77477840876">
+          +7 (747) 784-08-76
+         </a>
+        </p>
+        <p class="flex items-center justify-center md:justify-start">
+         <i class="fas fa-envelope mr-2">
+         </i>
+         <a class="hover:text-green-200 transition quick-link" data-i18n="maxenileyevgmailcom" href="mailto:max.enileyev@gmail.com">
+          max.enileyev@gmail.com
+         </a>
+        </p>
+        <p class="flex items-center justify-center md:justify-start">
+         <i class="fas fa-map-marker-alt mr-2">
+         </i>
+         <a class="hover:text-green-200 transition quick-link" data-i18n="zharkova_24_almaty" href="https://yandex.kz/maps/ru/org/1107720387/" target="_blank">
+          Zharkova 24, Almaty
+         </a>
+        </p>
+       </div>
+      </div>
+      <!-- Social Media -->
+      <div class="mb-8 md:mb-0">
+       <h3 class="text-2xl font-bold mb-4 text-center" data-i18n="follow_us">
+        Follow Us
+       </h3>
+       <div class="flex space-x-4 justify-center">
+        <a class="social-icon" href="https://www.instagram.com/maxigic/" target="_blank">
+         <i class="fab fa-instagram text-xl hover:text-pink-400 transition">
+         </i>
+        </a>
+        <a class="social-icon" href="https://t.me/almaways" target="_blank">
+         <i class="fab fa-telegram text-xl hover:text-blue-400 transition">
+         </i>
+        </a>
+        <a class="social-icon" href="https://www.youtube.com/@Almaways" target="_blank">
+         <i class="fab fa-youtube text-xl hover:text-red-500 transition">
+         </i>
+        </a>
+        <a class="social-icon" href="https://www.tiktok.com/@almaways" target="_blank">
+         <i class="fab fa-tiktok text-xl hover:text-black transition">
+         </i>
+        </a>
+       </div>
+      </div>
+      <!-- Quick Links -->
+      <div class="text-center md:text-left">
+       <h3 class="text-2xl font-bold mb-4" data-i18n="quick_links">
+        Quick Links
+       </h3>
+       <ul class="space-y-2">
+        <li data-i18n="home">
+         <a class="hover:text-green-200 transition quick-link" data-i18n="home" href="#">
+          Home
+         </a>
+        </li>
+        <li data-i18n="about_us">
+         <a class="hover:text-green-200 transition quick-link" data-i18n="about_us" href="#">
+          About Us
+         </a>
+        </li>
+        <li data-i18n="services">
+         <a class="hover:text-green-200 transition quick-link" data-i18n="services" href="#">
+          Services
+         </a>
+        </li>
+        <li data-i18n="contact">
+         <a class="hover:text-green-200 transition quick-link" data-i18n="contact" href="#">
+          Contact
+         </a>
+        </li>
+       </ul>
+      </div>
+     </div>
+     <!-- Copyright -->
+     <div class="border-t border-green-400 mt-10 pt-6 text-center">
+      <p data-i18n="_2023_almaways_all_rights_reserved">
+       © 2023 Almaways. All rights reserved.
+      </p>
+      <p class="mt-2 text-sm text-green-200">
+       Designed with
+       <i class="fas fa-heart text-red-400">
+       </i>
+       for you
+      </p>
+     </div>
     </div>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
+   </div>
+   <script>
+    document.addEventListener('DOMContentLoaded', () => {
   const scrollContainer = document.getElementById('popular-scroll-id');
   const isMobile = window.innerWidth < 768;
 
@@ -1789,23 +1898,23 @@
     });
   }
 });
-</script>  
-<script>
-  function toggleMenu() {
+   </script>
+   <script>
+    function toggleMenu() {
 const mobileMenu = document.querySelector('.nav-mobile');
 mobileMenu.classList.toggle('active');
 }
-</script>
-<script>
-  function toggleMenu() {
+   </script>
+   <script>
+    function toggleMenu() {
     const mobileMenu = document.querySelector('.nav-mobile');
     const burger = document.querySelector('.burger');
     mobileMenu.classList.toggle('active');
     burger.classList.toggle('active');
   }
-</script>
-<script>
-  function toggleMenu() {
+   </script>
+   <script>
+    function toggleMenu() {
     const mobileMenu = document.querySelector('.nav-mobile');
     const burger = document.querySelector('.burger');
     mobileMenu.classList.toggle('active');
@@ -1830,9 +1939,9 @@ mobileMenu.classList.toggle('active');
       document.removeEventListener('click', closeMenuOnClickOutside);
     }
   }
-</script>
-<script>
-  // Добавляем функцию для управления поиском
+   </script>
+   <script>
+    // Добавляем функцию для управления поиском
   function toggleMobileSearch() {
     const searchMobile = document.querySelector('.nav-mobile .search-mobile');
     searchMobile.classList.toggle('active');
@@ -1852,9 +1961,9 @@ mobileMenu.classList.toggle('active');
       document.querySelector('.nav-mobile .search-mobile').classList.remove('active');
     }
   });
-</script>
-<script>
-  function toggleMenu() {
+   </script>
+   <script>
+    function toggleMenu() {
     const mobileMenu = document.querySelector('.nav-mobile');
     const burger = document.querySelector('.burger');
     const overlay = document.querySelector('.mobile-menu-overlay');
@@ -1892,13 +2001,9 @@ mobileMenu.classList.toggle('active');
   document.querySelectorAll('.nav-mobile a').forEach(link => {
     link.addEventListener('click', closeMenu);
   });
-</script>
-
-
-
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
+   </script>
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
 // Инициализация прогресс-бара
 initProgressBar();
 
@@ -2135,10 +2240,9 @@ setInterval(() => {
   let nextSlide = (currentSlide + 1) % testimonialSlides.length;
   showSlide(nextSlide);
 }, 5000);
-</script>
-
-<script>
-  // Testimonial slider
+   </script>
+   <script>
+    // Testimonial slider
   document.addEventListener('DOMContentLoaded', function() {
     const testimonialSlides = document.querySelectorAll('.testimonial-slide');
     const testimonialDots = document.querySelectorAll('.testimonial-dot');
@@ -2201,7 +2305,7 @@ setInterval(() => {
       });
     });
   });
-</script>
-
-</body>
+   </script>
+  </div>
+ </body>
 </html>

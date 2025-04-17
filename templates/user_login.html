@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Вход</title>
-    <style>
-        body {
+ <head>
+  <title data-i18n="">
+   Вход
+  </title>
+  <script src="/static/js/translate.js" defer></script>
+  <style>
+   body {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -166,35 +169,48 @@
             opacity: 0;
             animation: ani 0.5s forwards;
         }
-    </style>
-</head>
-<body>
-  <form class="form" method="POST" action="/login">
-    <h1 class="form_title">Log in</h1>
-    <div class="form_group">
-        <input class="form_input" placeholder="" id="emailInput" name="emailInput" required>
-        <label class="form_label">Email</label>
-    </div>  
-    <div class="form_group">
-        <input class="form_input" type="password" placeholder="" name="passwordInput" id="passwordInput" required>
-        <label class="form_label">Password</label>
-        <button type="button" class="toggle-password" onclick="togglePassword()">👁️</button>
-    </div>
-    <div class="remember-me">
-        <input type="checkbox" id="rememberMe" name="remember" value="1">
-        <label for="rememberMe">Запомнить меня</label>
-    </div>
-    <div class="buttons-container">
-        <button type="submit" class="form_button">Continue</button>
-        <a class="reg" href="/user_reg">Registration</a>
-    </div>
+  </style>
+ </head>
+ <body>
+  <form action="/login" class="form" method="POST">
+   <h1 class="form_title" data-i18n="log_in">
+    Log in
+   </h1>
+   <div class="form_group">
+    <input class="form_input" id="emailInput" name="emailInput" placeholder="" required=""/>
+    <label class="form_label" data-i18n="email">
+     Email
+    </label>
+   </div>
+   <div class="form_group">
+    <input class="form_input" id="passwordInput" name="passwordInput" placeholder="" required="" type="password"/>
+    <label class="form_label" data-i18n="password">
+     Password
+    </label>
+    <button class="toggle-password" data-i18n="" onclick="togglePassword()" type="button">
+     👁️
+    </button>
+   </div>
+   <div class="remember-me">
+    <input id="rememberMe" name="remember" type="checkbox" value="1"/>
+    <label data-i18n="_" for="rememberMe">
+     Запомнить меня
+    </label>
+   </div>
+   <div class="buttons-container">
+    <button class="form_button" data-i18n="continue" type="submit">
+     Continue
+    </button>
+    <a class="reg" data-i18n="registration" href="/user_reg">
+     Registration
+    </a>
+   </div>
   </form>
-
   <script>
-    function togglePassword() {
+   function togglePassword() {
       const passField = document.getElementById("passwordInput");
       passField.type = passField.type === "password" ? "text" : "password";
     }
   </script>
-</body>
+ </body>
 </html>

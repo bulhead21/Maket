@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Уличная еда Алматы</title>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title data-i18n="__">
+   Уличная еда Алматы
+  </title>
+  <script src="/static/js/translate.js" defer></script>
   <style>
-      *:focus:not(:focus-visible) {
+   *:focus:not(:focus-visible) {
     outline: none;
   }
     html {
@@ -195,72 +198,102 @@
     background-color: #9E9E9E; /* Серый */
     cursor: default;
 }
-
   </style>
-</head>
-<body>
+ </head>
+ <body>
   <header>
-    <button class="header-button"><a class='a_but' href="#map">Маршрут на карте</a></button>
+   <button class="header-button" data-i18n="__">
+    <a class="a_but" data-i18n="__" href="#map">
+     Маршрут на карте
+    </a>
+   </button>
   </header>
-
   <div class="container">
-    <a href="javascript:history.back()" style="font-size: 28px;">←</a>
-    <h1>О маршруте</h1>
-    
-    <p>Путь знаний и культуры: от старейших учебных заведений до книжных сокровищ.</p>
-    <div class="icons">
-      <div>☕ Еда</div>
-      <div>🧶 Пешком</div>
-      <div>📷 Фото</div>
+   <a data-i18n="" href="javascript:history.back()" style="font-size: 28px;">
+    ←
+   </a>
+   <h1 data-i18n="_">
+    О маршруте
+   </h1>
+   <p data-i18n="__________">
+    Путь знаний и культуры: от старейших учебных заведений до книжных сокровищ.
+   </p>
+   <div class="icons">
+    <div data-i18n="_">
+     ☕ Еда
     </div>
-
-    <div class="route-point">
-      <img src="../static/img/route3.jpg" alt="Зелёный базар">
-      <div class="route-info">
-        <h3>Казахский национальный университет им. аль-Фараби (главный корпус)</h3>
-        <p>ведущий вуз страны.</p>
-        <p><strong>30 мин.</strong></p>
-      </div>
+    <div data-i18n="_">
+     🧶 Пешком
     </div>
-
-    <div class="route-point">
-      <img src="../static/img/navat.webp" alt="Чайхана">
-      <div class="route-info">
-        <h3>Библиотека им. Абая</h3>
-        <p>тихое место с большим книжным фондом.</p>
-        <p><strong>50 мин.</strong></p>
-      </div>
+    <div data-i18n="_">
+     📷 Фото
     </div>
-
-    <div class="route-point">
-      <img src="../static/img/foodtrack.jpeg" alt="Фуд-траки">
-      <div class="route-info">
-        <h3>Казахская государственная филармония им. Жамбыла</h3>
-        <p>культурный центр с академической музыкой.</p>
-        <p><strong>1 ч.</strong></p>
-      </div>
+   </div>
+   <div class="route-point">
+    <img alt="Зелёный базар" src="../static/img/route3.jpg"/>
+    <div class="route-info">
+     <h3 data-i18n="______">
+      Казахский национальный университет им. аль-Фараби (главный корпус)
+     </h3>
+     <p data-i18n="__">
+      ведущий вуз страны.
+     </p>
+     <p data-i18n="30_">
+      <strong data-i18n="30_">
+       30 мин.
+      </strong>
+     </p>
     </div>
-    <button class="route-done-btn" id="cul_6">✔ Маршрут пройден</button>
-    <button class="route-fav-btn" id="cul_6_fav">Понравился </button>
-</div>
-    <div class="map">
-
-      <iframe src="https://yandex.kz/map-widget/v1/?lang=ru_RU&amp;scroll=true&amp;/?apikey=8ce69368-cb23-4ace-acfe-0e75d0a2318c/maps/ru/162/almaty/?ll=76.945001%2C43.249617&mode=routes&rtext=43.250152%2C76.944584~43.248846%2C76.945791~43.249390%2C76.946830~43.249655%2C76.947809~43.255200%2C76.946954~43.255315%2C76.943248~43.254013%2C76.943373~43.247333%2C76.941786~43.249167%2C76.943984~43.250205%2C76.944417&rtt=pd&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D1067449150~ymapsbm1%3A%2F%2Forg%3Foid%3D148941022304~~~ymapsbm1%3A%2F%2Forg%3Foid%3D1091157901~ymapsbm1%3A%2F%2Forg%3Foid%3D24938488579~ymapsbm1%3A%2F%2Forg%3Foid%3D146629534558~ymapsbm1%3A%2F%2Forg%3Foid%3D128454894573~&z=16.78
-  `    "  
-  id="map"
-  frameborder="0" allowfullscreen="true"
-  width="100%" 
-  height="100%" 
-  frameborder="0" 
-  allowfullscreen="true">
-  >
-    </iframe>
+   </div>
+   <div class="route-point">
+    <img alt="Чайхана" src="../static/img/navat.webp"/>
+    <div class="route-info">
+     <h3 data-i18n="__">
+      Библиотека им. Абая
+     </h3>
+     <p data-i18n="_____">
+      тихое место с большим книжным фондом.
+     </p>
+     <p data-i18n="50_">
+      <strong data-i18n="50_">
+       50 мин.
+      </strong>
+     </p>
     </div>
-
-</body>
+   </div>
+   <div class="route-point">
+    <img alt="Фуд-траки" src="../static/img/foodtrack.jpeg"/>
+    <div class="route-info">
+     <h3 data-i18n="____">
+      Казахская государственная филармония им. Жамбыла
+     </h3>
+     <p data-i18n="____">
+      культурный центр с академической музыкой.
+     </p>
+     <p data-i18n="1_">
+      <strong data-i18n="1_">
+       1 ч.
+      </strong>
+     </p>
+    </div>
+   </div>
+   <button class="route-done-btn" data-i18n="__" id="cul_6">
+    ✔ Маршрут пройден
+   </button>
+   <button class="route-fav-btn" data-i18n="" id="cul_6_fav">
+    Понравился
+   </button>
+  </div>
+  <div class="map">
+   <iframe allowfullscreen="true" data-i18n="" frameborder="0" height="100%" id="map" src="https://yandex.kz/map-widget/v1/?lang=ru_RU&amp;scroll=true&amp;/?apikey=8ce69368-cb23-4ace-acfe-0e75d0a2318c/maps/ru/162/almaty/?ll=76.945001%2C43.249617&amp;mode=routes&amp;rtext=43.250152%2C76.944584~43.248846%2C76.945791~43.249390%2C76.946830~43.249655%2C76.947809~43.255200%2C76.946954~43.255315%2C76.943248~43.254013%2C76.943373~43.247333%2C76.941786~43.249167%2C76.943984~43.250205%2C76.944417&amp;rtt=pd&amp;ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D1067449150~ymapsbm1%3A%2F%2Forg%3Foid%3D148941022304~~~ymapsbm1%3A%2F%2Forg%3Foid%3D1091157901~ymapsbm1%3A%2F%2Forg%3Foid%3D24938488579~ymapsbm1%3A%2F%2Forg%3Foid%3D146629534558~ymapsbm1%3A%2F%2Forg%3Foid%3D128454894573~&amp;z=16.78
+  `    " width="100%">
+    &gt;
+   </iframe>
+  </div>
+ </body>
 </html>
 <script>
-  // Загрузка начального состояния
+ // Загрузка начального состояния
   async function loadInitialState() {
       try {
           const response = await fetch('/get_current_user_state');
@@ -324,22 +357,9 @@
           btn.onclick = () => handleRouteClick(btn);
       });
   });
-
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
+</script>
 <script>
-  // Загрузка начального состояния
+ // Загрузка начального состояния
   async function loadInitialStateFav() {
     try {
         const response = await fetch('/get_current_user_state_fav');
@@ -403,8 +423,4 @@
           btn.onclick = () => handleRouteClickFav(btn);
       });
   });
-  </script>
-  
-
-
-
+</script>

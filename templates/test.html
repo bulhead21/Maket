@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RouteMuse</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title data-i18n="routemuse">
+   RouteMuse
+  </title>
+  <script src="/static/js/translate.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
   <style>
-    html {
+   html {
       scroll-behavior: smooth;
     }
 
@@ -232,8 +235,8 @@
       }
     }
   </style>
- <script>
-    let scrollContainer = document.querySelector('.popular-scroll');
+  <script>
+   let scrollContainer = document.querySelector('.popular-scroll');
     let scrollSpeed = 1; 
 
 setInterval(() => {
@@ -244,122 +247,165 @@ setInterval(() => {
     scrollContainer.scrollLeft = 0; 
   }
 }, 10);
- </script>
-</head>
-<body>
+  </script>
+ </head>
+ <body>
   <header>
-    <div class="burger" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
+   <div class="burger" onclick="toggleMenu()">
+    <div>
     </div>
-    <div class="logo">RouteMuse</div>
-    <nav>
-      <a href="#choose">Маршруты</a>
-      <a href="#about">О нас</a>
-      <a href="#contact">Контакты</a>
-      <a href="#login">Войти</a>
-    </nav>
-    <div class="nav-mobile">
-      <a href="#choose">Маршруты</a>
-      <a href="#about">О нас</a>
-      <a href="#contact">Контакты</a>
-      <a href="#login">Войти</a>
+    <div>
     </div>
+    <div>
+    </div>
+   </div>
+   <div class="logo" data-i18n="routemuse">
+    RouteMuse
+   </div>
+   <nav>
+    <a data-i18n="" href="#choose">
+     Маршруты
+    </a>
+    <a data-i18n="_" href="#about">
+     О нас
+    </a>
+    <a data-i18n="" href="#contact">
+     Контакты
+    </a>
+    <a data-i18n="" href="#login">
+     Войти
+    </a>
+   </nav>
+   <div class="nav-mobile">
+    <a data-i18n="" href="#choose">
+     Маршруты
+    </a>
+    <a data-i18n="_" href="#about">
+     О нас
+    </a>
+    <a data-i18n="" href="#contact">
+     Контакты
+    </a>
+    <a data-i18n="" href="#login">
+     Войти
+    </a>
+   </div>
   </header>
-
-
-
   <section class="hero">
-    <h1>Исследуй мир по вкусу и культуре</h1>
-    <p>Выберите культурный или гастрономический маршрут — и отправляйтесь в путь уже сегодня!</p>
-    <button class="yakor-button"><a class="yakor" href="#choose">Начать путешествиe</a></button>
+   <h1 data-i18n="_____">
+    Исследуй мир по вкусу и культуре
+   </h1>
+   <p data-i18n="___________">
+    Выберите культурный или гастрономический маршрут — и отправляйтесь в путь уже сегодня!
+   </p>
+   <button class="yakor-button" data-i18n="_e">
+    <a class="yakor" data-i18n="_e" href="#choose">
+     Начать путешествиe
+    </a>
+   </button>
   </section>
-
   <section class="routes">
-    <div class="route-option">
-      <img src="../static/img/gastronom.jpeg" alt="Гастрономический маршрут">
-      <div class="info">
-        <h3>🍽️ Гастрономический</h3>
-        <p>Открой местные вкусы и традиции</p>
-      </div>
+   <div class="route-option">
+    <img alt="Гастрономический маршрут" src="../static/img/gastronom.jpeg"/>
+    <div class="info">
+     <h3 data-i18n="_">
+      🍽️ Гастрономический
+     </h3>
+     <p data-i18n="____">
+      Открой местные вкусы и традиции
+     </p>
     </div>
-    <div class="route-option" id="choose">
-      <img src="../static/img/culture.jpg" alt="Культурный маршрут">
-      <div class="info">
-        <h3>🏛️ Культурный</h3>
-        <p>Погрузись в историю и искусство</p>
-      </div>
+   </div>
+   <div class="route-option" id="choose">
+    <img alt="Культурный маршрут" src="../static/img/culture.jpg"/>
+    <div class="info">
+     <h3 data-i18n="_">
+      🏛️ Культурный
+     </h3>
+     <p data-i18n="____">
+      Погрузись в историю и искусство
+     </p>
     </div>
+   </div>
   </section>
-
   <section class="popular-routes">
-    <div class="popular-routes_scroll">
-    <h2>Популярные маршруты</h2>
+   <div class="popular-routes_scroll">
+    <h2 data-i18n="_">
+     Популярные маршруты
+    </h2>
     <div class="popular-scroll">
-      <div class="popular-card">
-        <img src="../static/img/route1.jpg" alt="Route 1">
-        <div class="info">
-          <h4>Горы Алматы</h4>
-          <p>Невероятные виды и чистый воздух</p>
-        </div>
+     <div class="popular-card">
+      <img alt="Route 1" src="../static/img/route1.jpg"/>
+      <div class="info">
+       <h4 data-i18n="_">
+        Горы Алматы
+       </h4>
+       <p data-i18n="____">
+        Невероятные виды и чистый воздух
+       </p>
       </div>
-      <div class="popular-card">
-        <img src="../static/img/route2.jpg" alt="Route 2">
-        <div class="info">
-          <h4>Старый город</h4>
-          <p>Исторические улочки и архитектура</p>
-        </div>
+     </div>
+     <div class="popular-card">
+      <img alt="Route 2" src="../static/img/route2.jpg"/>
+      <div class="info">
+       <h4 data-i18n="_">
+        Старый город
+       </h4>
+       <p data-i18n="___">
+        Исторические улочки и архитектура
+       </p>
       </div>
-      <div class="popular-card">
-        <img src="../static/img/route3.jpg" alt="Route 3">
-        <div class="info">
-          <h4>Фермерский рынок</h4>
-          <p>Свежие продукты и местная кухня</p>
-        </div>
+     </div>
+     <div class="popular-card">
+      <img alt="Route 3" src="../static/img/route3.jpg"/>
+      <div class="info">
+       <h4 data-i18n="_">
+        Фермерский рынок
+       </h4>
+       <p data-i18n="____">
+        Свежие продукты и местная кухня
+       </p>
       </div>
-     
- 
-
-     
-      
-      
-      
-      
+     </div>
     </div>
-</div>
+   </div>
   </section>
-
   <footer>
-    <div class="call_us">
-      Call us<br>
-      <a href="tel:+77477840876" class="call_us_num" target="_blank">+7-(747)-784-08-76</a><br>
-      <a href="mailto:max.enileyev@gmail.com" class="call_us_email" target="_blank">Email</a><br>
-      <a href="https://yandex.kz/maps/ru/org/1107720387/?ll=76.900379%2C43.242069&z=16.19"
-      target="_blank" class='call_us_adr' >Жарокова 24</a>
-    </div>
-    
-    <div class='social_icons'>
-      <a href="https://www.instagram.com/maxigic/?next=%2F" target="_blank">
-      <img src="../static/img/inst_icon.png" 
-      style="width:60px; "></a>
-      <a href="https://t.me/almaways" target="_blank">
-        <img src="../static/img/telegram_icon.png" 
-        style="width:60px; "></a>
-      <a href="https://www.youtube.com/@Almaways" target="_blank">
-        <img src="../static/img/youtube_icon.png" 
-        style="width:60px; "></a>
-      <a href="https://www.tiktok.com/@almaways" target="_blank">
-        <img src="../static/img/tiktok_icons.png" 
-        style="width:60px; "></a>
-    </div>
+   <div class="call_us">
+    Call us
+    <br/>
+    <a class="call_us_num" data-i18n="77477840876" href="tel:+77477840876" target="_blank">
+     +7-(747)-784-08-76
+    </a>
+    <br/>
+    <a class="call_us_email" data-i18n="email" href="mailto:max.enileyev@gmail.com" target="_blank">
+     Email
+    </a>
+    <br/>
+    <a class="call_us_adr" data-i18n="_24" href="https://yandex.kz/maps/ru/org/1107720387/?ll=76.900379%2C43.242069&amp;z=16.19" target="_blank">
+     Жарокова 24
+    </a>
+   </div>
+   <div class="social_icons">
+    <a href="https://www.instagram.com/maxigic/?next=%2F" target="_blank">
+     <img src="../static/img/inst_icon.png" style="width:60px; "/>
+    </a>
+    <a href="https://t.me/almaways" target="_blank">
+     <img src="../static/img/telegram_icon.png" style="width:60px; "/>
+    </a>
+    <a href="https://www.youtube.com/@Almaways" target="_blank">
+     <img src="../static/img/youtube_icon.png" style="width:60px; "/>
+    </a>
+    <a href="https://www.tiktok.com/@almaways" target="_blank">
+     <img src="../static/img/tiktok_icons.png" style="width:60px; "/>
+    </a>
+   </div>
   </footer>
-</body>
+ </body>
 </html>
 <script>
-    function toggleMenu() {
+ function toggleMenu() {
   const mobileMenu = document.querySelector('.nav-mobile');
   mobileMenu.classList.toggle('active');
 }
-
-  </script>
+</script>
