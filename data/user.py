@@ -6,6 +6,8 @@ from sqlalchemy_serializer import SerializerMixin
 from datetime import datetime
 from .db_session import SqlAlchemyBase
 from sqlalchemy import  DateTime
+from sqlalchemy import func, or_
+from sqlalchemy import text, String
 
 
 class User(SqlAlchemyBase, UserMixin, SerializerMixin):
@@ -65,7 +67,61 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
             return 0
         # Считаем количество завершённых маршрутов (True в completed_routes)
         return sum(1 for completed in self.completed_routes.values() if completed)
+    @staticmethod
+    def get_popular_routes(db_sess, limit=5):
+        """Упрощенная и надежная версия для SQLite"""
+        try:
+            # Получаем всех пользователей с их предпочтениями
+            users = db_sess.query(User).filter(
+                User.completed_routes.isnot(None) | 
+                User.favourite_routes.isnot(None)
+            ).all()
 
+            # Собираем статистику
+            route_stats = {}
+            
+            for user in users:
+                # Обрабатываем completed_routes
+                if user.completed_routes:
+                    for route_id, is_completed in user.completed_routes.items():
+                        if is_completed:
+                            route_stats.setdefault(route_id, {'completed': 0, 'favourite': 0})
+                            route_stats[route_id]['completed'] += 1
+                
+                # Обрабатываем favourite_routes
+                if user.favourite_routes:
+                    for route_id, is_favourite in user.favourite_routes.items():
+                        if is_favourite:
+                            route_stats.setdefault(route_id, {'completed': 0, 'favourite': 0})
+                            route_stats[route_id]['favourite'] += 1
+
+            # Получаем полные данные о маршрутах
+            popular_routes = []
+            for route_id, stats in route_stats.items():
+                try:
+                    # Удаляем префикс 'cul_' если он есть
+                    clean_id = int(route_id.replace('cul_', ''))
+                    route = db_sess.query(Route).get(clean_id)
+                    if route:
+                        popularity = (stats['completed'] + stats['favourite']) / 2
+                        popular_routes.append({
+                            'id': route.id,
+                            'title': route.title,
+                            'description': route.description,
+                            'image_url': route.image_url,
+                            'duration': route.duration,
+                            'difficulty': route.difficulty,
+                            'popularity': popularity
+                        })
+                except (ValueError, AttributeError):
+                    continue
+
+            # Сортируем по популярности
+            return sorted(popular_routes, key=lambda x: x['popularity'], reverse=True)[:limit]
+
+        except Exception as e:
+            print(f"Error in get_popular_routes: {e}")
+            return []
 class Route(SqlAlchemyBase):
     __tablename__ = 'routes'
 

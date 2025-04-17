@@ -1501,7 +1501,187 @@
         display: block;
         opacity: 1;
       }
-    
+      .popular-section {
+    margin: 2rem 0;
+    padding: 1rem;
+}
+
+.popular-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.popular-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.popular-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.popular-info {
+    padding: 1rem;
+}
+
+.popular-info h3 {
+    margin: 0 0 0.5rem;
+}
+.popular-routes {
+    padding: 2rem 0;
+    background: #f8f9fa;
+}
+
+.popular-routes h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    color: #333;
+}
+
+.popular-scroll {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+    scrollbar-width: none; /* Firefox */
+}
+
+.popular-scroll::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.popular-card {
+    flex: 0 0 280px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.popular-card:hover {
+    transform: translateY(-5px);
+}
+
+.popular-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.popular-card .info {
+    padding: 1rem;
+    position: relative;
+}
+
+.popular-card h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.popular-card p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.popularity-badge {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: #4CAF50;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+
+
+
+
+.popular-routes {
+    padding: 2rem 0;
+    background: #f8f9fa;
+}
+
+.no-routes {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+}
+
+.popular-scroll {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+    scrollbar-width: none;
+}
+
+.popular-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.popular-card {
+    flex: 0 0 300px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.popular-card:hover {
+    transform: translateY(-5px);
+}
+
+.popular-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.popular-card .info {
+    padding: 1.2rem;
+}
+
+.popular-card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.2rem;
+}
+
+.popular-card .description {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.popular-card .meta {
+    display: flex;
+    gap: 1rem;
+    color: #555;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.popular-card .popularity {
+    background: #4CAF50;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
 
   </style>
 
@@ -1600,41 +1780,31 @@
       <!-- Popular Routes -->
       <section class="popular-routes">
         <h2>Популярные Маршруты</h2>
-        <div class="popular-scroll" id="popular-scroll-id">
-          <div class="popular-card">
-            <img src="../static/img/route1.jpg" alt="Almaty Mountains">
-            <div class="info">
-              <h4>Горы Алматы</h4>
-              <p>Невероятные виды и чистый горный воздух</p>
+        {% if not popular_routes %}
+            <p class="no-routes">Пока нет данных о популярных маршрутах</p>
+        {% else %}
+            <div class="popular-scroll">
+                {% for route in popular_routes %}
+                <div class="popular-card">
+                    <img src="{{ route.image_url if route.image_url else url_for('static', filename='img/default_route.jpg') }}" 
+                         alt="{{ route.title }}">
+                    <div class="info">
+                        <h3>{{ route.title }}</h3>
+                        <p class="description">{{ route.description|truncate(80) }}</p>
+                        <div class="meta">
+                            <span>⏱ {{ route.duration }} ч</span>
+                            <span>⚡ {{ route.difficulty }}</span>
+                        </div>
+                        <div class="popularity">
+                            ★ {{ "%.0f"|format(route.popularity * 50) }}%
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
-          </div>
-          
-          <div class="popular-card">
-            <img src="../static/img/route2.jpg" alt="Old Town">
-            <div class="info">
-              <h4>Старый город</h4>
-              <p>Очаровательные улочки и архитектура советской эпохи</p>
-            </div>
-          </div>
-          
-          <div class="popular-card">
-            <img src="../static/img/route3.jpg" alt="Farmers Market">
-            <div class="info">
-              <h4>Зелёный базар</h4>
-              <p>Оживлённый рынок со свежими продуктами</p>
-            </div>
-          </div>
-          
-          <div class="popular-card">
-            <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Charyn Canyon">
-            <div class="info">
-              <h4>Чарынский Каньон</h4>
-              <p>Kazakhstan's answer to the Grand Canyon</p>
-            </div>
-          </div>
-          
-        </div>
-      </section>
+        {% endif %}
+    </section>
+    
 <!-- Testimonials Section -->
 <section class="testimonials" id="testimonials">
   <h2 class="section-title">Traveler Stories</h2>
@@ -1895,7 +2065,35 @@ mobileMenu.classList.toggle('active');
   });
 </script>
 
-
+<script>
+  // Плавный скролл для популярных маршрутов
+  const scrollContainer = document.getElementById('popular-scroll-id');
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+  
+  scrollContainer.addEventListener('mousedown', (e) => {
+      isDown = true;
+      startX = e.pageX - scrollContainer.offsetLeft;
+      scrollLeft = scrollContainer.scrollLeft;
+  });
+  
+  scrollContainer.addEventListener('mouseleave', () => {
+      isDown = false;
+  });
+  
+  scrollContainer.addEventListener('mouseup', () => {
+      isDown = false;
+  });
+  
+  scrollContainer.addEventListener('mousemove', (e) => {
+      if(!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - scrollContainer.offsetLeft;
+      const walk = (x - startX) * 2;
+      scrollContainer.scrollLeft = scrollLeft - walk;
+  });
+  </script>
 
 
 <script>
