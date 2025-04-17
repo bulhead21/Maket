@@ -2,7 +2,6 @@ import re
 import smtplib
 import dns.resolver
 import datetime
-from tkinter import *
 from flask import Flask
 from flask import Flask, render_template, redirect, request, Response, session, send_file, jsonify, Blueprint, abort
 from data import db_session
@@ -21,8 +20,6 @@ from flask import request, redirect, url_for
 import os
 from werkzeug.utils import secure_filename
 
-tk=Tk()
-width = tk.winfo_screenwidth()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "mishadimamax200620072008"
 app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=365)
